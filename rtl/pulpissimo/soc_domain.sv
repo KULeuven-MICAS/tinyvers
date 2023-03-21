@@ -263,7 +263,7 @@ module soc_domain #(
     input logic                      ext_pg_l1,
     input logic                      ext_pg_udma,
     input logic                      ext_pg_mram,
-    input logic                      scan_en_in,
+    input logic                      scan_en_in
     );
 
     pulp_soc

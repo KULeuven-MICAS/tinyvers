@@ -543,8 +543,8 @@ module tb_pulp;
     );
 
 
-   // PULPissimo chip (design under test)
-   pulpissimo #(
+   // TinyVers chip (design under test)
+   siriusv2 #(
       .CORE_TYPE ( CORE_TYPE ),
       .USE_FPU   ( RISCY_FPU )
    )
