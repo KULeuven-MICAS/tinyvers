@@ -1,0 +1,5 @@
+*.ini
+*.bin
+out_*/
+work/
+*.pyc

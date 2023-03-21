@@ -1,0 +1,302 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/users/micas/vjain/tinyvers_main/sim
+vdc_full_detector_mram
+Z1 DXx6 sv_std 3 std 0 22 d=_JfHTnXCN[H5FjiaJJc0
+Z2 !s110 1679395904
+!i10b 1
+!s100 ]4[6PSBE:6OD[XYUheD8Q3
+I9g1L<i^1P7DFN3Z86A<NN1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+!s105 dc_full_detector_mram_v_unit
+S1
+R0
+Z4 w1679390133
+8../ips/udma/udma_external_per/rtl/dc_full_detector_mram.v
+F../ips/udma/udma_external_per/rtl/dc_full_detector_mram.v
+Z5 L0 11
+Z6 OE;L;10.7c;67
+r1
+!s85 0
+31
+Z7 !s108 1679395904.000000
+!s107 ../ips/udma/udma_external_per/rtl/udma_mram_top_wrapper.sv|../ips/udma/udma_external_per/rtl/udma_mram_domain.sv|../ips/udma/udma_external_per/rtl/udma_mram_macro_wrapper.sv|../ips/udma/udma_external_per/rtl/dc_full_detector_mram.v|../ips/udma/udma_external_per/rtl/dc_token_ring_fifo_din_mram.v|../ips/udma/udma_external_per/rtl/udma_dc_fifo_mram.sv|../ips/udma/udma_external_per/rtl/TX_RX_to_MRAM.sv|../ips/udma/udma_external_per/rtl/size_conv_RX_64_to_32.sv|../ips/udma/udma_external_per/rtl/size_conv_TX_32_to_64.sv|../ips/udma/udma_external_per/rtl/udma_mram_top.sv|../ips/udma/udma_external_per/rtl/udma_mram_reg_if.sv|../ips/udma/udma_external_per/rtl/RX_serializer.sv|
+Z8 !s90 -quiet|-sv|-work|/users/micas/vjain/tinyvers_main/install/modelsim_libs/udma_external_per_lib|-suppress|2583|-suppress|13314|../ips/udma/udma_external_per/rtl/RX_serializer.sv|../ips/udma/udma_external_per/rtl/udma_mram_reg_if.sv|../ips/udma/udma_external_per/rtl/udma_mram_top.sv|../ips/udma/udma_external_per/rtl/size_conv_TX_32_to_64.sv|../ips/udma/udma_external_per/rtl/size_conv_RX_64_to_32.sv|../ips/udma/udma_external_per/rtl/TX_RX_to_MRAM.sv|../ips/udma/udma_external_per/rtl/udma_dc_fifo_mram.sv|../ips/udma/udma_external_per/rtl/dc_token_ring_fifo_din_mram.v|../ips/udma/udma_external_per/rtl/dc_full_detector_mram.v|../ips/udma/udma_external_per/rtl/udma_mram_macro_wrapper.sv|../ips/udma/udma_external_per/rtl/udma_mram_domain.sv|../ips/udma/udma_external_per/rtl/udma_mram_top_wrapper.sv|
+!i113 0
+Z9 o-suppress 2583 -suppress 13314 -quiet -sv -work /users/micas/vjain/tinyvers_main/install/modelsim_libs/udma_external_per_lib -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z10 tCvgOpt 0
+vdc_token_ring_fifo_din_mram
+R1
+R2
+!i10b 1
+!s100 5ZE97HakbOEEHR^;0>Z5>1
+IUW1b2k:UmKBCFTDL=YSK02
+R3
+!s105 dc_token_ring_fifo_din_mram_v_unit
+S1
+R0
+Z11 w1679390132
+8../ips/udma/udma_external_per/rtl/dc_token_ring_fifo_din_mram.v
+F../ips/udma/udma_external_per/rtl/dc_token_ring_fifo_din_mram.v
+R5
+R6
+r1
+!s85 0
+31
+R7
+Z12 !s107 ../ips/udma/udma_external_per/rtl/udma_mram_top_wrapper.sv|../ips/udma/udma_external_per/rtl/udma_mram_domain.sv|../ips/udma/udma_external_per/rtl/udma_mram_macro_wrapper.sv|../ips/udma/udma_external_per/rtl/dc_full_detector_mram.v|../ips/udma/udma_external_per/rtl/dc_token_ring_fifo_din_mram.v|../ips/udma/udma_external_per/rtl/udma_dc_fifo_mram.sv|../ips/udma/udma_external_per/rtl/TX_RX_to_MRAM.sv|../ips/udma/udma_external_per/rtl/size_conv_RX_64_to_32.sv|../ips/udma/udma_external_per/rtl/size_conv_TX_32_to_64.sv|../ips/udma/udma_external_per/rtl/udma_mram_top.sv|../ips/udma/udma_external_per/rtl/udma_mram_reg_if.sv|../ips/udma/udma_external_per/rtl/RX_serializer.sv|
+R8
+!i113 0
+R9
+R10
+vRX_serializer
+R1
+R2
+!i10b 1
+!s100 n69[B3@Fm_]H79B6@7aMG2
+I5n=Aa2IOE23lUYm8BOekz3
+R3
+!s105 RX_serializer_sv_unit
+S1
+R0
+R11
+8../ips/udma/udma_external_per/rtl/RX_serializer.sv
+F../ips/udma/udma_external_per/rtl/RX_serializer.sv
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10
+n@r@x_serializer
+vsize_conv_RX_64_to_32
+R1
+R2
+!i10b 1
+!s100 Sd@CnK1QW@RaMb8Fc2dH31
+IREXJLSb1GN94K7Gj?U8<H1
+R3
+!s105 size_conv_RX_64_to_32_sv_unit
+S1
+R0
+R11
+8../ips/udma/udma_external_per/rtl/size_conv_RX_64_to_32.sv
+F../ips/udma/udma_external_per/rtl/size_conv_RX_64_to_32.sv
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10
+nsize_conv_@r@x_64_to_32
+vsize_conv_TX_32_to_64
+R1
+R2
+!i10b 1
+!s100 =:4Ui2JmHSAUg4mN4O6G:3
+I1?65XGS:haL>`iebJz[<f3
+R3
+!s105 size_conv_TX_32_to_64_sv_unit
+S1
+R0
+R4
+8../ips/udma/udma_external_per/rtl/size_conv_TX_32_to_64.sv
+F../ips/udma/udma_external_per/rtl/size_conv_TX_32_to_64.sv
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10
+nsize_conv_@t@x_32_to_64
+vTX_RX_to_MRAM
+R1
+R2
+!i10b 1
+!s100 FLN`TLmz7KgY?D1B6d?V?1
+I^[PFmQY9WWh@<jQA;f5XR0
+R3
+!s105 TX_RX_to_MRAM_sv_unit
+S1
+R0
+R4
+8../ips/udma/udma_external_per/rtl/TX_RX_to_MRAM.sv
+F../ips/udma/udma_external_per/rtl/TX_RX_to_MRAM.sv
+L0 4
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10
+n@t@x_@r@x_to_@m@r@a@m
+vudma_dc_fifo_mram
+R1
+R2
+!i10b 1
+!s100 ZBYkajXS5AS[HNBJ`19a82
+IIX;B0l6zzZKCl3N0id=_:1
+R3
+!s105 udma_dc_fifo_mram_sv_unit
+S1
+R0
+R11
+8../ips/udma/udma_external_per/rtl/udma_dc_fifo_mram.sv
+F../ips/udma/udma_external_per/rtl/udma_dc_fifo_mram.sv
+L0 21
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10
+vudma_mram_domain
+R1
+R2
+!i10b 1
+!s100 jg`=bleVH6]fP:?9g7C8A3
+I=M_:Fd`F;ZemjbZkIofPN1
+R3
+!s105 udma_mram_domain_sv_unit
+S1
+R0
+R11
+8../ips/udma/udma_external_per/rtl/udma_mram_domain.sv
+F../ips/udma/udma_external_per/rtl/udma_mram_domain.sv
+L0 31
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10
+vudma_mram_macro_wrapper
+R1
+R2
+!i10b 1
+!s100 EWLlGfA2VlIV@[0QV696H3
+I6I>3=G5z9KG`8c1BU;l3P2
+R3
+!s105 udma_mram_macro_wrapper_sv_unit
+S1
+R0
+R4
+8../ips/udma/udma_external_per/rtl/udma_mram_macro_wrapper.sv
+F../ips/udma/udma_external_per/rtl/udma_mram_macro_wrapper.sv
+L0 2
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10
+vudma_mram_reg_if
+R1
+R2
+!i10b 1
+!s100 e0R^<>N@oMQcDj_1Y`MY93
+IKF;DMmP6j>KSn=28DT8GI2
+R3
+!s105 udma_mram_reg_if_sv_unit
+S1
+R0
+R11
+8../ips/udma/udma_external_per/rtl/udma_mram_reg_if.sv
+F../ips/udma/udma_external_per/rtl/udma_mram_reg_if.sv
+L0 44
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10
+vudma_mram_top
+R1
+R2
+!i10b 1
+!s100 ?BQV@9PCE@M56kee^amkF3
+IM6c<^SVB[GCn_9XSdC=Jm3
+R3
+!s105 udma_mram_top_sv_unit
+S1
+R0
+R11
+8../ips/udma/udma_external_per/rtl/udma_mram_top.sv
+F../ips/udma/udma_external_per/rtl/udma_mram_top.sv
+L0 27
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10
+vudma_mram_top_wrapper
+R1
+R2
+!i10b 1
+!s100 10<gIUdbze3k@fdFb_5K31
+IKRR9G9z@@zb3Z0i1f0C3R1
+R3
+!s105 udma_mram_top_wrapper_sv_unit
+S1
+R0
+R11
+8../ips/udma/udma_external_per/rtl/udma_mram_top_wrapper.sv
+F../ips/udma/udma_external_per/rtl/udma_mram_top_wrapper.sv
+L0 2
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10

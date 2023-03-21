@@ -1,0 +1,87 @@
+#
+# List of IPs and relative branch/commit-hash/tag.
+# Uses the YAML syntax.
+#
+# Examples:
+#
+#   or10n:
+#     commit: tags/PULP3_final
+#     domain: [cluster]
+#   udma:
+#     commit: 62b10440
+#     domain: [soc]
+#   axi_slice:
+#     commit: tags/pulpissimo-v1.0
+#     domain: [soc,cluster]
+# If a *tag* or *commit* is referenced, the IP will be in a
+#  state of DETACHED HEAD. Before committing any additional
+#  work, make sure to checkout a branch.
+#
+
+L2_tcdm_hybrid_interco:
+  commit: pulpissimo-v1.0
+adv_dbg_if:
+  commit: v0.0.1
+apb/apb2per:
+  commit: v0.0.1
+apb/apb_adv_timer:
+  commit: v1.0.2
+apb/apb_fll_if:
+  commit: pulpissimo-v1.0
+apb/apb_gpio:
+  commit: v0.2.0
+apb/apb_node:
+  commit: v0.1.1
+apb_interrupt_cntrl:
+  commit: v0.0.1
+axi/axi:
+  commit: v0.7.1
+axi/axi_node:
+  commit: v1.1.4
+axi/axi_slice:
+  commit: v1.1.4
+axi/axi_slice_dc:
+  commit: v1.1.3
+axi/axi_mem_if:
+  commit: v0.2.0
+timer_unit:
+  commit: v1.0.2
+common_cells:
+  commit: v1.13.1
+fpnew:
+  commit: v0.6.1
+jtag_pulp:
+  commit: v0.1
+riscv:
+  commit: pulpissimo-v3.4.0
+ibex:
+  commit: 13313952cd50ff04489f6cf3dba9ba05c2011a8b
+  group: lowRISC
+scm:
+  commit: v1.0.1
+generic_FLL:
+  commit: v0.1
+tech_cells_generic:
+  commit: v0.1.6
+udma/udma_core:
+  commit: v1.0.0
+udma/udma_uart:
+  commit: v1.0.0
+udma/udma_i2c:
+  commit: vega_v1.0.0
+udma/udma_i2s:
+  commit: v1.0.0
+udma/udma_qspi:
+  commit: v1.0.0
+udma/udma_sdio:
+  commit: vega_v1.0.5
+udma/udma_camera:
+  commit: v1.0.0
+udma/udma_filter:
+  commit: v1.0.0
+udma/udma_external_per:
+  commit: v1.0.0
+hwpe-mac-engine:
+  commit: v1.2
+riscv-dbg:
+  commit: v0.2

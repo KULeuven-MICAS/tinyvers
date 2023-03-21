@@ -1,0 +1,213 @@
+module size_conv_RX_64_to_32
+#(
+   parameter TRANS_SIZE = 16
+)
+(
+   input  logic                        clk,
+   input  logic                        rst_n,
+
+   // signal to RDATA DCFIFO
+   output logic [63:0]                 data_rx_rdata_o,
+   output logic                        data_rx_valid_o,
+   input  logic                        data_rx_ready_i,
+
+   // comand  from reg_if
+   input  logic                        push_cmd_req_i,
+   output logic                        push_cmd_gnt_o,
+   input  logic [18:0]                 data_rx_addr_i,
+   input  logic [TRANS_SIZE-1:0]       data_rx_size_i,
+
+   // Interface to MRAM
+   output  logic [18:0]                data_rx_raddr_o,
+   output  logic                       data_rx_clk_en_o,
+   output  logic                       data_rx_req_o,
+   output  logic                       data_rx_eot_o,
+   input   logic                       data_rx_gnt_i,
+   input   logic [63:0]                data_rx_rdata_i,
+
+   output  logic                       pending_o,
+
+   input  logic [7:0]                  mram_mode_i,
+   input  logic                        NVR_i,
+   input  logic                        TMEN_i,
+   input  logic                        AREF_i,
+   output logic                        mram_NVR_o,
+   output logic                        mram_TMEN_o,
+   output logic                        mram_AREF_o
+);
+
+   logic [18:0]                 data_rx_addr_Q;
+   logic [TRANS_SIZE-1:0]       data_rx_size_Q;
+
+   logic [18:0]                 data_rx_addr_int;
+   logic [TRANS_SIZE-1:0]       data_rx_size_int;
+
+
+   logic valid_cmd, save_addr, update_addr;
+   logic en_clock;
+
+   enum logic [2:0] { IDLE, DISPATCH_WAIT_RDATA , DISPATCH_DONE, WAIT_RDATA  } NS, CS;
+
+   assign pending_o = (valid_cmd == 1'b1) || (CS != IDLE) || (data_rx_valid_o == 1'b1) ;
+   assign data_rx_clk_en_o = en_clock;
+
+
+  assign {data_rx_size_int,data_rx_addr_int} = {data_rx_size_i,data_rx_addr_i};
+  assign valid_cmd = push_cmd_req_i;
+  assign push_cmd_gnt_o = save_addr;
+  
+
+
+
+   always_ff @(posedge clk or negedge rst_n)
+   begin
+      if(~rst_n)
+      begin
+         CS <= IDLE;
+
+         data_rx_addr_Q   <= '0;
+         data_rx_size_Q   <= '0;
+
+         mram_AREF_o <= 1'b0;
+         mram_TMEN_o <= 1'b0;
+         mram_NVR_o  <= 1'b0;
+
+      end
+      else
+      begin
+         CS <= NS;
+
+         if(save_addr)
+         begin
+            data_rx_addr_Q <= data_rx_addr_int + 1;
+            data_rx_size_Q <= data_rx_size_int - 8;
+            mram_AREF_o    <= AREF_i;
+            mram_TMEN_o    <= TMEN_i;
+            mram_NVR_o     <= NVR_i;
+         end
+         else
+         begin
+            if(update_addr)
+            begin
+               data_rx_addr_Q <= data_rx_addr_Q + 1;
+               data_rx_size_Q <= data_rx_size_Q - 8;
+            end
+         end
+      end
+   end
+
+
+
+
+   always_comb
+   begin
+      en_clock         = 1'b0;
+      // To MRAM
+      data_rx_raddr_o  = '0;
+      data_rx_req_o    = '0;
+      data_rx_eot_o    = 1'b0;
+
+      save_addr        = 1'b0;
+      update_addr      = 1'b0;
+      data_rx_valid_o  = 1'b0;
+
+      NS = CS;
+
+
+      case (CS)
+         IDLE: 
+         begin
+            
+            en_clock        = valid_cmd & data_rx_gnt_i;
+            save_addr       = valid_cmd & data_rx_gnt_i;
+            data_rx_req_o   = valid_cmd;
+            data_rx_raddr_o = data_rx_addr_int;
+
+            if(data_rx_req_o & data_rx_gnt_i)
+            begin
+               NS = (data_rx_size_int <= 8) ? DISPATCH_DONE : DISPATCH_WAIT_RDATA;
+            end
+            else
+            begin
+               NS = IDLE;
+            end
+         end
+
+
+         DISPATCH_WAIT_RDATA:
+         begin
+            data_rx_valid_o = 1'b1;
+ 
+            en_clock            = data_rx_ready_i & data_rx_gnt_i;
+            data_rx_req_o       = (data_rx_ready_i) ? (data_rx_size_Q > 0) : 1'b0 ;
+            data_rx_raddr_o     = data_rx_addr_Q;
+            update_addr         = (data_rx_ready_i & data_rx_gnt_i) ? (data_rx_size_Q > 0) : 1'b0 ;
+
+            if(data_rx_ready_i) // Listen readdy from FIFO RDATA
+            begin
+               if(data_rx_gnt_i)
+               begin
+                     NS = ( data_rx_size_Q <= 8 ) ? DISPATCH_DONE : DISPATCH_WAIT_RDATA;
+               end
+               else
+               begin
+                     NS = WAIT_RDATA;
+               end
+
+            end
+            else
+            begin
+               NS = DISPATCH_WAIT_RDATA;
+            end
+
+         end
+
+
+         WAIT_RDATA:
+         begin
+            data_rx_valid_o = 1'b0;
+            
+            en_clock        = data_rx_gnt_i;
+            data_rx_req_o   = (data_rx_size_Q > 0);
+            data_rx_raddr_o = data_rx_addr_Q;
+            update_addr     = (data_rx_gnt_i) ? (data_rx_size_Q > 0) : 1'b0 ;
+
+            if(data_rx_req_o & data_rx_gnt_i)
+            begin
+               NS = (data_rx_size_int <= 8) ? DISPATCH_DONE : DISPATCH_WAIT_RDATA;
+            end
+            else
+            begin
+               NS = WAIT_RDATA;
+            end
+         end
+
+
+         DISPATCH_DONE:
+         begin
+            data_rx_raddr_o    = '0 ;
+            update_addr        = 1'b0;
+            data_rx_req_o      = 1'b0;
+            data_rx_eot_o      = 1'b1;
+
+            data_rx_valid_o = 1'b1;
+ 
+            if(data_rx_ready_i) // Listen readdy from FIFO RDATA
+            begin
+               NS = IDLE;
+            end
+            else
+            begin
+               NS = DISPATCH_DONE;
+            end
+         end
+
+      endcase
+   end
+
+
+
+
+assign data_rx_rdata_o      = data_rx_rdata_i;
+
+endmodule // size_conv_RX_64_to_32

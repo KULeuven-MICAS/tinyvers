@@ -1,0 +1,38 @@
+#
+# Copyright (C) 2015-2019 ETH Zurich, University of Bologna
+# All rights reserved.
+#
+# This software may be modified and distributed under the terms
+# of the BSD license.  See the LICENSE file for details.
+#
+
+IP=udma_mram
+IP_PATH=$(IPS_PATH)/udma/udma_mram
+LIB_NAME=$(IP)_lib
+
+include ncompile/build.mk
+
+.PHONY: ncompile-$(IP) ncompile-subip-udma_mram
+
+ncompile-$(IP): $(LIB_PATH)/_nmake
+
+$(LIB_PATH)/_nmake : $(LIB_PATH)/udma_mram.nmake 
+	echo $(LIB_PATH)/_nmake
+
+
+SRC_SVLOG_UDMA_MRAM=\
+	$(IP_PATH)/rtl/udma_external_per_reg_if.sv\
+	$(IP_PATH)/rtl/udma_external_per_wrapper.sv\
+	$(IP_PATH)/rtl/udma_external_per_top.sv\
+	$(IP_PATH)/rtl/udma_traffic_gen_rx.sv\
+	$(IP_PATH)/rtl/udma_traffic_gen_tx.sv
+SRC_VHDL_UDMA_MRAM=
+
+ncompile-subip-udma_mram: $(LIB_PATH)/udma_mram.nmake
+
+$(LIB_PATH)/udma_mram.nmake: $(SRC_SVLOG_UDMA_MRAM) $(SRC_VHDL_UDMA_MRAM)
+	$(call subip_echo,udma_mram)
+	$(SVLOG_CC) -makelib ./ncsim_libs    $(INCDIR_UDMA_MRAM) $(SRC_SVLOG_UDMA_MRAM) -endlib
+	
+	echo $(LIB_PATH)/udma_mram.nmake
+

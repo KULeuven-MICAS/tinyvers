@@ -1,0 +1,214 @@
+import mac_package::*;
+import hwpe_ctrl_package::*;
+import parameters::*;
+
+module cpu_wrapper
+(
+  input logic clk,
+  input logic reset,
+  input logic enable,
+
+   // input a stream
+  hwpe_stream_intf_stream.sink  wr_addr_ext,
+  // input b stream
+  hwpe_stream_intf_stream.sink  wr_data_ext,
+  // output d stream
+  hwpe_stream_intf_stream.source wr_output_data,
+  
+  input ctrl_engine_t ctrl_i,
+  output flags_engine_t flags_o
+);
+
+logic wr_en_ext_lut_s;
+logic wr_en_ext_conf_reg_s;
+logic wr_en_ext_im_s;
+logic wr_en_ext_sparsity_s;
+logic wr_en_ext_act_mem_s;
+logic wr_en_ext_fc_w_s;
+logic wr_en_ext_cnn_w_s;
+logic [31:0] wr_addr_ext_lut_s;
+logic signed [31:0] wr_data_ext_lut_s;
+logic [31:0] wr_addr_ext_conf_reg_s;
+logic signed [31:0] wr_data_ext_conf_reg_s;
+logic [31:0] wr_addr_ext_im_s;
+logic signed [31:0] wr_data_ext_im_s;
+logic [31:0] wr_addr_ext_sparsity_s;
+logic signed [31:0] wr_data_ext_sparsity_s;
+logic [31:0] wr_addr_ext_act_mem_s;
+//logic signed [31:0] wr_data_ext_act_mem_s;
+logic signed [(ACT_DATA_WIDTH)-1:0] wr_data_ext_act_mem_s [3:0];
+logic [31:0] wr_addr_ext_fc_w_s;
+logic signed [(WEIGHT_DATA_WIDTH)-1:0] wr_data_ext_fc_w_s [3:0];
+logic [31:0] wr_addr_ext_cnn_w_s;
+logic signed [(WEIGHT_DATA_WIDTH)-1:0] wr_data_ext_cnn_w_s [3:0];
+logic rd_en_ext_act_mem_s;
+logic [31:0]  rd_addr_ext_act_mem_s;
+logic signed [ACT_DATA_WIDTH-1:0] rd_data_ext_act_mem_s[N_DIM_ARRAY-1:0];
+logic [31:0] wr_output_addr_s;
+logic signed [ACT_DATA_WIDTH-1:0] wr_output_data_s[N_DIM_ARRAY-1:0];
+logic wr_output_enable_s;
+logic finished_network_s;
+logic [15:0] OUTPUT_TILE_SIZE_s;
+logic [15:0] WEIGHT_TILE_SIZE_s;
+logic [7:0] NB_INPUT_TILE_s;
+logic [7:0] NB_WEIGHT_TILE_s;
+logic [2:0] MODE_s;
+logic SPARSITY_s;
+logic done_layer_s;
+
+always @(*)
+begin
+  
+  wr_en_ext_lut_s = 1'b0;
+  wr_en_ext_conf_reg_s = 1'b0;
+  wr_en_ext_im_s = 1'b0;
+  wr_en_ext_sparsity_s = 1'b0;
+  wr_en_ext_act_mem_s = 1'b0;
+  wr_en_ext_fc_w_s = 1'b0;
+  wr_en_ext_cnn_w_s = 1'b0;
+  wr_addr_ext_lut_s = '0;
+  wr_data_ext_lut_s = '0;
+  wr_addr_ext_conf_reg_s = '0;
+  wr_data_ext_conf_reg_s = '0;
+  wr_addr_ext_im_s = '0;  
+  wr_data_ext_im_s = '0;
+  wr_addr_ext_sparsity_s = '0;
+  wr_data_ext_sparsity_s = '0;
+  wr_addr_ext_act_mem_s = '0;
+  wr_data_ext_act_mem_s = {'0, '0, '0, '0};
+  wr_addr_ext_fc_w_s = '0;
+  wr_data_ext_fc_w_s =  {'0, '0, '0, '0};
+  wr_addr_ext_cnn_w_s = '0;
+  wr_data_ext_cnn_w_s =  {'0, '0, '0, '0};
+
+
+
+  case(ctrl_i.mem_sel)
+    PANDA_FSM_SEL_CONFIG_MEMORY:
+      begin
+         wr_en_ext_conf_reg_s = ctrl_i.wr_en;
+         wr_addr_ext_conf_reg_s = wr_addr_ext.data;
+         wr_data_ext_conf_reg_s = wr_data_ext.data; 
+      end
+    PANDA_FSM_SEL_INSTRUCTION_MEMORY:
+      begin
+        wr_en_ext_im_s = ctrl_i.wr_en;
+        wr_addr_ext_im_s = wr_addr_ext.data;
+        wr_data_ext_im_s = wr_data_ext.data;
+      end
+    PANDA_FSM_SEL_LUT_MEMORY:
+      begin
+        wr_en_ext_lut_s = ctrl_i.wr_en;
+        wr_addr_ext_lut_s = wr_addr_ext.data;
+        wr_data_ext_lut_s = wr_data_ext.data;
+      end
+    PANDA_FSM_SEL_SPARSITY_MEMORY:
+      begin
+        wr_en_ext_sparsity_s   = ctrl_i.wr_en;
+        wr_addr_ext_sparsity_s = wr_addr_ext.data;
+        wr_data_ext_sparsity_s = wr_data_ext.data;
+      end
+    PANDA_FSM_SEL_ACTIVATION_MEMORY:
+      begin
+        wr_en_ext_act_mem_s = ctrl_i.wr_en;
+        wr_addr_ext_act_mem_s = wr_addr_ext.data;
+        wr_data_ext_act_mem_s[3] = wr_data_ext.data[7:0];
+        wr_data_ext_act_mem_s[2] = wr_data_ext.data[15:8];
+        wr_data_ext_act_mem_s[1] = wr_data_ext.data[23:16];
+        wr_data_ext_act_mem_s[0] = wr_data_ext.data[31:24];
+	
+      end
+    PANDA_FSM_SEL_WEIGHT_FC_MEMORY:
+      begin
+        wr_en_ext_fc_w_s = ctrl_i.wr_en;        
+        wr_addr_ext_fc_w_s = wr_addr_ext.data;
+        wr_data_ext_fc_w_s[3] = wr_data_ext.data[7:0];
+        wr_data_ext_fc_w_s[2] = wr_data_ext.data[15:8];
+        wr_data_ext_fc_w_s[1] = wr_data_ext.data[23:16];
+        wr_data_ext_fc_w_s[0] = wr_data_ext.data[31:24];
+       
+
+      end
+    PANDA_FSM_SEL_WEIGHT_CONV_MEMORY:
+      begin
+        wr_en_ext_cnn_w_s = ctrl_i.wr_en;
+        wr_addr_ext_cnn_w_s = wr_addr_ext.data;
+      
+        wr_data_ext_cnn_w_s[3] = wr_data_ext.data[7:0];
+        wr_data_ext_cnn_w_s[2] = wr_data_ext.data[15:8];
+        wr_data_ext_cnn_w_s[1] = wr_data_ext.data[23:16];
+        wr_data_ext_cnn_w_s[0] = wr_data_ext.data[31:24];
+
+     end
+    default:
+      begin
+      end
+  endcase
+end
+
+cpu i_cpu(
+  .clk                    ( clk      ),
+  .reset                  ( reset    ),
+  .enable                 ( ctrl_i.start   ),
+  .wr_en_ext_lut          ( wr_en_ext_lut_s ),
+  .wr_addr_ext_lut        ( wr_addr_ext_lut_s ),
+  .wr_data_ext_lut        ( wr_data_ext_lut_s ),
+  .wr_en_ext_conf_reg     ( wr_en_ext_conf_reg_s ), 
+  .wr_addr_ext_conf_reg   ( wr_addr_ext_conf_reg_s ),
+  .wr_data_ext_conf_reg   ( wr_data_ext_conf_reg_s ),
+  .wr_en_ext_im           ( wr_en_ext_im_s ),
+  .wr_addr_ext_im         ( wr_addr_ext_im_s ),
+  .wr_data_ext_im         ( wr_data_ext_im_s ),
+  .wr_en_ext_sparsity     ( wr_en_ext_sparsity_s ),
+  .wr_addr_ext_sparsity   ( wr_addr_ext_sparsity_s ),
+  .wr_data_ext_sparsity   ( wr_data_ext_sparsity_s ),
+  .wr_en_ext_act_mem      ( wr_en_ext_act_mem_s ),
+  .wr_addr_ext_act_mem    ( wr_addr_ext_act_mem_s ),
+  .wr_data_ext_act_mem    ( wr_data_ext_act_mem_s ),
+  .wr_en_ext_fc_w         ( wr_en_ext_fc_w_s ),
+  .wr_addr_ext_fc_w       ( wr_addr_ext_fc_w_s ),
+  .wr_data_ext_fc_w       ( wr_data_ext_fc_w_s ),
+  .wr_en_ext_cnn_w        ( wr_en_ext_cnn_w_s ),
+  .wr_addr_ext_cnn_w      ( wr_addr_ext_cnn_w_s ), 
+  .wr_data_ext_cnn_w      ( wr_data_ext_cnn_w_s ),
+  .rd_en_ext_act_mem      ( rd_en_ext_act_mem_s ),
+  .rd_addr_ext_act_mem    ( rd_addr_ext_act_mem_s ),
+  .rd_data_ext_act_mem    ( rd_data_ext_act_mem_s ),
+  .OUTPUT_TILE_SIZE       ( OUTPUT_TILE_SIZE_s ),
+  .WEIGHT_TILE_SIZE       ( WEIGHT_TILE_SIZE_s ),
+  .NB_INPUT_TILE          ( NB_INPUT_TILE_s ),
+  .NB_WEIGHT_TILE         ( NB_WEIGHT_TILE_s ),
+  .MODE                   ( MODE_s ),
+  .SPARSITY               ( SPARSITY_s),
+  .done_layer             ( done_layer_s),
+  .finished_network       ( finished_network_s),
+  .wr_output_enable       ( wr_output_enable_s ),
+  .wr_output_addr         ( wr_output_addr_s ),
+  .wr_output_data         ( wr_output_data_s )
+);
+
+always_comb
+begin
+  wr_output_data.data = {wr_output_data_s[4], wr_output_data_s[5], wr_output_data_s[6], wr_output_data_s[7], wr_output_data_s[0], wr_output_data_s[1], wr_output_data_s[2], wr_output_data_s[3]};
+  wr_output_data.valid = wr_output_enable_s;
+  wr_output_data.strb = '1;
+end
+
+assign flags_o.done = finished_network_s;
+assign flags_o.out_tile_size = OUTPUT_TILE_SIZE_s;
+assign flags_o.weight_tile_size = WEIGHT_TILE_SIZE_s;
+assign flags_o.nb_input_tile = NB_INPUT_TILE_s;
+assign flags_o.nb_weight_tile = NB_WEIGHT_TILE_s;
+assign flags_o.mode = MODE_s;
+assign flags_o.sparsity = SPARSITY_s;
+assign flags_o.done_layer = done_layer_s;
+
+assign flags_o.a_stream_valid=wr_addr_ext.valid;
+assign flags_o.b_stream_valid=wr_data_ext.valid;
+assign flags_o.c_stream_valid = wr_output_enable_s;
+assign flags_o.c_stream_ready = wr_output_data.ready;
+assign wr_addr_ext.ready=ctrl_i.stream_ready;
+assign wr_data_ext.ready=ctrl_i.stream_ready;
+
+endmodule
+

@@ -1,0 +1,273 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/users/micas/vjain/tinyvers_main/sim
+YCPI
+Z1 DXx6 sv_std 3 std 0 22 d=_JfHTnXCN[H5FjiaJJc0
+Z2 !s110 1679395906
+!i10b 1
+!s100 E4;mD:dW`TW<af`]AeTLc0
+I=nK@o]]?H0So6m]:=RJaM1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+Z4 !s105 dpi_models_sv_unit
+S1
+R0
+Z5 w1679390137
+Z6 8../ips/tbtools/dpi_models/dpi_models.sv
+Z7 F../ips/tbtools/dpi_models/dpi_models.sv
+L0 69
+Z8 OE;L;10.7c;67
+r1
+!s85 0
+31
+Z9 !s108 1679395906.000000
+!s107 ../ips/tbtools/tb_driver/tb_driver.sv|../ips/tbtools/dpi_models/dpi_models.sv|
+Z10 !s90 -quiet|-sv|-work|/users/micas/vjain/tinyvers_main/install/modelsim_libs/tbtools_lib|-suppress|2583|-suppress|13314|../ips/tbtools/dpi_models/dpi_models.sv|../ips/tbtools/tb_driver/tb_driver.sv|
+!i113 0
+Z11 o-suppress 2583 -suppress 13314 -quiet -sv -work /users/micas/vjain/tinyvers_main/install/modelsim_libs/tbtools_lib -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z12 tCvgOpt 0
+n@c@p@i
+YCTRL
+R1
+R2
+!i10b 1
+!s100 T42]LQj6bO@_LYSMI6Lf^1
+I7df_kz=Bkm`bFPbE^XAIh3
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 91
+R8
+r1
+!s85 0
+31
+R9
+Z13 !s107 ../ips/tbtools/tb_driver/tb_driver.sv|../ips/tbtools/dpi_models/dpi_models.sv|
+R10
+!i113 0
+R11
+R12
+n@c@t@r@l
+Xdpi_models
+Z14 !s115 QSPI_CS
+Z15 !s115 GPIO
+Z16 !s115 QSPI
+Z17 !s115 CTRL
+!s115 I2S
+!s115 CPI
+Z18 !s115 UART
+Z19 !s115 JTAG
+R1
+R2
+!i10b 1
+!s100 80m37VNAFoo`O;<GSVE[32
+IT[[VWnTae@>PI9K>_Cd9Z0
+VT[[VWnTae@>PI9K>_Cd9Z0
+S1
+R0
+R5
+R6
+R7
+L0 100
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+YGPIO
+R1
+R2
+!i10b 1
+!s100 @zFHYNmTkU3S9eTk6bK2I1
+IGXc9Glz8kboO8cn<Q8iLY1
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 41
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+n@g@p@i@o
+YI2S
+R1
+R2
+!i10b 1
+!s100 @W@I^iGafFE<H3dhL^UWO2
+IUgDoGncDzhMoHGW>>N]AR3
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 79
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+n@i2@s
+YJTAG
+R1
+R2
+!i10b 1
+!s100 U;A_Ljg6D?V<Iok700GEm2
+IJdzVS3@;?;]iLFCUJY?FA3
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 50
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+n@j@t@a@g
+YQSPI
+R1
+R2
+!i10b 1
+!s100 ?z4N]3_eGcVlCNh[?gd0Q1
+IZH7QPNNB=jmdae]PgfB3]0
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 26
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+n@q@s@p@i
+YQSPI_CS
+R1
+R2
+!i10b 1
+!s100 mX@d;R7F5AOLgE@K7:A:=1
+I6UeW?lIj@^nn99W3b?a7^1
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 18
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+n@q@s@p@i_@c@s
+Xtb_driver
+R15
+R17
+!s115 I2S
+!s115 CPI
+R18
+R19
+R14
+R16
+R1
+DXx4 work 10 dpi_models 0 22 T[[VWnTae@>PI9K>_Cd9Z0
+R2
+!i10b 1
+!s100 DiCZ7fLg9nADhD]Mz_A4@0
+IO>m<c@1I05g6>JV_n_OJ13
+VO>m<c@1I05g6>JV_n_OJ13
+S1
+R0
+R5
+8../ips/tbtools/tb_driver/tb_driver.sv
+F../ips/tbtools/tb_driver/tb_driver.sv
+L0 17
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+YUART
+R1
+R2
+!i10b 1
+!s100 JKOXXgWfjg_E=7:;2ohd[0
+I_cUziIigG`nN_CBjm@3=:2
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 61
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+n@u@a@r@t

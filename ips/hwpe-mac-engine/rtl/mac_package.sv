@@ -1,0 +1,138 @@
+/*
+ * mac_package.sv
+ * Francesco Conti <fconti@iis.ee.ethz.ch>
+ *
+ * Copyright (C) 2018 ETH Zurich, University of Bologna
+ * Copyright and related rights are licensed under the Solderpad Hardware
+ * License, Version 0.51 (the "License"); you may not use this file except in
+ * compliance with the License.  You may obtain a copy of the License at
+ * http://solderpad.org/licenses/SHL-0.51. Unless required by applicable law
+ * or agreed to in writing, software, hardware and materials distributed under
+ * this License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
+ */
+
+import hwpe_stream_package::*;
+
+package mac_package;
+
+  parameter int unsigned MAC_CNT_LEN = 1024; // maximum length of the vectors for a scalar product
+
+  // registers in register file
+  //parameter int unsigned MAC_REG_A_ADDR           = 0;
+  //parameter int unsigned MAC_REG_B_ADDR           = 1;
+  //parameter int unsigned MAC_REG_C_ADDR           = 2;
+  //parameter int unsigned MAC_REG_D_ADDR           = 3;
+  //parameter int unsigned MAC_REG_NB_ITER          = 4;
+  //parameter int unsigned MAC_REG_LEN_ITER         = 5;
+  //parameter int unsigned MAC_REG_SHIFT_SIMPLEMUL  = 6;
+  //parameter int unsigned MAC_REG_SHIFT_VECTSTRIDE = 7;
+
+  //registers in register file
+  parameter int unsigned PANDA_WEIGHT_CONV_DMEMORY_ADDRESS = 0;
+  parameter int unsigned PANDA_WEIGHT_CONV_MEMORY_N        = 1;
+  parameter int unsigned PANDA_WEIGHT_FC_DMEMORY_ADDRESS   = 2;
+  parameter int unsigned PANDA_WEIGHT_FC_MEMORY_N          = 3;
+  parameter int unsigned PANDA_INSTRUCTION_DMEMORY_ADDRESS = 4;
+  parameter int unsigned PANDA_INSTRUCTION_MEMORY_N        = 5;
+  parameter int unsigned PANDA_ACTIVATION_DMEMORY_ADDRESS  = 6;
+  parameter int unsigned PANDA_ACTIVATION_MEMORY_N         = 7;
+  parameter int unsigned PANDA_CONFIG_DMEMORY_ADDRESS      = 8;
+  parameter int unsigned PANDA_CONFIG_MEMORY_N             = 9;
+  parameter int unsigned PANDA_WEIGHT_CONV_AMEMORY_ADDRESS = 10;
+  parameter int unsigned PANDA_WEIGHT_FC_AMEMORY_ADDRESS   = 11;
+  parameter int unsigned PANDA_INSTRUCTION_AMEMORY_ADDRESS = 12;
+  parameter int unsigned PANDA_ACTIVATION_AMEMORY_ADDRESS  = 13;
+  parameter int unsigned PANDA_CONFIG_AMEMORY_ADDRESS      = 14;
+  parameter int unsigned PANDA_OUTPUT_DATA                 = 15;
+  parameter int unsigned PANDA_OUTPUT_DATA_N               = 16;
+  parameter int unsigned PANDA_NB_TILE                     = 17;
+  parameter int unsigned PANDA_LUT_DMEMORY_ADDRESS         = 18;
+  parameter int unsigned PANDA_LUT_MEMORY_N                = 19;
+  parameter int unsigned PANDA_LUT_AMEMORY_ADDRESS         = 20;
+  parameter int unsigned PANDA_SPARSITY_DMEMORY_ADDRESS    = 21;
+  parameter int unsigned PANDA_SPARSITY_MEMORY_N           = 22;
+  parameter int unsigned PANDA_SPARSITY_AMEMORY_ADDRESS    = 23; 
+  //Memory demux control values
+  parameter int unsigned PANDA_FSM_SEL_CONFIG_MEMORY		= 0;
+  parameter int unsigned PANDA_FSM_SEL_INSTRUCTION_MEMORY	= 1;
+  parameter int unsigned PANDA_FSM_SEL_LUT_MEMORY               = 2;
+  parameter int unsigned PANDA_FSM_SEL_SPARSITY_MEMORY          = 3;
+  parameter int unsigned PANDA_FSM_SEL_ACTIVATION_MEMORY	= 4;
+  parameter int unsigned PANDA_FSM_SEL_WEIGHT_CONV_MEMORY	= 5;
+  parameter int unsigned PANDA_FSM_SEL_WEIGHT_FC_MEMORY	        = 6;
+  parameter int unsigned PANDA_FSM_SEL_NULL                     = 7;
+
+  // microcode offset indeces -- this should be aligned to the microcode compiler of course!
+  parameter int unsigned MAC_UCODE_A_OFFS = 0;
+  parameter int unsigned MAC_UCODE_B_OFFS = 1;
+  parameter int unsigned MAC_UCODE_C_OFFS = 2;
+  parameter int unsigned MAC_UCODE_D_OFFS = 3;
+
+  // microcode mnemonics -- this should be aligned to the microcode compiler of course!
+  parameter int unsigned MAC_UCODE_MNEM_NBITER     = 4 - 4;
+  parameter int unsigned MAC_UCODE_MNEM_ITERSTRIDE = 5 - 4;
+  parameter int unsigned MAC_UCODE_MNEM_ONESTRIDE  = 6 - 4;
+
+  typedef struct packed {
+    logic clear;
+    logic enable;
+    logic acc_clk_en;
+    logic simple_mul;
+    logic start;
+    logic unsigned [$clog2(32)-1       :0] shift;
+    logic unsigned [$clog2(MAC_CNT_LEN):0] len; // 1 bit more as cnt starts from 1, not 0
+    logic unsigned [2:0] mem_sel; //Added for PANDA accelerator
+    logic wr_en; // Added for PANDA accelerator
+    logic stream_ready; // Added for PANDA accelerator, to indicate that it's ready to accept data towards streamers
+  } ctrl_engine_t; 
+
+  typedef struct packed {
+    logic unsigned [$clog2(MAC_CNT_LEN):0] cnt; // 1 bit more as cnt starts from 1, not 0
+    logic done; // done signal for PANDA accelerator
+    logic [15:0] out_tile_size; // output tile size for PANDA accelerator
+    logic [15:0] weight_tile_size; // weight tile size for PANDA accelerator
+    logic [7:0] nb_input_tile; // number of input tile for PANDA accelerator
+    logic [7:0] nb_weight_tile; // number of weight tile for PANDA accelerator
+    logic [2:0] mode; // mode (CNN or FC or...) for PANDA accelerator
+    logic [7:0] sparsity_tile_size;
+    logic sparsity; // sparsity set or not for PANDA accelerator
+    logic done_layer;
+    logic a_stream_valid; // valid signal for A steram, added for PANDA accelerator
+    logic b_stream_valid; // valid signal for A steram, added for PANDA accelerator
+    logic c_stream_valid;
+  } flags_engine_t;
+
+  typedef struct packed {
+    hwpe_stream_package::ctrl_sourcesink_t a_source_ctrl;
+    hwpe_stream_package::ctrl_sourcesink_t b_source_ctrl;
+    hwpe_stream_package::ctrl_sourcesink_t c_sink_ctrl;
+    //hwpe_stream_package::ctrl_sourcesink_t c_source_ctrl;
+    //hwpe_stream_package::ctrl_sourcesink_t d_sink_ctrl;
+  } ctrl_streamer_t;
+
+  typedef struct packed {
+    hwpe_stream_package::flags_sourcesink_t a_source_flags;
+    hwpe_stream_package::flags_sourcesink_t b_source_flags;
+    hwpe_stream_package::flags_sourcesink_t c_sink_flags;
+    //hwpe_stream_package::flags_sourcesink_t c_source_flags;
+    //hwpe_stream_package::flags_sourcesink_t d_sink_flags;
+  } flags_streamer_t;
+
+  typedef struct packed {
+    logic simple_mul;
+    logic unsigned [$clog2(32)-1       :0] shift;
+    logic unsigned [$clog2(MAC_CNT_LEN):0] len; // 1 bit more as cnt starts from 1, not 0
+  } ctrl_fsm_t;
+
+  typedef enum {
+    FSM_IDLE,
+    FSM_START,
+    FSM_COMPUTE,
+    FSM_WAIT,
+    FSM_UPDATEIDX,
+    FSM_TERMINATE
+  } state_fsm_t;
+
+endpackage // mac_package

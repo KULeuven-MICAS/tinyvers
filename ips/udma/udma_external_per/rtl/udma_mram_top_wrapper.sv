@@ -1,0 +1,288 @@
+`timescale 1ns/1ps
+module udma_mram_top_wrapper
+#(
+    parameter L2_AWIDTH_NOAL   = 12,
+    parameter TRANS_SIZE       = 16,
+    parameter MRAM_ADDR_WIDTH  = 16,
+
+    parameter TX_CMD_WIDTH     = MRAM_ADDR_WIDTH+TRANS_SIZE+11,
+    parameter TX_DATA_WIDTH    = 32,
+    parameter TX_DC_FIFO_DEPTH = 4,
+
+    parameter RX_CMD_WIDTH     = MRAM_ADDR_WIDTH+TRANS_SIZE+11,
+    parameter RX_DATA_WIDTH    = 64,
+    parameter RX_DC_FIFO_DEPTH = 4
+)
+(
+    input  logic                      sys_clk_i,
+    input  logic                      periph_clk_i,
+    input  logic                      rstn_i,
+
+    input  logic                      dft_test_mode_i,
+    input  logic                      dft_cg_enable_i,
+
+    input  logic               [31:0] cfg_data_i,
+    input  logic                [4:0] cfg_addr_i,
+    input  logic                      cfg_valid_i,
+    input  logic                      cfg_rwn_i,
+    output logic                      cfg_ready_o,
+    output logic               [31:0] cfg_data_o,
+
+    output logic [L2_AWIDTH_NOAL-1:0] cfg_rx_startaddr_o,
+    output logic     [TRANS_SIZE-1:0] cfg_rx_size_o,
+    output logic                      cfg_rx_continuous_o,
+    output logic                      cfg_rx_en_o,
+    output logic                      cfg_rx_clr_o,
+    input  logic                      cfg_rx_en_i,
+    input  logic                      cfg_rx_pending_i,
+    input  logic [L2_AWIDTH_NOAL-1:0] cfg_rx_curr_addr_i,
+    input  logic     [TRANS_SIZE-1:0] cfg_rx_bytes_left_i,
+
+    output logic [L2_AWIDTH_NOAL-1:0] cfg_tx_startaddr_o,
+    output logic     [TRANS_SIZE-1:0] cfg_tx_size_o,
+    output logic                      cfg_tx_continuous_o,
+    output logic                      cfg_tx_en_o,
+    output logic                      cfg_tx_clr_o,
+    input  logic                      cfg_tx_en_i,
+    input  logic                      cfg_tx_pending_i,
+    input  logic [L2_AWIDTH_NOAL-1:0] cfg_tx_curr_addr_i,
+    input  logic     [TRANS_SIZE-1:0] cfg_tx_bytes_left_i,
+
+    // FROM_to L2
+    output logic                      data_tx_req_o,
+    input  logic                      data_tx_gnt_i,
+    output logic                [1:0] data_tx_datasize_o, // 8 , 16 o 32
+    input  logic               [31:0] data_tx_i,
+    input  logic                      data_tx_valid_i,
+    output logic                      data_tx_ready_o,
+
+    output logic                [1:0] data_rx_datasize_o,
+    output logic               [31:0] data_rx_o,
+    output logic                      data_rx_valid_o,
+    input  logic                      data_rx_ready_i,
+
+    output logic                      erase_done_event_o,
+    output logic                      ref_line_done_event_o,
+    output logic                      trim_cfg_done_event_o,
+    output logic                      tx_done_event_o,
+
+    input logic                        VDDA_i,
+    input logic                        VDD_i,
+    input logic                        VREF_i,
+    input logic                        PORb_i,
+    input logic                        RETb_i,
+    input logic                        RSTb_i,
+    input logic                        TRIM_i,
+    input logic                        DPD_i,
+    input logic                        CEb_HIGH_i    
+
+);
+
+    // Asynch IF from mram PD to Brute Force Synch
+    logic                       tx_busy;
+    logic                       rx_busy;
+    logic                       tx_done;
+    logic [1:0]                 rx_error;
+    logic                       trim_cfg_done;
+    logic                       erase_pending;
+    logic                       erase_done;
+    logic                       ref_line_pending;
+    logic                       ref_line_done;
+
+    // ASYNCH IF for TX DATA
+    logic [TX_DC_FIFO_DEPTH-1:0] data_tx_write_token;
+    logic [TX_DC_FIFO_DEPTH-1:0] data_tx_read_pointer;
+    logic [TX_DATA_WIDTH-1:0]    data_tx_asynch;
+    // ASYNCH IF for TX CMD
+    logic [TX_DC_FIFO_DEPTH-1:0] cmd_tx_write_token;
+    logic [TX_DC_FIFO_DEPTH-1:0] cmd_tx_read_pointer;
+    logic [TX_CMD_WIDTH-1:0]     cmd_tx_asynch;
+
+    // ASYNCH IF for RX DATA
+    logic [RX_DC_FIFO_DEPTH-1:0] data_rx_write_token;
+    logic [RX_DC_FIFO_DEPTH-1:0] data_rx_read_pointer;
+    logic [RX_DATA_WIDTH-1:0]    data_rx_asynch;
+    // ASYNCH IF for RX CMD
+    logic [RX_DC_FIFO_DEPTH-1:0] cmd_rx_write_token;
+    logic [RX_DC_FIFO_DEPTH-1:0] cmd_rx_read_pointer;
+    logic [RX_CMD_WIDTH-1:0]     cmd_rx_asynch;
+
+    // Static signals used to drive some static pins of the MRAM. Rsynchronized in the MRAM PD 
+    logic [4:0]                  mram_mode_static; //{ s_mram_PORb ,s_mram_RETb ,s_mram_RSTb ,s_mram_DPD,s_mram_ECCBYPS }
+
+    logic                        rstn_dcfifo;
+    // Mram Clock
+    logic                        mram_clk;
+    logic                        mram_clk_en;
+    logic [15:0]                 mram_erase_addr;
+    logic [9:0]                  mram_erase_size;
+
+udma_mram_top
+#(
+    .L2_AWIDTH_NOAL(L2_AWIDTH_NOAL),
+    .TRANS_SIZE(TRANS_SIZE),
+    .MRAM_ADDR_WIDTH(MRAM_ADDR_WIDTH),
+    .TX_CMD_WIDTH(TX_CMD_WIDTH),
+    .TX_DATA_WIDTH(TX_DATA_WIDTH),
+    .TX_DC_FIFO_DEPTH(TX_DC_FIFO_DEPTH),
+    .RX_CMD_WIDTH(RX_CMD_WIDTH),
+    .RX_DATA_WIDTH(RX_DATA_WIDTH),
+    .RX_DC_FIFO_DEPTH(RX_DC_FIFO_DEPTH)
+) udma_mram_top_i (
+    .sys_clk_i(sys_clk_i),
+    .periph_clk_i(periph_clk_i),
+    .rstn_i(rstn_i),
+    .dft_test_mode_i(dft_test_mode_i),
+    .dft_cg_enable_i(dft_cg_enable_i),
+    .cfg_data_i(cfg_data_i),
+    .cfg_addr_i(cfg_addr_i),
+    .cfg_valid_i(cfg_valid_i),
+    .cfg_rwn_i(cfg_rwn_i),
+    .cfg_ready_o(cfg_ready_o),
+    .cfg_data_o(cfg_data_o),
+    .cfg_rx_startaddr_o(cfg_rx_startaddr_o),
+    .cfg_rx_size_o(cfg_rx_size_o),
+    .cfg_rx_continuous_o(cfg_rx_continuous_o),
+    .cfg_rx_en_o(cfg_rx_en_o),
+    .cfg_rx_clr_o(cfg_rx_clr_o),
+    .cfg_rx_en_i(cfg_rx_en_i),
+    .cfg_rx_pending_i(cfg_rx_pending_i),
+    .cfg_rx_curr_addr_i(cfg_rx_curr_addr_i),
+    .cfg_rx_bytes_left_i(cfg_rx_bytes_left_i),
+    .cfg_tx_startaddr_o(cfg_tx_startaddr_o),
+    .cfg_tx_size_o(cfg_tx_size_o),
+    .cfg_tx_continuous_o(cfg_tx_continuous_o),
+    .cfg_tx_en_o(cfg_tx_en_o),
+    .cfg_tx_clr_o(cfg_tx_clr_o),
+    .cfg_tx_en_i(cfg_tx_en_i),
+    .cfg_tx_pending_i(cfg_tx_pending_i),
+    .cfg_tx_curr_addr_i(cfg_tx_curr_addr_i),
+    .cfg_tx_bytes_left_i(cfg_tx_bytes_left_i),
+
+    // FROM_to L2
+    .data_tx_req_o(data_tx_req_o),
+    .data_tx_gnt_i(data_tx_gnt_i),
+    .data_tx_datasize_o(data_tx_datasize_o), // 8 , 16 o 32
+    .data_tx_i(data_tx_i),
+    .data_tx_valid_i(data_tx_valid_i),
+    .data_tx_ready_o(data_tx_ready_o),
+    .data_rx_datasize_o(data_rx_datasize_o),
+    .data_rx_o(data_rx_o),
+    .data_rx_valid_o(data_rx_valid_o),
+    .data_rx_ready_i(data_rx_ready_i),
+
+    .erase_done_event_o(erase_done_event_o),
+    .ref_line_done_event_o(ref_line_done_event_o),
+    .trim_cfg_done_event_o(trim_cfg_done_event_o),
+    .tx_done_event_o(tx_done_event_o),
+
+
+    // Asynch IF from mram PD to Brute Force Synch
+    .tx_busy_i(tx_busy),
+    .rx_busy_i(rx_busy),
+    .tx_done_i(tx_done),
+    .rx_error_i(rx_error),
+    .trim_cfg_done_i(trim_cfg_done),
+    .erase_pending_i(erase_pending),
+    .erase_done_i(erase_done),
+    .ref_line_pending_i(ref_line_pending),
+    .ref_line_done_i(ref_line_done),
+
+    // ASYNCH IF for TX DATA
+    .data_tx_write_token_o(data_tx_write_token),
+    .data_tx_read_pointer_i(data_tx_read_pointer),
+    .data_tx_asynch_o(data_tx_asynch),
+    // ASYNCH IF for TX CMD
+    .cmd_tx_write_token_o(cmd_tx_write_token),
+    .cmd_tx_read_pointer_i(cmd_tx_read_pointer),
+    .cmd_tx_asynch_o(cmd_tx_asynch),
+
+    // ASYNCH IF for RX DATA
+    .data_rx_write_token_i(data_rx_write_token),
+    .data_rx_read_pointer_o(data_rx_read_pointer),
+    .data_rx_asynch_i(data_rx_asynch),
+    // ASYNCH IF for RX CMD
+    .cmd_rx_write_token_o(cmd_rx_write_token),
+    .cmd_rx_read_pointer_i(cmd_rx_read_pointer),
+    .cmd_rx_asynch_o(cmd_rx_asynch),
+
+    // Static signals used to drive some static pins of the MRAM. Rsynchronized in the MRAM PD 
+    .mram_mode_static_o(mram_mode_static), //{ s_mram_PORb ,s_mram_RETb ,s_mram_RSTb ,s_mram_DPD,s_mram_ECCBYPS ()}
+
+    .rstn_dcfifo_i(rstn_dcfifo),
+    // Mram Clock
+    .mram_clk_o(mram_clk),
+    .mram_clk_en_i(mram_clk_en),
+    .mram_erase_addr_o(mram_erase_addr),
+    .mram_erase_size_o(mram_erase_size)
+);
+
+udma_mram_domain
+#(
+    .TRANS_SIZE(TRANS_SIZE),
+    .MRAM_ADDR_WIDTH(MRAM_ADDR_WIDTH),
+    .TX_CMD_WIDTH(TX_CMD_WIDTH),
+    .TX_DATA_WIDTH(TX_DATA_WIDTH),
+    .TX_DC_FIFO_DEPTH(TX_DC_FIFO_DEPTH),
+    .RX_CMD_WIDTH(RX_CMD_WIDTH),
+    .RX_DATA_WIDTH(RX_DATA_WIDTH),
+    .RX_DC_FIFO_DEPTH(RX_DC_FIFO_DEPTH)
+) udma_mram_domain_i (
+    .mram_clk_i(mram_clk),
+    .rstn_i(rstn_i),
+
+    // Asynch IF from mram PD to Brute Force Synch
+    .tx_busy_o(tx_busy),
+    .rx_busy_o(rx_busy),
+    .tx_done_o(tx_done),
+    .rx_error_o(rx_error),
+    .trim_cfg_done_o(trim_cfg_done),
+    .erase_pending_o(erase_pending),
+    .erase_done_o(erase_done),
+    .ref_line_pending_o(ref_line_pending),
+    .ref_line_done_o(ref_line_done),
+
+    // ASYNCH IF for TX DATA
+    .data_tx_write_token_i(data_tx_write_token),
+    .data_tx_read_pointer_o(data_tx_read_pointer),
+    .data_tx_asynch_i(data_tx_asynch),
+    // ASYNCH IF for TX CMD
+    .cmd_tx_write_token_i(cmd_tx_write_token),
+    .cmd_tx_read_pointer_o(cmd_tx_read_pointer),
+    .cmd_tx_asynch_i(cmd_tx_asynch),
+
+    // ASYNCH IF for RX DATA
+    .data_rx_write_token_o(data_rx_write_token),
+    .data_rx_read_pointer_i(data_rx_read_pointer),
+    .data_rx_asynch_o(data_rx_asynch),
+    // ASYNCH IF for RX CMD
+    .cmd_rx_write_token_i(cmd_rx_write_token),
+    .cmd_rx_read_pointer_o(cmd_rx_read_pointer),
+    .cmd_rx_asynch_i(cmd_rx_asynch),
+
+    // Static signals used to drive some static pins of the MRAM. Rsynchronized in the MRAM PD 
+    .mram_mode_static_i(mram_mode_static), //{ s_mram_PORb ,s_mram_RETb ,s_mram_RSTb ,s_mram_DPD,s_mram_ECCBYPS()}
+    .mram_erase_addr_i(mram_erase_addr),
+    .mram_erase_size_i(mram_erase_size),
+
+    .mram_clk_en_o(mram_clk_en),
+    .rstn_dcfifo_o(rstn_dcfifo),
+
+    /*.pmu_rstn_i(),
+    .pmu_rst_ctrl_i(),
+    .pmu_rst_ack_o(),
+    .pmu_clken_i(),
+    */
+    .dft_test_mode_i(dft_test_mode_i),
+    .VDDA_i              ( VDDA_i ),
+    .VDD_i               ( VDD_i  ),
+    .VREF_i              ( VREF_i ),
+    .PORb_i              ( PORb_i ),
+    .RETb_i              ( RETb_i ),
+    .RSTb_i              ( RSTb_i ),
+    .TRIM_i              ( TRIM_i ),
+    .DPD_i               ( DPD_i  ),
+    .CEb_HIGH_i          ( CEb_HIGH_i )
+);
+
+endmodule

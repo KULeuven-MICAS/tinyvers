@@ -1,0 +1,123 @@
+module PowerGateFSM (
+	input      clk,
+	input      rst,
+	input      power,
+	output reg sleep_send,
+	input      sleep_ack,
+	output reg reset,
+	output reg isolate,
+	output reg clk_en,
+	output     done
+);
+
+parameter integer STATE_W = 3;
+typedef enum logic[STATE_W-1:0] {POWER_ON, CLK_ENABLE, ISOLATE, RESET, SWITCH_POWER, POWER_OFF} state_type;
+
+state_type state;
+state_type  state_nxt;
+always@(posedge clk, negedge rst) begin
+	if(rst==0)begin
+		state<=POWER_OFF;
+	end else begin
+		state<=state_nxt;
+	end
+end
+
+always@(*)begin
+	state_nxt = POWER_ON;
+	case(state)
+		POWER_ON:begin
+			if(power) begin state_nxt = state; end
+			else      begin state_nxt = CLK_ENABLE; end
+		end
+		CLK_ENABLE:begin
+			if(power) begin state_nxt = POWER_ON; end
+			else      begin state_nxt = ISOLATE; end
+		end
+		ISOLATE:begin
+			if(power) begin state_nxt = CLK_ENABLE; end
+			else      begin state_nxt = RESET; end
+		end
+		RESET:begin
+			if(power) begin state_nxt = ISOLATE; end
+			else      begin state_nxt = SWITCH_POWER; end
+		end
+		SWITCH_POWER:begin
+			if(sleep_ack==sleep_send)
+				if(power) begin state_nxt = RESET; end
+				else      begin state_nxt = POWER_OFF; end
+			else
+				state_nxt = state;
+		end
+		POWER_OFF:begin
+			if(power) begin state_nxt = SWITCH_POWER; end
+			else      begin state_nxt = state; end
+		end
+		default:begin
+			state_nxt = POWER_OFF;
+		end
+	endcase
+end
+
+assign done = ((state==POWER_OFF) && ~power ) || ((state==POWER_ON) && power );
+
+reg clk_en_nxt, reset_nxt, isolate_nxt, sleep_send_nxt;
+reg_arstn #(1,'b0) clk_en_reg     (clk, rst, clk_en_nxt,     clk_en,     1'b1);
+reg_arstn #(1,'b0) reset_reg      (clk, rst, reset_nxt,      reset,      1'b1);
+reg_arstn #(1,'b1) isolate_reg    (clk, rst, isolate_nxt,    isolate,    1'b1);
+reg_arstn #(1,'b1) sleep_send_reg (clk, rst, sleep_send_nxt, sleep_send, 1'b1);
+
+always_comb begin
+	clk_en_nxt     = 1'b1;
+	reset_nxt      = 1'b0;
+	isolate_nxt    = 1'b0;
+	sleep_send_nxt = 1'b0;
+	case(state)
+		POWER_ON:begin
+			clk_en_nxt     = 1'b1;
+			reset_nxt      = 1'b1;
+			isolate_nxt    = 1'b0;
+			sleep_send_nxt = 1'b0;
+		end
+		CLK_ENABLE:begin
+			clk_en_nxt     = power;
+			reset_nxt      = 1'b1;
+			isolate_nxt    = 1'b0;
+			sleep_send_nxt = 1'b0;
+		end
+		ISOLATE:begin
+			clk_en_nxt     = 1'b0;
+			reset_nxt      = 1'b1;
+			isolate_nxt    = ~power;
+			sleep_send_nxt = 1'b0;
+		end
+		RESET:begin
+			clk_en_nxt     = 1'b0;
+			reset_nxt      = power;
+			isolate_nxt    = 1'b1;
+			sleep_send_nxt = 1'b0;
+		end
+		SWITCH_POWER:begin
+			clk_en_nxt     = 1'b0;
+			reset_nxt      = 1'b0;
+			isolate_nxt    = 1'b1;
+			sleep_send_nxt = ~power;
+		end
+		POWER_OFF:begin
+			clk_en_nxt     = 1'b0;
+			reset_nxt      = 1'b0;
+			isolate_nxt    = 1'b1;
+			sleep_send_nxt = 1'b1;
+		end
+		default:begin
+			clk_en_nxt     = 1'b1;
+			reset_nxt      = 1'b1;
+			isolate_nxt    = 1'b0;
+			sleep_send_nxt = 1'b0;
+		end
+	endcase
+end
+
+
+
+endmodule

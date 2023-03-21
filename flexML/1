@@ -1,0 +1,77 @@
+import mac_package::*;
+import hwpe_ctrl_package::*;
+import parameters::*;
+
+module cpu_wrapper
+(
+  input logic clk,
+  input logic reset,
+  input logic enable,
+
+   // input a stream
+  hwpe_stream_intf_stream.sink  wr_addr_ext,
+  // input b stream
+  hwpe_stream_intf_stream.sink  wr_data_ext,
+  // output d stream
+  hwpe_stream_intf_stream.source wr_output_data,
+  
+  input ctrl_engine_t ctrl_i,
+  output flags_engine_t flags_o
+);
+
+logic [31:0] wr_en_ext_conf_reg_s;
+
+always @(*)
+begin
+  case(ctrl_i.mem_sel)
+    CONF_REG:
+      begin
+         wr_addr_ext_conf_reg_s = wr_addr_ext.data;
+         wr_data_ext_conf_reg_s = wr_data_ext.data; 
+      end
+    INST_MEM:
+      begin
+        wr_addr_ext_im_s = wr_addr_ext.data;
+        wr_data_ext_im_s = wr_data_ext.data;
+      end
+    ACT_MEM:
+      begin
+        wr_addr_ext_act_mem_s = wr_addr_ext.data;
+        wr_data_ext_act_mem_s = wr_data_ext.data;
+      end
+    FC_WT_MEM:
+      begin
+        wr_addr_ext_fc_w_s = wr_addr_ext.data;
+        wr_data_ext_fc_w_s = wr_data_ext.data;
+      end
+    CNN_WT_MEM:
+      begin
+        wr_addr_ext_cnn_w_s = wr_addr_ext.data;
+        wr_data_ext_cnn_w_s = wr_data_ext.data;
+      end
+end
+
+cpu i_cpu(
+  .clk                    ( clk      ),
+  .reset                  ( reset    ),
+  .enable                 ( enable   ),
+  .wr_en_ext_conf_reg     ( wr_en_ext_conf_reg_s ), 
+  .wr_addr_ext_conf_reg   ( wr_addr_ext_conf_reg_s ),
+  .wr_data_ext_conf_reg   ( wr_data_ext_conf_reg_s ),
+  .wr_en_ext_im           ( wr_en_ext_im_s ),
+  .wr_addr_ext_im         ( wr_addr_ext_im_s ),
+  .wr_data_ext_im         ( wr_data_ext_im_s ),
+  .wr_en_ext_act_mem      ( wr_en_ext_act_mem_s ),
+  .wr_addr_ext_act_mem    ( wr_addr_ext_act_mem_s ),
+  .wr_data_ext_act_mem    ( wr_data_ext_act_mem_s ),
+  .wr_en_ext_fc_w         ( wr_en_ext_fc_w_s ),
+  .wr_addr_ext_fc_w       ( wr_addr_ext_fc_w_s ),
+  .wr_data_ext_fc_w       ( wr_data_ext_fc_w_s ),
+  .wr_en_ext_cnn_w        ( wr_en_ext_cnn_w_s ),
+  .wr_addr_ext_cnn_w      ( wr_addr_ext_cnn_w_s ), 
+  .wr_data_ext_cnn_w      ( wr_data_ext_cnn_w_s ),
+  .wr_output_enable       ( wr_output_enable_s ),
+  .wr_output_addr         ( wr_output_addr_s ),
+  .wr_output_data         ( wr_output_data.data )
+);
+

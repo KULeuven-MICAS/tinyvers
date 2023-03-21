@@ -1,0 +1,23 @@
+timer_unit:
+  incdirs: [
+    rtl,
+  ]
+  files: [
+    ./rtl/apb_timer_unit.sv,
+    ./rtl/timer_unit.sv,
+    ./rtl/timer_unit_counter.sv,
+    ./rtl/timer_unit_counter_presc.sv,
+  ]
+  jg_slint_top_name: [
+    apb_timer_unit
+  ]
+  jg_slint_elab_opt: [
+  ]
+  jg_slint_postelab_cmds: [
+  ]
+  jg_slint_clocks: [
+    HCLK,
+  ]
+  jg_slint_resets: [
+    ~HRESETn,
+  ]

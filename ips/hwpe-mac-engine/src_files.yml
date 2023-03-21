@@ -1,0 +1,49 @@
+hw-mac-engine:
+  incdirs : [
+    rtl
+  ]
+  files : [
+    rtl/mac_package.sv,
+    rtl/parameters.sv,
+    rtl/32bTO64b.sv,
+    #rtl/mac_fsm.sv,
+    rtl/mac_ctrl.sv,
+    rtl/mac_streamer.sv,
+    rtl/mac_engine.sv,
+    rtl/mac_top.sv,
+    wrap/mac_top_wrap.sv,
+    rtl/panda_fsm.sv,
+    rtl/activation_memory.sv,
+    rtl/adder.sv,
+    rtl/adder_tree.sv,
+    rtl/array_pes.sv,
+    rtl/sparsity_memory.sv,
+    rtl/output_allignment_padding.sv,
+    rtl/instruction_memory.sv,
+    rtl/inner_wrapper_SRAM_act_mem.sv,
+    rtl/inner_wrapper_SRAM_w_mem.sv,
+    rtl/outter_wrapper_SRAM_w_mem.sv,
+    rtl/encoder_FIFO.sv,
+    rtl/configuration_registers.sv,
+    rtl/control_unit.sv,
+    rtl/cpu.sv,
+    rtl/cpu_wrapper.sv,
+    rtl/input_buffer.sv,
+    rtl/multiplier.sv,
+    rtl/mult_top.sv,
+    rtl/nonlinear_block.sv,
+    rtl/pe.sv,
+    rtl/pooling.sv,
+    rtl/sig_tanh.sv,
+    rtl/SRAM_parametrizable_equivalent.sv,
+    rtl/SRAM_parametrizable_w_equivalent.sv,
+    rtl/SRAM_parametrizable_s_equivalent.sv,
+    rtl/SRAM_2048x64_equivalent.sv,
+    rtl/SRAM_2048x32_equivalent.sv,
+    rtl/weight_memory.sv
+  ]
+  vlog_opts : [
+    "-L hwpe_ctrl_lib",
+    "-L hwpe_stream_lib"
+  ]
+

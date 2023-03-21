@@ -1,0 +1,26 @@
+pulpissimo:
+  incdirs: [
+    ../includes,
+  ]
+
+  vlog_opts: [
+    +delay_mode_zero,
+    +define+INTI_TO_ZERO,
+  ]
+
+  files: [
+    dummy_CG.sv,
+    reg_arstn.sv,
+    PowerGateFSM.sv,
+    PowerGateFSM_MRAM.sv,
+    APC/APC_wrapper.sv,
+    gf_mem_wrapper.sv,
+    jtag_tap_top.sv,
+    pad_control.sv,
+    pad_frame.sv,
+    safe_domain.sv,
+    soc_domain.sv,
+    rtc_date.sv,
+    rtc_clock.sv,
+    pulpissimo.sv,
+  ]

@@ -1,0 +1,110 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/users/micas/vjain/tinyvers_main/sim
+vudma_spim_ctrl
+Z1 DXx6 sv_std 3 std 0 22 d=_JfHTnXCN[H5FjiaJJc0
+Z2 !s110 1679395904
+!i10b 1
+!s100 GS[kjci_^enIbDS`jV1;R3
+ISKXU7cOEzUGceXEi<oGb]2
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+!s105 udma_spim_ctrl_sv_unit
+S1
+R0
+Z4 w1679390136
+8../ips/udma/udma_qspi/rtl/udma_spim_ctrl.sv
+F../ips/udma/udma_qspi/rtl/udma_spim_ctrl.sv
+Z5 L0 26
+Z6 OE;L;10.7c;67
+r1
+!s85 0
+31
+Z7 !s108 1679395904.000000
+!s107 ../ips/udma/udma_qspi/rtl/udma_spim_defines.sv|../ips/udma/udma_qspi/rtl/udma_spim_top.sv|../ips/udma/udma_qspi/rtl/udma_spim_txrx.sv|../ips/udma/udma_qspi/rtl/udma_spim_ctrl.sv|../ips/udma/udma_qspi/rtl/udma_spim_reg_if.sv|
+Z8 !s90 -quiet|-sv|-work|/users/micas/vjain/tinyvers_main/install/modelsim_libs/udma_qspi_lib|-suppress|2583|-suppress|13314|+incdir+../ips/udma/udma_qspi/rtl|../ips/udma/udma_qspi/rtl/udma_spim_reg_if.sv|../ips/udma/udma_qspi/rtl/udma_spim_ctrl.sv|../ips/udma/udma_qspi/rtl/udma_spim_txrx.sv|../ips/udma/udma_qspi/rtl/udma_spim_top.sv|
+!i113 0
+Z9 o-suppress 2583 -suppress 13314 -quiet -sv -work /users/micas/vjain/tinyvers_main/install/modelsim_libs/udma_qspi_lib -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z10 !s92 -suppress 2583 -suppress 13314 -quiet -sv -work /users/micas/vjain/tinyvers_main/install/modelsim_libs/udma_qspi_lib +incdir+../ips/udma/udma_qspi/rtl -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z11 tCvgOpt 0
+vudma_spim_reg_if
+R1
+R2
+!i10b 1
+!s100 cYVb8dQBeEI63nX10>6aU1
+IeG2>go=hjCIOg_Q9]]_zB2
+R3
+!s105 udma_spim_reg_if_sv_unit
+S1
+R0
+R4
+8../ips/udma/udma_qspi/rtl/udma_spim_reg_if.sv
+F../ips/udma/udma_qspi/rtl/udma_spim_reg_if.sv
+L0 27
+R6
+r1
+!s85 0
+31
+R7
+Z12 !s107 ../ips/udma/udma_qspi/rtl/udma_spim_defines.sv|../ips/udma/udma_qspi/rtl/udma_spim_top.sv|../ips/udma/udma_qspi/rtl/udma_spim_txrx.sv|../ips/udma/udma_qspi/rtl/udma_spim_ctrl.sv|../ips/udma/udma_qspi/rtl/udma_spim_reg_if.sv|
+R8
+!i113 0
+R9
+R10
+R11
+vudma_spim_top
+R1
+R2
+!i10b 1
+!s100 _RhSGX^M_G[ZlDnVm@7[K2
+IzT7>;cWOacgz^iR?ob=l73
+R3
+!s105 udma_spim_top_sv_unit
+S1
+R0
+R4
+8../ips/udma/udma_qspi/rtl/udma_spim_top.sv
+F../ips/udma/udma_qspi/rtl/udma_spim_top.sv
+R5
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10
+R11
+vudma_spim_txrx
+R1
+R2
+!i10b 1
+!s100 Gm2Ma_0Z9mIER^00o=4ZC1
+IBM^h0zde7IfV2>V[OijTS0
+R3
+!s105 udma_spim_txrx_sv_unit
+S1
+R0
+R4
+8../ips/udma/udma_qspi/rtl/udma_spim_txrx.sv
+F../ips/udma/udma_qspi/rtl/udma_spim_txrx.sv
+L0 28
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10
+R11

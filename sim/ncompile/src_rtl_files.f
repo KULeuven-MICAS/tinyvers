@@ -1,0 +1,26 @@
+/volume1/users/vjain/pulpissimo/rtl/tb/riscv_pkg.sv
+/volume1/users/vjain/pulpissimo/rtl/tb/jtag_pkg.sv
+/volume1/users/vjain/pulpissimo/rtl/tb/pulp_tap_pkg.sv
+/volume1/users/vjain/pulpissimo/rtl/tb/tb_clk_gen.sv
+/volume1/users/vjain/pulpissimo/rtl/tb/tb_fs_handler.sv
+/volume1/users/vjain/pulpissimo/rtl/tb/dpi_models/dpi_models.sv
+/volume1/users/vjain/pulpissimo/rtl/tb/tb_driver/tb_driver.sv
+/volume1/users/vjain/pulpissimo/rtl/tb/tb_pulp.sv
+/volume1/users/vjain/pulpissimo/rtl/tb/SimJTAG.sv
+/volume1/users/vjain/pulpissimo/rtl/tb/SimDTM.sv
+/volume1/users/vjain/pulpissimo/rtl/vip/spi_master_padframe.sv
+/volume1/users/vjain/pulpissimo/rtl/vip/uart_tb_rx.sv
+/volume1/users/vjain/pulpissimo/rtl/vip/camera/cam_vip.sv
+-incdir /volume1/users/vjain/pulpissimo/rtl/pulpissimo/../includes
+/volume1/users/vjain/pulpissimo/rtl/pulpissimo/reg_arstn.sv
+/volume1/users/vjain/pulpissimo/rtl/pulpissimo/PowerGateFSM.sv
+/volume1/users/vjain/pulpissimo/rtl/pulpissimo/PowerGateFSM_MRAM.sv
+/volume1/users/vjain/pulpissimo/rtl/pulpissimo/gf_mem_wrapper.sv
+/volume1/users/vjain/pulpissimo/rtl/pulpissimo/jtag_tap_top.sv
+/volume1/users/vjain/pulpissimo/rtl/pulpissimo/pad_control.sv
+/volume1/users/vjain/pulpissimo/rtl/pulpissimo/pad_frame.sv
+/volume1/users/vjain/pulpissimo/rtl/pulpissimo/safe_domain.sv
+/volume1/users/vjain/pulpissimo/rtl/pulpissimo/soc_domain.sv
+/volume1/users/vjain/pulpissimo/rtl/pulpissimo/rtc_date.sv
+/volume1/users/vjain/pulpissimo/rtl/pulpissimo/rtc_clock.sv
+/volume1/users/vjain/pulpissimo/rtl/pulpissimo/pulpissimo.sv

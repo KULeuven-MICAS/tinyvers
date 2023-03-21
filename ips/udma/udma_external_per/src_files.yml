@@ -1,0 +1,29 @@
+udma_external_per:
+  files: [
+    rtl/RX_serializer.sv,
+    rtl/udma_mram_reg_if.sv,
+    rtl/udma_mram_top.sv,
+    rtl/size_conv_TX_32_to_64.sv,
+    rtl/size_conv_RX_64_to_32.sv,
+    rtl/TX_RX_to_MRAM.sv,
+    rtl/udma_dc_fifo_mram.sv,
+    rtl/dc_token_ring_fifo_din_mram.v,
+    rtl/dc_full_detector_mram.v,
+    rtl/udma_mram_macro_wrapper.sv,
+    rtl/udma_mram_domain.sv,
+    rtl/udma_mram_top_wrapper.sv,
+  ]
+  jg_slint_top_name: [
+    udma_mram_top_wrapper
+  ]
+  jg_slint_elab_opt: [
+  ]
+  jg_slint_postelab_cmds: [
+  ]
+  jg_slint_clocks: [
+    sys_clk_i,
+    periph_clk_i,
+  ]
+  jg_slint_resets: [
+    ~rstn_i,
+  ]

@@ -1,0 +1,2196 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/users/micas/vjain/tinyvers_main/sim
+X_32bTO64b_sv_unit
+Z1 DXx6 sv_std 3 std 0 22 d=_JfHTnXCN[H5FjiaJJc0
+Z2 DXx4 work 10 parameters 0 22 dzHBg22GIb@7AFg>abbIG2
+VIH8^gbWO^CQ3c_KNV5C362
+r1
+!s85 0
+!i10b 1
+!s100 4hT`:kmV8fU5NlFo5VX]33
+IIH8^gbWO^CQ3c_KNV5C362
+!i103 1
+S1
+R0
+Z3 w1679390126
+Z4 8../ips/hwpe-mac-engine/rtl/32bTO64b.sv
+Z5 F../ips/hwpe-mac-engine/rtl/32bTO64b.sv
+L0 3
+Z6 OE;L;10.7c;67
+31
+Z7 !s108 1679395905.000000
+!s107 ../ips/hwpe-mac-engine/rtl/weight_memory.sv|../ips/hwpe-mac-engine/rtl/SRAM_2048x32_equivalent.sv|../ips/hwpe-mac-engine/rtl/SRAM_2048x64_equivalent.sv|../ips/hwpe-mac-engine/rtl/SRAM_parametrizable_s_equivalent.sv|../ips/hwpe-mac-engine/rtl/SRAM_parametrizable_w_equivalent.sv|../ips/hwpe-mac-engine/rtl/SRAM_parametrizable_equivalent.sv|../ips/hwpe-mac-engine/rtl/sig_tanh.sv|../ips/hwpe-mac-engine/rtl/pooling.sv|../ips/hwpe-mac-engine/rtl/pe.sv|../ips/hwpe-mac-engine/rtl/nonlinear_block.sv|../ips/hwpe-mac-engine/rtl/mult_top.sv|../ips/hwpe-mac-engine/rtl/multiplier.sv|../ips/hwpe-mac-engine/rtl/input_buffer.sv|../ips/hwpe-mac-engine/rtl/cpu_wrapper.sv|../ips/hwpe-mac-engine/rtl/cpu.sv|../ips/hwpe-mac-engine/rtl/control_unit.sv|../ips/hwpe-mac-engine/rtl/configuration_registers.sv|../ips/hwpe-mac-engine/rtl/encoder_FIFO.sv|../ips/hwpe-mac-engine/rtl/outter_wrapper_SRAM_w_mem.sv|../ips/hwpe-mac-engine/rtl/inner_wrapper_SRAM_w_mem.sv|../ips/hwpe-mac-engine/rtl/inner_wrapper_SRAM_act_mem.sv|../ips/hwpe-mac-engine/rtl/instruction_memory.sv|../ips/hwpe-mac-engine/rtl/output_allignment_padding.sv|../ips/hwpe-mac-engine/rtl/sparsity_memory.sv|../ips/hwpe-mac-engine/rtl/array_pes.sv|../ips/hwpe-mac-engine/rtl/adder_tree.sv|../ips/hwpe-mac-engine/rtl/adder.sv|../ips/hwpe-mac-engine/rtl/activation_memory.sv|../ips/hwpe-mac-engine/rtl/panda_fsm.sv|../ips/hwpe-mac-engine/wrap/mac_top_wrap.sv|../ips/hwpe-mac-engine/rtl/mac_top.sv|../ips/hwpe-mac-engine/rtl/mac_engine.sv|../ips/hwpe-mac-engine/rtl/mac_streamer.sv|../ips/hwpe-mac-engine/rtl/mac_ctrl.sv|../ips/hwpe-mac-engine/rtl/32bTO64b.sv|../ips/hwpe-mac-engine/rtl/parameters.sv|../ips/hwpe-mac-engine/rtl/mac_package.sv|
+Z8 !s90 -quiet|-sv|-work|/users/micas/vjain/tinyvers_main/install/modelsim_libs/hwpe_mac_engine_lib|-L|hwpe_ctrl_lib|-L|hwpe_stream_lib|-suppress|2583|-suppress|13314|+incdir+../ips/hwpe-mac-engine/rtl|../ips/hwpe-mac-engine/rtl/mac_package.sv|../ips/hwpe-mac-engine/rtl/parameters.sv|../ips/hwpe-mac-engine/rtl/32bTO64b.sv|../ips/hwpe-mac-engine/rtl/mac_ctrl.sv|../ips/hwpe-mac-engine/rtl/mac_streamer.sv|../ips/hwpe-mac-engine/rtl/mac_engine.sv|../ips/hwpe-mac-engine/rtl/mac_top.sv|../ips/hwpe-mac-engine/wrap/mac_top_wrap.sv|../ips/hwpe-mac-engine/rtl/panda_fsm.sv|../ips/hwpe-mac-engine/rtl/activation_memory.sv|../ips/hwpe-mac-engine/rtl/adder.sv|../ips/hwpe-mac-engine/rtl/adder_tree.sv|../ips/hwpe-mac-engine/rtl/array_pes.sv|../ips/hwpe-mac-engine/rtl/sparsity_memory.sv|../ips/hwpe-mac-engine/rtl/output_allignment_padding.sv|../ips/hwpe-mac-engine/rtl/instruction_memory.sv|../ips/hwpe-mac-engine/rtl/inner_wrapper_SRAM_act_mem.sv|../ips/hwpe-mac-engine/rtl/inner_wrapper_SRAM_w_mem.sv|../ips/hwpe-mac-engine/rtl/outter_wrapper_SRAM_w_mem.sv|../ips/hwpe-mac-engine/rtl/encoder_FIFO.sv|../ips/hwpe-mac-engine/rtl/configuration_registers.sv|../ips/hwpe-mac-engine/rtl/control_unit.sv|../ips/hwpe-mac-engine/rtl/cpu.sv|../ips/hwpe-mac-engine/rtl/cpu_wrapper.sv|../ips/hwpe-mac-engine/rtl/input_buffer.sv|../ips/hwpe-mac-engine/rtl/multiplier.sv|../ips/hwpe-mac-engine/rtl/mult_top.sv|../ips/hwpe-mac-engine/rtl/nonlinear_block.sv|../ips/hwpe-mac-engine/rtl/pe.sv|../ips/hwpe-mac-engine/rtl/pooling.sv|../ips/hwpe-mac-engine/rtl/sig_tanh.sv|../ips/hwpe-mac-engine/rtl/SRAM_parametrizable_equivalent.sv|../ips/hwpe-mac-engine/rtl/SRAM_parametrizable_w_equivalent.sv|../ips/hwpe-mac-engine/rtl/SRAM_parametrizable_s_equivalent.sv|../ips/hwpe-mac-engine/rtl/SRAM_2048x64_equivalent.sv|../ips/hwpe-mac-engine/rtl/SRAM_2048x32_equivalent.sv|../ips/hwpe-mac-engine/rtl/weight_memory.sv|
+!i113 0
+Z9 o-suppress 2583 -suppress 13314 -quiet -sv -work /users/micas/vjain/tinyvers_main/install/modelsim_libs/hwpe_mac_engine_lib -L hwpe_ctrl_lib -L hwpe_stream_lib -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z10 !s92 -suppress 2583 -suppress 13314 -quiet -sv -work /users/micas/vjain/tinyvers_main/install/modelsim_libs/hwpe_mac_engine_lib -L hwpe_ctrl_lib -L hwpe_stream_lib +incdir+../ips/hwpe-mac-engine/rtl -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z11 tCvgOpt 0
+n@_32b@t@o64b_sv_unit
+vactivation_memory
+R1
+R2
+DXx4 work 25 activation_memory_sv_unit 0 22 oDN^7j2Sk[]gi5A?[090`3
+Z12 VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+!i10b 1
+!s100 RFH@>G5h0H22LRzW]QR951
+I4C=^M8LYZmTW??gjP9DgF1
+!s105 activation_memory_sv_unit
+S1
+R0
+Z13 w1679390125
+Z14 8../ips/hwpe-mac-engine/rtl/activation_memory.sv
+Z15 F../ips/hwpe-mac-engine/rtl/activation_memory.sv
+L0 3
+R6
+31
+R7
+Z16 !s107 ../ips/hwpe-mac-engine/rtl/weight_memory.sv|../ips/hwpe-mac-engine/rtl/SRAM_2048x32_equivalent.sv|../ips/hwpe-mac-engine/rtl/SRAM_2048x64_equivalent.sv|../ips/hwpe-mac-engine/rtl/SRAM_parametrizable_s_equivalent.sv|../ips/hwpe-mac-engine/rtl/SRAM_parametrizable_w_equivalent.sv|../ips/hwpe-mac-engine/rtl/SRAM_parametrizable_equivalent.sv|../ips/hwpe-mac-engine/rtl/sig_tanh.sv|../ips/hwpe-mac-engine/rtl/pooling.sv|../ips/hwpe-mac-engine/rtl/pe.sv|../ips/hwpe-mac-engine/rtl/nonlinear_block.sv|../ips/hwpe-mac-engine/rtl/mult_top.sv|../ips/hwpe-mac-engine/rtl/multiplier.sv|../ips/hwpe-mac-engine/rtl/input_buffer.sv|../ips/hwpe-mac-engine/rtl/cpu_wrapper.sv|../ips/hwpe-mac-engine/rtl/cpu.sv|../ips/hwpe-mac-engine/rtl/control_unit.sv|../ips/hwpe-mac-engine/rtl/configuration_registers.sv|../ips/hwpe-mac-engine/rtl/encoder_FIFO.sv|../ips/hwpe-mac-engine/rtl/outter_wrapper_SRAM_w_mem.sv|../ips/hwpe-mac-engine/rtl/inner_wrapper_SRAM_w_mem.sv|../ips/hwpe-mac-engine/rtl/inner_wrapper_SRAM_act_mem.sv|../ips/hwpe-mac-engine/rtl/instruction_memory.sv|../ips/hwpe-mac-engine/rtl/output_allignment_padding.sv|../ips/hwpe-mac-engine/rtl/sparsity_memory.sv|../ips/hwpe-mac-engine/rtl/array_pes.sv|../ips/hwpe-mac-engine/rtl/adder_tree.sv|../ips/hwpe-mac-engine/rtl/adder.sv|../ips/hwpe-mac-engine/rtl/activation_memory.sv|../ips/hwpe-mac-engine/rtl/panda_fsm.sv|../ips/hwpe-mac-engine/wrap/mac_top_wrap.sv|../ips/hwpe-mac-engine/rtl/mac_top.sv|../ips/hwpe-mac-engine/rtl/mac_engine.sv|../ips/hwpe-mac-engine/rtl/mac_streamer.sv|../ips/hwpe-mac-engine/rtl/mac_ctrl.sv|../ips/hwpe-mac-engine/rtl/32bTO64b.sv|../ips/hwpe-mac-engine/rtl/parameters.sv|../ips/hwpe-mac-engine/rtl/mac_package.sv|
+R8
+!i113 0
+R9
+R10
+R11
+Xactivation_memory_sv_unit
+R1
+R2
+VoDN^7j2Sk[]gi5A?[090`3
+r1
+!s85 0
+!i10b 1
+!s100 PB2^0?BgfQZZ]6TjSg[8<3
+IoDN^7j2Sk[]gi5A?[090`3
+!i103 1
+S1
+R0
+R13
+R14
+R15
+L0 1
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vadder
+R1
+R2
+DXx4 work 13 adder_sv_unit 0 22 YCB[41T^TT3R[bakoZ`<g2
+R12
+r1
+!s85 0
+!i10b 1
+!s100 8kdYUETbLEjBUhjbg8@Gj2
+IKzo:ioH_OolUVaRF79]992
+!s105 adder_sv_unit
+S1
+R0
+R13
+Z17 8../ips/hwpe-mac-engine/rtl/adder.sv
+Z18 F../ips/hwpe-mac-engine/rtl/adder.sv
+L0 3
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xadder_sv_unit
+R1
+R2
+VYCB[41T^TT3R[bakoZ`<g2
+r1
+!s85 0
+!i10b 1
+!s100 LUc<ARXMXglTSYhhLnFzf0
+IYCB[41T^TT3R[bakoZ`<g2
+!i103 1
+S1
+R0
+R13
+R17
+R18
+L0 1
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vadder_tree
+R1
+R2
+DXx4 work 18 adder_tree_sv_unit 0 22 iW7IMA7j80[MX`LoiO>__0
+R12
+r1
+!s85 0
+!i10b 1
+!s100 jER7IeTnB1@V7PMNa:IF82
+I5jJ[LeRQ69K9549WBM73<1
+!s105 adder_tree_sv_unit
+S1
+R0
+R3
+Z19 8../ips/hwpe-mac-engine/rtl/adder_tree.sv
+Z20 F../ips/hwpe-mac-engine/rtl/adder_tree.sv
+L0 3
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xadder_tree_sv_unit
+R1
+R2
+ViW7IMA7j80[MX`LoiO>__0
+r1
+!s85 0
+!i10b 1
+!s100 bPY@8U9z^Ae:6AT[oQ7CF1
+IiW7IMA7j80[MX`LoiO>__0
+!i103 1
+S1
+R0
+R3
+R19
+R20
+L0 1
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+varray_pes
+R1
+R2
+DXx4 work 17 array_pes_sv_unit 0 22 e9XId=:]cAoFdHjTHJ><m1
+R12
+r1
+!s85 0
+!i10b 1
+!s100 KP2l^=JG4O5<L:TKa4G0L2
+IzLRBb:WKXR0]g^nF=g]Xz3
+!s105 array_pes_sv_unit
+S1
+R0
+R3
+Z21 8../ips/hwpe-mac-engine/rtl/array_pes.sv
+Z22 F../ips/hwpe-mac-engine/rtl/array_pes.sv
+L0 8
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xarray_pes_sv_unit
+R1
+R2
+Ve9XId=:]cAoFdHjTHJ><m1
+r1
+!s85 0
+!i10b 1
+!s100 cUT[IGK65TjXNjgOc]70P2
+Ie9XId=:]cAoFdHjTHJ><m1
+!i103 1
+S1
+R0
+R3
+R21
+R22
+L0 3
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vconfiguration_registers
+R1
+R2
+DXx4 work 31 configuration_registers_sv_unit 0 22 mDI?`1blZ4j0SkQ9^>XU@2
+R12
+r1
+!s85 0
+!i10b 1
+!s100 EeDAIzR5>AeW;Bm]N6;[42
+IlMM;Ql^imnfl`gYYBTF3c3
+!s105 configuration_registers_sv_unit
+S1
+R0
+R3
+Z23 8../ips/hwpe-mac-engine/rtl/configuration_registers.sv
+Z24 F../ips/hwpe-mac-engine/rtl/configuration_registers.sv
+L0 3
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xconfiguration_registers_sv_unit
+R1
+R2
+VmDI?`1blZ4j0SkQ9^>XU@2
+r1
+!s85 0
+!i10b 1
+!s100 8aRca]@>MDlSg=KWfION90
+ImDI?`1blZ4j0SkQ9^>XU@2
+!i103 1
+S1
+R0
+R3
+R23
+R24
+L0 1
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vcontrol_unit
+R1
+R2
+DXx4 work 20 control_unit_sv_unit 0 22 lnMM12m3a>mhNM<=:UkST2
+R12
+r1
+!s85 0
+!i10b 1
+!s100 5o^33DTR[BY0fP_T7_^B[1
+I`LV376EdoAHD2=1j9[SW01
+!s105 control_unit_sv_unit
+S1
+R0
+R13
+Z25 8../ips/hwpe-mac-engine/rtl/control_unit.sv
+Z26 F../ips/hwpe-mac-engine/rtl/control_unit.sv
+L0 5
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xcontrol_unit_sv_unit
+R1
+R2
+VlnMM12m3a>mhNM<=:UkST2
+r1
+!s85 0
+!i10b 1
+!s100 BOZ<T1[9b36_n9gL07O`H2
+IlnMM12m3a>mhNM<=:UkST2
+!i103 1
+S1
+R0
+R13
+R25
+R26
+L0 3
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vcpu
+R1
+R2
+DXx4 work 11 cpu_sv_unit 0 22 WenWLcdlbKan:3[k>GJgg1
+R12
+r1
+!s85 0
+!i10b 1
+!s100 `fU8a3VP1WW^Z>THQREjl2
+I?M`QB`S3^S6YW;aAaXWU>2
+!s105 cpu_sv_unit
+S1
+R0
+R13
+Z27 8../ips/hwpe-mac-engine/rtl/cpu.sv
+Z28 F../ips/hwpe-mac-engine/rtl/cpu.sv
+L0 5
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xcpu_sv_unit
+R1
+R2
+VWenWLcdlbKan:3[k>GJgg1
+r1
+!s85 0
+!i10b 1
+!s100 :0<HK;WkINVO1=8Q6Y_Hz2
+IWenWLcdlbKan:3[k>GJgg1
+!i103 1
+S1
+R0
+R13
+R27
+R28
+L0 3
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vcpu_wrapper
+R1
+Z29 DXx15 hwpe_stream_lib 19 hwpe_stream_package 0 22 S>`GBogPL@h=L<nmiAG]]0
+Z30 DXx4 work 11 mac_package 0 22 Nzoa6C]3hCMi>?;aOa;R83
+Z31 DXx13 hwpe_ctrl_lib 17 hwpe_ctrl_package 0 22 F28?n9]6mMVLBdGkog8l10
+R2
+DXx4 work 19 cpu_wrapper_sv_unit 0 22 ;=;]P:bHWf@G;H2cT;Z<g3
+R12
+r1
+!s85 0
+!i10b 1
+!s100 diXm@OXJYD0:;2<iWnQz90
+IPPiU>aRlQk7PGD;d5_g7F2
+!s105 cpu_wrapper_sv_unit
+S1
+R0
+R13
+Z32 8../ips/hwpe-mac-engine/rtl/cpu_wrapper.sv
+Z33 F../ips/hwpe-mac-engine/rtl/cpu_wrapper.sv
+L0 5
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xcpu_wrapper_sv_unit
+R1
+R29
+R30
+R31
+R2
+V;=;]P:bHWf@G;H2cT;Z<g3
+r1
+!s85 0
+!i10b 1
+!s100 _f8_eY`<b3i3]`FUM[]``3
+I;=;]P:bHWf@G;H2cT;Z<g3
+!i103 1
+S1
+R0
+R13
+R32
+R33
+L0 1
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vencoder_FIFO
+R1
+R2
+DXx4 work 20 encoder_FIFO_sv_unit 0 22 gEE=i;8]DWIQK3<W3i^Bo2
+R12
+r1
+!s85 0
+!i10b 1
+!s100 @JeL]cfjA1Ah8=QQ]bjJV2
+IUzI@17i;1XLlE=^eT;:K=0
+!s105 encoder_FIFO_sv_unit
+S1
+R0
+R3
+Z34 8../ips/hwpe-mac-engine/rtl/encoder_FIFO.sv
+Z35 F../ips/hwpe-mac-engine/rtl/encoder_FIFO.sv
+L0 3
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+nencoder_@f@i@f@o
+Xencoder_FIFO_sv_unit
+R1
+R2
+VgEE=i;8]DWIQK3<W3i^Bo2
+r1
+!s85 0
+!i10b 1
+!s100 =5]fB>c_lG]5VNRYhjEf=1
+IgEE=i;8]DWIQK3<W3i^Bo2
+!i103 1
+S1
+R0
+R3
+R34
+R35
+L0 1
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+nencoder_@f@i@f@o_sv_unit
+vinner_wrapper_SRAM_act_mem
+R1
+R2
+DXx4 work 34 inner_wrapper_SRAM_act_mem_sv_unit 0 22 _lkJKiUVhi8hn3Zib:ahK3
+R12
+r1
+!s85 0
+!i10b 1
+!s100 =;X1e]FQN9^R_X32V?A>W0
+IE7WnX0>gD4NGTCg_[HQ`21
+!s105 inner_wrapper_SRAM_act_mem_sv_unit
+S1
+R0
+R3
+Z36 8../ips/hwpe-mac-engine/rtl/inner_wrapper_SRAM_act_mem.sv
+Z37 F../ips/hwpe-mac-engine/rtl/inner_wrapper_SRAM_act_mem.sv
+L0 3
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+ninner_wrapper_@s@r@a@m_act_mem
+Xinner_wrapper_SRAM_act_mem_sv_unit
+R1
+R2
+V_lkJKiUVhi8hn3Zib:ahK3
+r1
+!s85 0
+!i10b 1
+!s100 1:NTgYAMT:5gJM1K6_El[0
+I_lkJKiUVhi8hn3Zib:ahK3
+!i103 1
+S1
+R0
+R3
+R36
+R37
+L0 1
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+ninner_wrapper_@s@r@a@m_act_mem_sv_unit
+vinner_wrapper_SRAM_w_mem
+R1
+R2
+DXx4 work 32 inner_wrapper_SRAM_w_mem_sv_unit 0 22 68oXbd==T>[8d`2>?Wnak2
+R12
+r1
+!s85 0
+!i10b 1
+!s100 ]V]3D4gUGLb7YU4X1Rkgh3
+IGNMRRWhnV1hQb[34^R>Fm3
+!s105 inner_wrapper_SRAM_w_mem_sv_unit
+S1
+R0
+R3
+Z38 8../ips/hwpe-mac-engine/rtl/inner_wrapper_SRAM_w_mem.sv
+Z39 F../ips/hwpe-mac-engine/rtl/inner_wrapper_SRAM_w_mem.sv
+L0 3
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+ninner_wrapper_@s@r@a@m_w_mem
+Xinner_wrapper_SRAM_w_mem_sv_unit
+R1
+R2
+V68oXbd==T>[8d`2>?Wnak2
+r1
+!s85 0
+!i10b 1
+!s100 QVX0LLiOIBlK^XUH@R1=N2
+I68oXbd==T>[8d`2>?Wnak2
+!i103 1
+S1
+R0
+R3
+R38
+R39
+L0 1
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+ninner_wrapper_@s@r@a@m_w_mem_sv_unit
+vinput_buffer
+R1
+R2
+DXx4 work 20 input_buffer_sv_unit 0 22 JzIfNIfVPT9^UA<Y2>nb:3
+R12
+r1
+!s85 0
+!i10b 1
+!s100 a2khUYSBAVWHK[aL^471Q1
+I1jXKPXKUj?g:4C@PBdWf]2
+!s105 input_buffer_sv_unit
+S1
+R0
+R13
+Z40 8../ips/hwpe-mac-engine/rtl/input_buffer.sv
+Z41 F../ips/hwpe-mac-engine/rtl/input_buffer.sv
+L0 10
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xinput_buffer_sv_unit
+R1
+R2
+VJzIfNIfVPT9^UA<Y2>nb:3
+r1
+!s85 0
+!i10b 1
+!s100 ;]j8oFmOKJJB^JcKM;OF@1
+IJzIfNIfVPT9^UA<Y2>nb:3
+!i103 1
+S1
+R0
+R13
+R40
+R41
+L0 4
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vinstruction_memory
+R1
+R2
+DXx4 work 26 instruction_memory_sv_unit 0 22 0:eH=h1Z6jVD_WHF`kH[J2
+R12
+r1
+!s85 0
+!i10b 1
+!s100 oNcC`JA]dLa`PoAbISNS@3
+I[OdmJRRS8d_FC^38gRZFG0
+!s105 instruction_memory_sv_unit
+S1
+R0
+R3
+Z42 8../ips/hwpe-mac-engine/rtl/instruction_memory.sv
+Z43 F../ips/hwpe-mac-engine/rtl/instruction_memory.sv
+L0 3
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xinstruction_memory_sv_unit
+R1
+R2
+V0:eH=h1Z6jVD_WHF`kH[J2
+r1
+!s85 0
+!i10b 1
+!s100 J2ao=T8WS?U91Y_UJ>K=83
+I0:eH=h1Z6jVD_WHF`kH[J2
+!i103 1
+S1
+R0
+R3
+R42
+R43
+L0 1
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vM88_downAdder
+R1
+Z44 !s110 1679395905
+!i10b 1
+!s100 gc6f_S48>mc?b1^h052N:3
+IQAn`nRan3XoBY:L?9_bIQ2
+R12
+Z45 !s105 mult_top_sv_unit
+S1
+R0
+R3
+Z46 8../ips/hwpe-mac-engine/rtl/mult_top.sv
+Z47 F../ips/hwpe-mac-engine/rtl/mult_top.sv
+L0 200
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m88_down@adder
+vM88_top
+R1
+R44
+!i10b 1
+!s100 G2i0JOF?3b76U6[AGHo>@3
+I]3KC47m3E;fCcOQ>CR@TQ0
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+Z48 L0 12
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m88_top
+vM_22_0
+R1
+R44
+!i10b 1
+!s100 Ac:cnAC0C7c:Z8Xf`dbc`2
+I_gKFh1zTXdT4YSb:aePD[1
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+L0 225
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m_22_0
+vM_22_16
+R1
+R44
+!i10b 1
+!s100 45VQeQG?;jV:X[bXFRP3X2
+ILaPaiOLJmjkDiP3>K_Z4Z1
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+L0 310
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m_22_16
+vM_22_18
+R1
+R44
+!i10b 1
+!s100 ooGK@fSQ67g3D0:j11PV<2
+I77;=:XVNQc@3i_>5Q=WCU2
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+L0 395
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m_22_18
+vM_22_2
+R1
+R44
+!i10b 1
+!s100 [a??:QTn4AOGNPW;MlIi22
+ITJBPCfk`_]7FZN<N7zfUZ0
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+L0 565
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m_22_2
+vM_22_22
+R1
+R44
+!i10b 1
+!s100 ?O@YeaMalO7bhneKAZ3ZL1
+ISnDEG3f6T@4Wh;3k]jc^V1
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+L0 480
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m_22_22
+vM_22_32
+R1
+R44
+!i10b 1
+!s100 `Xa^AY=gl0Qn6n`^V=eG^3
+IFd]3SiC3VeYJOMQRkU];a3
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+L0 650
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m_22_32
+vM_22_36
+R1
+R44
+!i10b 1
+!s100 z3`b8Y4d^IEEokeNIJoI^2
+IM>zTC1EFYiZF?]`_oG@mO1
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+L0 735
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m_22_36
+vM_22_38
+R1
+R44
+!i10b 1
+!s100 IaDcfdiT1cBN2THzG8dEl3
+Io]`fG3MaS[oT?[oSbkHAf3
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+L0 820
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m_22_38
+vM_22_4
+R1
+R44
+!i10b 1
+!s100 D9SDcVC_7h^YQ3QE7K_zD3
+I4gE;TH9A2_PkXKH9Eb<an3
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+L0 905
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m_22_4
+vM_22_54
+R1
+R44
+!i10b 1
+!s100 B6=@P3UCFn3:2i;VNE9Kh1
+I_^7O=U8C6nRIBI=XIL1>l0
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+L0 990
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m_22_54
+vM_22_6
+R1
+R44
+!i10b 1
+!s100 0dmgXD>=1mk0<:V0f_D@70
+Io^J@i>_MXk9l50C4bhbFG0
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+L0 1075
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m_22_6
+vM_44_0
+R1
+R44
+!i10b 1
+!s100 YL1nQc[KJ]Qko_4VHHBPM1
+IJO@0hJJ]G89:g?a2P2_YS3
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+L0 1159
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m_44_0
+vM_44_32
+R1
+R44
+!i10b 1
+!s100 i3j<<f<YD@aU1^1ZZZ5zk1
+IBK;oAi<LieJzlk;OKW76<2
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+L0 1245
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m_44_32
+vM_44_36
+R1
+R44
+!i10b 1
+!s100 C;M[>BgILKnYVK:@4L4>23
+I[>klzkMN6m?Fn_J^W^ABZ3
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+L0 1331
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m_44_36
+vM_44_4
+R1
+R44
+!i10b 1
+!s100 D2hAGe9>BUVEXi96CCW[Q2
+Io6Jm=AHiY^_>MjKn47SZi0
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+L0 1419
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m_44_4
+vM_88_0
+R1
+R44
+!i10b 1
+!s100 zBjgY1N7BRV7Acm3KV5Z63
+IZVigE^3No4=hGQ89MQ_=P0
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+L0 103
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m_88_0
+vM_adderUnit
+R1
+R44
+!i10b 1
+!s100 [AIYJDJj_OVoH60]ehU2A1
+IHODj9k@6Jz52K02hYDP7Q3
+R12
+R45
+S1
+R0
+R3
+R46
+R47
+L0 1505
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@m_adder@unit
+vmac_ctrl
+R1
+R29
+R30
+R31
+DXx4 work 16 mac_ctrl_sv_unit 0 22 5NOY5TN`7ZV7<9i?M<[dY0
+R12
+r1
+!s85 0
+!i10b 1
+!s100 eHS`RD2J644oe;nO>McVl2
+IJAQEG^YO1Wij<ZEJ=Iin?2
+!s105 mac_ctrl_sv_unit
+S1
+R0
+R13
+Z49 8../ips/hwpe-mac-engine/rtl/mac_ctrl.sv
+Z50 F../ips/hwpe-mac-engine/rtl/mac_ctrl.sv
+Z51 L0 19
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xmac_ctrl_sv_unit
+R1
+R29
+R30
+R31
+V5NOY5TN`7ZV7<9i?M<[dY0
+r1
+!s85 0
+!i10b 1
+!s100 Z_>MORE0[E<C^;RI6T]<e1
+I5NOY5TN`7ZV7<9i?M<[dY0
+!i103 1
+S1
+R0
+R13
+R49
+R50
+Z52 L0 16
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vmac_engine
+R1
+R29
+R30
+DXx4 work 18 mac_engine_sv_unit 0 22 mUm[0NibOd9QCCAdJ=oz33
+R12
+r1
+!s85 0
+!i10b 1
+!s100 P[gWI6@X8>CXPj]18G58L3
+I>L9]3Gc76^3@5AUa3JT973
+!s105 mac_engine_sv_unit
+S1
+R0
+R13
+Z53 8../ips/hwpe-mac-engine/rtl/mac_engine.sv
+Z54 F../ips/hwpe-mac-engine/rtl/mac_engine.sv
+L0 31
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xmac_engine_sv_unit
+R1
+R29
+R30
+VmUm[0NibOd9QCCAdJ=oz33
+r1
+!s85 0
+!i10b 1
+!s100 3kHJZ;cfBVWW`OS8edgda1
+ImUm[0NibOd9QCCAdJ=oz33
+!i103 1
+S1
+R0
+R13
+R53
+R54
+L0 29
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xmac_package
+R1
+R29
+VNzoa6C]3hCMi>?;aOa;R83
+r1
+!s85 0
+!i10b 1
+!s100 5oG17Z_UCDZL11Fd]JY0E0
+INzoa6C]3hCMi>?;aOa;R83
+S1
+R0
+R13
+Z55 8../ips/hwpe-mac-engine/rtl/mac_package.sv
+Z56 F../ips/hwpe-mac-engine/rtl/mac_package.sv
+L0 18
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xmac_package_sv_unit
+R1
+R29
+VnYNW<:Ql^aPDVmeYSYddd2
+r1
+!s85 0
+!i10b 1
+!s100 A1z0>[^i5?X26KneS4JML1
+InYNW<:Ql^aPDVmeYSYddd2
+!i103 1
+S1
+R0
+R13
+R55
+R56
+R52
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vmac_streamer
+R1
+R29
+R30
+DXx4 work 20 mac_streamer_sv_unit 0 22 WE6ao1I0lZfG:WcGJOL:C3
+R12
+r1
+!s85 0
+!i10b 1
+!s100 Onj9mz0z]4mEkL?cSa=cM1
+I:cU;cET_ghX8Cb2UkzoUA3
+!s105 mac_streamer_sv_unit
+S1
+R0
+R13
+Z57 8../ips/hwpe-mac-engine/rtl/mac_streamer.sv
+Z58 F../ips/hwpe-mac-engine/rtl/mac_streamer.sv
+R51
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xmac_streamer_sv_unit
+R1
+R29
+R30
+VWE6ao1I0lZfG:WcGJOL:C3
+r1
+!s85 0
+!i10b 1
+!s100 [1MWL^bQmj4:B0XoYh9S=3
+IWE6ao1I0lZfG:WcGJOL:C3
+!i103 1
+S1
+R0
+R13
+R57
+R58
+R52
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vmac_top
+R1
+R29
+R30
+R31
+DXx4 work 15 mac_top_sv_unit 0 22 Ma1>@jVQKNORo4fkDMojJ0
+R12
+r1
+!s85 0
+!i10b 1
+!s100 9oB4KQ@Q6aaKghdO6DZk41
+IiFzZheTjEM^:@c=n5:TRG3
+!s105 mac_top_sv_unit
+S1
+R0
+R13
+Z59 8../ips/hwpe-mac-engine/rtl/mac_top.sv
+Z60 F../ips/hwpe-mac-engine/rtl/mac_top.sv
+R51
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xmac_top_sv_unit
+R1
+R29
+R30
+R31
+VMa1>@jVQKNORo4fkDMojJ0
+r1
+!s85 0
+!i10b 1
+!s100 >G8:Yla]jjiL9ZGR1OGG80
+IMa1>@jVQKNORo4fkDMojJ0
+!i103 1
+S1
+R0
+R13
+R59
+R60
+R52
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vmac_top_wrap
+R1
+R29
+R30
+R31
+DXx4 work 20 mac_top_wrap_sv_unit 0 22 nJ`GkMBfS56]03Y9lij7=1
+R12
+r1
+!s85 0
+!i10b 1
+!s100 kXE=8k=;bd05]G4XIXKA01
+I_:FB9;?Wki7Mg@XHWQo]f3
+!s105 mac_top_wrap_sv_unit
+S1
+R0
+Z61 w1679390127
+Z62 8../ips/hwpe-mac-engine/wrap/mac_top_wrap.sv
+Z63 F../ips/hwpe-mac-engine/wrap/mac_top_wrap.sv
+R48
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xmac_top_wrap_sv_unit
+R1
+R29
+R30
+R31
+VnJ`GkMBfS56]03Y9lij7=1
+r1
+!s85 0
+!i10b 1
+!s100 In`FS17UoJgWcN]A`1k4O3
+InJ`GkMBfS56]03Y9lij7=1
+!i103 1
+S1
+R0
+R61
+R62
+R63
+L0 9
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vmultiplier
+R1
+R2
+DXx4 work 18 multiplier_sv_unit 0 22 Zmbj3g=:Nej=]2l^A6@eP0
+R12
+r1
+!s85 0
+!i10b 1
+!s100 X2gf^I4AHPDS4kl:FRl?A0
+IBl=h^fodQW3eJhN5?EdLa1
+!s105 multiplier_sv_unit
+S1
+R0
+R13
+Z64 8../ips/hwpe-mac-engine/rtl/multiplier.sv
+Z65 F../ips/hwpe-mac-engine/rtl/multiplier.sv
+L0 3
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xmultiplier_sv_unit
+R1
+R2
+VZmbj3g=:Nej=]2l^A6@eP0
+r1
+!s85 0
+!i10b 1
+!s100 5G5>@Kf;XoamDGYz=J;[P2
+IZmbj3g=:Nej=]2l^A6@eP0
+!i103 1
+S1
+R0
+R13
+R64
+R65
+L0 1
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vnonlinear_block
+R1
+R2
+DXx4 work 23 nonlinear_block_sv_unit 0 22 ?Gfan7QMEV]6CdM?:eDc_0
+R12
+r1
+!s85 0
+!i10b 1
+!s100 DQLPG^MVSHal2kZINE[hU0
+IlOjSZ>4@_oFJoR^>eMmdg2
+!s105 nonlinear_block_sv_unit
+S1
+R0
+R13
+Z66 8../ips/hwpe-mac-engine/rtl/nonlinear_block.sv
+Z67 F../ips/hwpe-mac-engine/rtl/nonlinear_block.sv
+L0 5
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xnonlinear_block_sv_unit
+R1
+R2
+V?Gfan7QMEV]6CdM?:eDc_0
+r1
+!s85 0
+!i10b 1
+!s100 FMzKoz]:VH[W]3mAb2gm82
+I?Gfan7QMEV]6CdM?:eDc_0
+!i103 1
+S1
+R0
+R13
+R66
+R67
+L0 1
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+voutput_allignment_padding
+R1
+R2
+DXx4 work 33 output_allignment_padding_sv_unit 0 22 hFBbJC?O7o5DTFfida]Sc3
+R12
+r1
+!s85 0
+!i10b 1
+!s100 h>Tm[l>J_elQHJV2]`OH03
+IaG_YbcQg`nQAVc?i;gZEa1
+!s105 output_allignment_padding_sv_unit
+S1
+R0
+R3
+Z68 8../ips/hwpe-mac-engine/rtl/output_allignment_padding.sv
+Z69 F../ips/hwpe-mac-engine/rtl/output_allignment_padding.sv
+L0 5
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xoutput_allignment_padding_sv_unit
+R1
+R2
+VhFBbJC?O7o5DTFfida]Sc3
+r1
+!s85 0
+!i10b 1
+!s100 Zoa17ERZoW;aEhK<0IiLf0
+IhFBbJC?O7o5DTFfida]Sc3
+!i103 1
+S1
+R0
+R3
+R68
+R69
+L0 3
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+voutter_wrapper_SRAM_w_mem
+R1
+R2
+DXx4 work 33 outter_wrapper_SRAM_w_mem_sv_unit 0 22 jaD]bz<2;O@5ab9j@TkiL2
+R12
+r1
+!s85 0
+!i10b 1
+!s100 cM<@]IPH=?XbMmBHS@K7b1
+I6;9EO5>1g301NCUCl<mi71
+!s105 outter_wrapper_SRAM_w_mem_sv_unit
+S1
+R0
+R13
+Z70 8../ips/hwpe-mac-engine/rtl/outter_wrapper_SRAM_w_mem.sv
+Z71 F../ips/hwpe-mac-engine/rtl/outter_wrapper_SRAM_w_mem.sv
+L0 3
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+noutter_wrapper_@s@r@a@m_w_mem
+Xoutter_wrapper_SRAM_w_mem_sv_unit
+R1
+R2
+VjaD]bz<2;O@5ab9j@TkiL2
+r1
+!s85 0
+!i10b 1
+!s100 >cmLmeWbh<VWP8`lBg?7>0
+IjaD]bz<2;O@5ab9j@TkiL2
+!i103 1
+S1
+R0
+R13
+R70
+R71
+L0 1
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+noutter_wrapper_@s@r@a@m_w_mem_sv_unit
+vpanda_fsm
+R1
+R29
+R30
+R31
+DXx4 work 17 panda_fsm_sv_unit 0 22 Yc3Sa`WVJdg54gF7UO_370
+R12
+r1
+!s85 0
+!i10b 1
+!s100 BYXAB78cac3d63jMOE<o>2
+I_5dlT2SEC=4:D55XS63jb0
+!s105 panda_fsm_sv_unit
+S1
+R0
+R3
+Z72 8../ips/hwpe-mac-engine/rtl/panda_fsm.sv
+Z73 F../ips/hwpe-mac-engine/rtl/panda_fsm.sv
+L0 14
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xpanda_fsm_sv_unit
+R1
+R29
+R30
+R31
+VYc3Sa`WVJdg54gF7UO_370
+r1
+!s85 0
+!i10b 1
+!s100 a5D1@I27cf?=z?F1c=1lF1
+IYc3Sa`WVJdg54gF7UO_370
+!i103 1
+S1
+R0
+R3
+R72
+R73
+L0 11
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xparameters
+R1
+R44
+!i10b 1
+!s100 4]BigLB3FbXRW6BeO^QTM2
+IdzHBg22GIb@7AFg>abbIG2
+VdzHBg22GIb@7AFg>abbIG2
+S1
+R0
+R3
+8../ips/hwpe-mac-engine/rtl/parameters.sv
+F../ips/hwpe-mac-engine/rtl/parameters.sv
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vpe
+R1
+R2
+DXx4 work 10 pe_sv_unit 0 22 2[XI0>97DHMaC_;k4KX@Z3
+R12
+r1
+!s85 0
+!i10b 1
+!s100 6=j_=Yf=OzZeN[0DKhEAZ2
+ID;0i4V`cAA:IaX_G]CUQJ3
+!s105 pe_sv_unit
+S1
+R0
+R13
+Z74 8../ips/hwpe-mac-engine/rtl/pe.sv
+Z75 F../ips/hwpe-mac-engine/rtl/pe.sv
+L0 8
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xpe_sv_unit
+R1
+R2
+V2[XI0>97DHMaC_;k4KX@Z3
+r1
+!s85 0
+!i10b 1
+!s100 3emVR:FR3k?6>9^AB7bg93
+I2[XI0>97DHMaC_;k4KX@Z3
+!i103 1
+S1
+R0
+R13
+R74
+R75
+L0 3
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vpooling
+R1
+R2
+DXx4 work 15 pooling_sv_unit 0 22 U7LQDP<had_G6_A^g@o1V0
+R12
+r1
+!s85 0
+!i10b 1
+!s100 dVQ64ZSbdRkLUD?>_8IH<2
+I2=FQO0gH@INzl;nid3NGL1
+!s105 pooling_sv_unit
+S1
+R0
+R13
+Z76 8../ips/hwpe-mac-engine/rtl/pooling.sv
+Z77 F../ips/hwpe-mac-engine/rtl/pooling.sv
+L0 5
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xpooling_sv_unit
+R1
+R2
+VU7LQDP<had_G6_A^g@o1V0
+r1
+!s85 0
+!i10b 1
+!s100 c[]7jOM6Y?<S9z<OblC5^1
+IU7LQDP<had_G6_A^g@o1V0
+!i103 1
+S1
+R0
+R13
+R76
+R77
+L0 1
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vsig_tanh
+R1
+R2
+DXx4 work 16 sig_tanh_sv_unit 0 22 :QoCm]zHV9ZQJ@5U?9XAL3
+R12
+r1
+!s85 0
+!i10b 1
+!s100 ]EE851A:SWHG=P1deGQoY0
+Il9m:HB9?XmD[hPi]3FbIk1
+!s105 sig_tanh_sv_unit
+S1
+R0
+R13
+Z78 8../ips/hwpe-mac-engine/rtl/sig_tanh.sv
+Z79 F../ips/hwpe-mac-engine/rtl/sig_tanh.sv
+L0 5
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xsig_tanh_sv_unit
+R1
+R2
+V:QoCm]zHV9ZQJ@5U?9XAL3
+r1
+!s85 0
+!i10b 1
+!s100 hSQ8:KGSk1F__<^GPJL]N3
+I:QoCm]zHV9ZQJ@5U?9XAL3
+!i103 1
+S1
+R0
+R13
+R78
+R79
+L0 1
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vsparsity_memory
+R1
+R44
+!i10b 1
+!s100 H6V`RZUW]z3=JSMDZU?fk0
+IbliFmGW?bincM4di=jWH_0
+R12
+!s105 sparsity_memory_sv_unit
+S1
+R0
+R13
+8../ips/hwpe-mac-engine/rtl/sparsity_memory.sv
+F../ips/hwpe-mac-engine/rtl/sparsity_memory.sv
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+vSRAM_2048x32_equivalent
+R1
+R44
+!i10b 1
+!s100 ]hF>:obkI;[dKIdC_6Mg@2
+I<0nB@Sibf_OQ]06ImJjNS1
+R12
+!s105 SRAM_2048x32_equivalent_sv_unit
+S1
+R0
+R3
+8../ips/hwpe-mac-engine/rtl/SRAM_2048x32_equivalent.sv
+F../ips/hwpe-mac-engine/rtl/SRAM_2048x32_equivalent.sv
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@s@r@a@m_2048x32_equivalent
+vSRAM_2048x64_equivalent
+R1
+R44
+!i10b 1
+!s100 9GEM<Zm4VdO?E=>n]Z2YI0
+IbR?ajUFFe1TPVAGne6hl20
+R12
+!s105 SRAM_2048x64_equivalent_sv_unit
+S1
+R0
+R13
+8../ips/hwpe-mac-engine/rtl/SRAM_2048x64_equivalent.sv
+F../ips/hwpe-mac-engine/rtl/SRAM_2048x64_equivalent.sv
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@s@r@a@m_2048x64_equivalent
+vSRAM_parametrizable_equivalent
+R1
+R44
+!i10b 1
+!s100 bzoeb1;]]Z2@@aQI7FXD42
+I]Em_He3[`11f1Bl6Y>KM92
+R12
+!s105 SRAM_parametrizable_equivalent_sv_unit
+S1
+R0
+w1679394961
+8../ips/hwpe-mac-engine/rtl/SRAM_parametrizable_equivalent.sv
+F../ips/hwpe-mac-engine/rtl/SRAM_parametrizable_equivalent.sv
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@s@r@a@m_parametrizable_equivalent
+vSRAM_parametrizable_s_equivalent
+R1
+R44
+!i10b 1
+!s100 4LRM^M2KC9eDoC]N52i8z1
+IE;7_TCEUozc9zg=09;M=Y0
+R12
+!s105 SRAM_parametrizable_s_equivalent_sv_unit
+S1
+R0
+w1679394895
+8../ips/hwpe-mac-engine/rtl/SRAM_parametrizable_s_equivalent.sv
+F../ips/hwpe-mac-engine/rtl/SRAM_parametrizable_s_equivalent.sv
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@s@r@a@m_parametrizable_s_equivalent
+vSRAM_parametrizable_w_equivalent
+R1
+R44
+!i10b 1
+!s100 ;FI_9QlL6OPbnoMaCLI1_2
+I?IJWJKojOA`]>]WVCB2E_2
+R12
+!s105 SRAM_parametrizable_w_equivalent_sv_unit
+S1
+R0
+w1679394856
+8../ips/hwpe-mac-engine/rtl/SRAM_parametrizable_w_equivalent.sv
+F../ips/hwpe-mac-engine/rtl/SRAM_parametrizable_w_equivalent.sv
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+n@s@r@a@m_parametrizable_w_equivalent
+vstream32bTO64b
+R1
+R2
+DXx4 work 17 _32bTO64b_sv_unit 0 22 IH8^gbWO^CQ3c_KNV5C362
+R12
+r1
+!s85 0
+!i10b 1
+!s100 Y5O[fZgekOT9U]Gl:5;Jj1
+Io85D?8jd^VlLTN20]U;A]1
+!s105 _32bTO64b_sv_unit
+S1
+R0
+R3
+R4
+R5
+L0 6
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+nstream32b@t@o64b
+vweight_memory
+R1
+R2
+DXx4 work 21 weight_memory_sv_unit 0 22 YaEXZGGJG^lWJjFm87?DN1
+R12
+r1
+!s85 0
+!i10b 1
+!s100 YS2QJ?jT0PBT>oTC=h9E<0
+I5J1NVf]_eHULDe5YUM>Wa1
+!s105 weight_memory_sv_unit
+S1
+R0
+R13
+Z80 8../ips/hwpe-mac-engine/rtl/weight_memory.sv
+Z81 F../ips/hwpe-mac-engine/rtl/weight_memory.sv
+L0 5
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11
+Xweight_memory_sv_unit
+R1
+R2
+VYaEXZGGJG^lWJjFm87?DN1
+r1
+!s85 0
+!i10b 1
+!s100 3]V<WPK5Lj[S5]WV@7NT;0
+IYaEXZGGJG^lWJjFm87?DN1
+!i103 1
+S1
+R0
+R13
+R80
+R81
+L0 1
+R6
+31
+R7
+R16
+R8
+!i113 0
+R9
+R10
+R11

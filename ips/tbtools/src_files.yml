@@ -1,0 +1,8 @@
+tbtools:
+  flags: [
+    'skip_synthesis'
+  ]
+  files: [
+    dpi_models/dpi_models.sv,
+    tb_driver/tb_driver.sv,
+  ]

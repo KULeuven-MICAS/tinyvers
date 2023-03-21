@@ -1,0 +1,106 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/users/micas/vjain/tinyvers_main/sim
+vaxi2mem
+Z1 DXx6 sv_std 3 std 0 22 d=_JfHTnXCN[H5FjiaJJc0
+Z2 !s110 1679395901
+!i10b 1
+!s100 Z2;^W0KJAH=@9QX?XHn]X0
+I_b6Udfl6K4o?HFMhWhMGg1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+!s105 axi2mem_sv_unit
+S1
+R0
+Z4 w1679390127
+8../ips/axi/axi_mem_if/src/axi2mem.sv
+F../ips/axi/axi_mem_if/src/axi2mem.sv
+L0 20
+Z5 OE;L;10.7c;67
+r1
+!s85 0
+31
+Z6 !s108 1679395901.000000
+!s107 ../ips/axi/axi_mem_if/src/deprecated/axi_mem_if_var_latency.sv|../ips/axi/axi_mem_if/src/deprecated/axi_mem_if_wrap.sv|../ips/axi/axi_mem_if/src/deprecated/axi_mem_if.sv|../ips/axi/axi_mem_if/src/axi2mem.sv|
+Z7 !s90 -quiet|-sv|-work|/users/micas/vjain/tinyvers_main/install/modelsim_libs/axi_mem_if_lib|-suppress|2583|-suppress|13314|../ips/axi/axi_mem_if/src/axi2mem.sv|../ips/axi/axi_mem_if/src/deprecated/axi_mem_if.sv|../ips/axi/axi_mem_if/src/deprecated/axi_mem_if_wrap.sv|../ips/axi/axi_mem_if/src/deprecated/axi_mem_if_var_latency.sv|
+!i113 0
+Z8 o-suppress 2583 -suppress 13314 -quiet -sv -work /users/micas/vjain/tinyvers_main/install/modelsim_libs/axi_mem_if_lib -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z9 tCvgOpt 0
+vaxi_mem_if
+R1
+R2
+!i10b 1
+!s100 @H9c9>Aac_FHon4Y<`6n01
+If2dG8glg`jR:GlB<NPJ342
+R3
+!s105 axi_mem_if_sv_unit
+S1
+R0
+R4
+8../ips/axi/axi_mem_if/src/deprecated/axi_mem_if.sv
+F../ips/axi/axi_mem_if/src/deprecated/axi_mem_if.sv
+L0 18
+R5
+r1
+!s85 0
+31
+R6
+Z10 !s107 ../ips/axi/axi_mem_if/src/deprecated/axi_mem_if_var_latency.sv|../ips/axi/axi_mem_if/src/deprecated/axi_mem_if_wrap.sv|../ips/axi/axi_mem_if/src/deprecated/axi_mem_if.sv|../ips/axi/axi_mem_if/src/axi2mem.sv|
+R7
+!i113 0
+R8
+R9
+vaxi_mem_if_var_latency
+R1
+R2
+!i10b 1
+!s100 ?5A2Q718lm@S?`Pdh5Ej01
+I;gO@=P]4Z7MW<WAYHK4@U0
+R3
+!s105 axi_mem_if_var_latency_sv_unit
+S1
+R0
+R4
+8../ips/axi/axi_mem_if/src/deprecated/axi_mem_if_var_latency.sv
+F../ips/axi/axi_mem_if/src/deprecated/axi_mem_if_var_latency.sv
+L0 21
+R5
+r1
+!s85 0
+31
+R6
+R10
+R7
+!i113 0
+R8
+R9
+vaxi_mem_if_wrap
+R1
+R2
+!i10b 1
+!s100 Nj@9^E<<^ZRb`096EFSPQ2
+IBFYWH>e3jJaI`:>U>`;zh3
+R3
+!s105 axi_mem_if_wrap_sv_unit
+S1
+R0
+R4
+8../ips/axi/axi_mem_if/src/deprecated/axi_mem_if_wrap.sv
+F../ips/axi/axi_mem_if/src/deprecated/axi_mem_if_wrap.sv
+L0 16
+R5
+r1
+!s85 0
+31
+R6
+R10
+R7
+!i113 0
+R8
+R9

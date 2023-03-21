@@ -1,0 +1,1536 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/users/micas/vjain/tinyvers_main/sim
+YAPB_BUS
+Z1 DXx6 sv_std 3 std 0 22 d=_JfHTnXCN[H5FjiaJJc0
+Z2 !s110 1679395906
+!i10b 1
+!s100 V5DWh^aE?o:1I391@k`cd1
+IWO3@om=8cdzhY;YGo9HR:3
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+Z4 !s105 pulp_interfaces_sv_unit
+S1
+R0
+Z5 w1679390132
+Z6 8../ips/pulp_soc/rtl/components/pulp_interfaces.sv
+Z7 F../ips/pulp_soc/rtl/components/pulp_interfaces.sv
+L0 1209
+Z8 OE;L;10.7c;67
+r1
+!s85 0
+31
+Z9 !s108 1679395906.000000
+Z10 !s107 ../ips/pulp_soc/../../rtl/includes/pulp_soc_defines.sv|../ips/pulp_soc/rtl/components/apb_wakeup_counter.sv|../ips/pulp_soc/rtl/components/apb_wakeup.sv|../ips/pulp_soc/rtl/components/tcdm_arbiter_2x1.sv|../ips/pulp_soc/rtl/components/scm_512x32.sv|../ips/pulp_soc/rtl/components/scm_2048x32.sv|../ips/pulp_soc/rtl/components/glitch_free_clk_mux.sv|../ips/pulp_soc/rtl/components/axi_slice_dc_slave_wrap.sv|../ips/pulp_soc/rtl/components/axi_slice_dc_master_wrap.sv|../ips/pulp_soc/rtl/components/pulp_interfaces.sv|../ips/pulp_soc/rtl/components/memory_models.sv|../ips/pulp_soc/rtl/components/apb_soc_ctrl.sv|../ips/pulp_soc/rtl/components/apb_timer_unit.sv|../ips/pulp_soc/rtl/components/apb_clkdiv.sv|
+Z11 !s90 -quiet|-sv|-work|/users/micas/vjain/tinyvers_main/install/modelsim_libs/pulp_soc_lib|-suppress|2583|-suppress|13314|+incdir+../ips/pulp_soc/../../rtl/includes|../ips/pulp_soc/rtl/components/apb_clkdiv.sv|../ips/pulp_soc/rtl/components/apb_timer_unit.sv|../ips/pulp_soc/rtl/components/apb_soc_ctrl.sv|../ips/pulp_soc/rtl/components/memory_models.sv|../ips/pulp_soc/rtl/components/pulp_interfaces.sv|../ips/pulp_soc/rtl/components/axi_slice_dc_master_wrap.sv|../ips/pulp_soc/rtl/components/axi_slice_dc_slave_wrap.sv|../ips/pulp_soc/rtl/components/glitch_free_clk_mux.sv|../ips/pulp_soc/rtl/components/scm_2048x32.sv|../ips/pulp_soc/rtl/components/scm_512x32.sv|../ips/pulp_soc/rtl/components/tcdm_arbiter_2x1.sv|../ips/pulp_soc/rtl/components/apb_wakeup.sv|../ips/pulp_soc/rtl/components/apb_wakeup_counter.sv|
+!i113 0
+Z12 o-suppress 2583 -suppress 13314 -quiet -sv -work /users/micas/vjain/tinyvers_main/install/modelsim_libs/pulp_soc_lib -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z13 !s92 -suppress 2583 -suppress 13314 -quiet -sv -work /users/micas/vjain/tinyvers_main/install/modelsim_libs/pulp_soc_lib +incdir+../ips/pulp_soc/../../rtl/includes -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z14 tCvgOpt 0
+n@a@p@b_@b@u@s
+vapb_clkdiv
+R1
+R2
+!i10b 1
+!s100 EV39CzU3kdN9[J89OBNAS2
+IAP5;fOEUN=?j7=j>keB<P3
+R3
+!s105 apb_clkdiv_sv_unit
+S1
+R0
+R5
+8../ips/pulp_soc/rtl/components/apb_clkdiv.sv
+F../ips/pulp_soc/rtl/components/apb_clkdiv.sv
+Z15 L0 16
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+vapb_dummy_registers
+R1
+R2
+!i10b 1
+!s100 JkMD^A;zI1@aKLc4AE4_?2
+Ik9jADXU34^BfFQ7WL`V451
+R3
+!s105 apb_dummy_sv_unit
+S1
+R0
+R5
+8../ips/pulp_soc/rtl/components/apb_dummy.sv
+F../ips/pulp_soc/rtl/components/apb_dummy.sv
+R15
+R8
+r1
+!s85 0
+31
+R9
+Z16 !s107 ../ips/pulp_soc/rtl/components/apb_dummy.sv|../ips/pulp_soc/rtl/components/glitch_free_clk_mux.sv|
+Z17 !s90 -quiet|-sv|-work|/users/micas/vjain/tinyvers_main/install/modelsim_libs/pulp_soc_lib|-suppress|2583|-suppress|13314|+incdir+../ips/pulp_soc/../../rtl/includes|../ips/pulp_soc/rtl/components/glitch_free_clk_mux.sv|../ips/pulp_soc/rtl/components/apb_dummy.sv|
+!i113 0
+R12
+R13
+R14
+vapb_soc_ctrl
+R1
+R2
+!i10b 1
+!s100 `[]gzZR?hf?RD50G3nmUT1
+IY>MZ6AE^gh<G?Z@[BDVVS3
+R3
+!s105 apb_soc_ctrl_sv_unit
+S1
+R0
+R5
+8../ips/pulp_soc/rtl/components/apb_soc_ctrl.sv
+F../ips/pulp_soc/rtl/components/apb_soc_ctrl.sv
+L0 62
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+vapb_timer_unit
+R1
+R2
+!i10b 1
+!s100 jAHnKRV<5z2=0WV0BBES72
+IY<;^2ZXzHlPlnC0nQAl8T0
+R3
+!s105 apb_timer_unit_sv_unit
+S1
+R0
+R5
+8../ips/pulp_soc/rtl/components/apb_timer_unit.sv
+F../ips/pulp_soc/rtl/components/apb_timer_unit.sv
+L0 36
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+vapb_wakeup
+R1
+R2
+!i10b 1
+!s100 b@?nRj9Z<bIAEN6lkM_bA1
+ICDRY0dOUeDKlGGTU0b;lV2
+R3
+!s105 apb_wakeup_sv_unit
+S1
+R0
+R5
+8../ips/pulp_soc/rtl/components/apb_wakeup.sv
+F../ips/pulp_soc/rtl/components/apb_wakeup.sv
+Z18 L0 18
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+vapb_wakeup_counter
+R1
+R2
+!i10b 1
+!s100 nRUC4zz1id@0UF;Q^C4kQ0
+Id78X0DLi<7@QV]`62;IkF3
+R3
+!s105 apb_wakeup_counter_sv_unit
+S1
+R0
+R5
+8../ips/pulp_soc/rtl/components/apb_wakeup_counter.sv
+F../ips/pulp_soc/rtl/components/apb_wakeup_counter.sv
+L0 3
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+YAXI_BUS
+R1
+R2
+!i10b 1
+!s100 3>j^=6YhgE^69XRKiDcVK0
+I0X]`fI@^1S5@4S=gWNab:2
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 363
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@a@x@i_@b@u@s
+YAXI_BUS_ASYNC
+R1
+R2
+!i10b 1
+!s100 7HWE?7SNlU1j]ojoZdl041
+I0b5GMDISejE9h=`alFgkn0
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 476
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@a@x@i_@b@u@s_@a@s@y@n@c
+YAXI_LITE
+R1
+R2
+!i10b 1
+!s100 kja^2Yf1ZO96H6YQcZH4k0
+IzEn;:b1o:IAlm7ff[cGfK3
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 590
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@a@x@i_@l@i@t@e
+vaxi_slice_dc_master_wrap
+R1
+R2
+!i10b 1
+!s100 Xdz6Z0;YmXj8UeQE>cEGD2
+I4TM`^>4WS?3lQ[n7hVL801
+R3
+!s105 axi_slice_dc_master_wrap_sv_unit
+S1
+R0
+R5
+8../ips/pulp_soc/rtl/components/axi_slice_dc_master_wrap.sv
+F../ips/pulp_soc/rtl/components/axi_slice_dc_master_wrap.sv
+Z19 L0 14
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+vaxi_slice_dc_slave_wrap
+R1
+R2
+!i10b 1
+!s100 R=jKglQ>c3cfBnAG49;Ne2
+I62KQk2cW[cSlTm[JcN=jI0
+R3
+!s105 axi_slice_dc_slave_wrap_sv_unit
+S1
+R0
+R5
+8../ips/pulp_soc/rtl/components/axi_slice_dc_slave_wrap.sv
+F../ips/pulp_soc/rtl/components/axi_slice_dc_slave_wrap.sv
+R19
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+YBBMUX_CONFIG_BUS
+R1
+R2
+!i10b 1
+!s100 SIT_EF;bjdJIdAe6Pc<YE0
+IPcUNHNdFd5G>MMl4A<oOo3
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 326
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@b@b@m@u@x_@c@o@n@f@i@g_@b@u@s
+YBIST_BUS
+R1
+R2
+!i10b 1
+!s100 A]T]@@9_BGdmUFkLg8hhZ0
+IZD;UmBTz_UkX=Wno]_oMf0
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 770
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@b@i@s@t_@b@u@s
+vboot_rom
+R1
+Z20 !s110 1679395905
+!i10b 1
+!s100 >nW[RYdnOU:SH;hYDh>j[2
+IATVK2GjI1^7N5C2zDnFN^3
+R3
+!s105 boot_rom_sv_unit
+S1
+R0
+w1679395116
+8../ips/pulp_soc/rtl/pulp_soc/boot_rom.sv
+F../ips/pulp_soc/rtl/pulp_soc/boot_rom.sv
+R19
+R8
+r1
+!s85 0
+31
+Z21 !s108 1679395905.000000
+Z22 !s107 ../ips/pulp_soc/../../rtl/includes/soc_bus_defines.sv|../ips/pulp_soc/../../rtl/includes/periph_bus_defines.sv|../ips/pulp_soc/../../rtl/includes/pulp_soc_defines.sv|../ips/pulp_soc/rtl/pulp_soc/pulp_soc.sv|../ips/pulp_soc/rtl/pulp_soc/soc_peripherals.sv|../ips/pulp_soc/rtl/pulp_soc/soc_interconnect_wrap.sv|../ips/pulp_soc/rtl/pulp_soc/soc_event_queue.sv|../ips/pulp_soc/rtl/pulp_soc/soc_event_generator.sv|../ips/pulp_soc/rtl/pulp_soc/soc_event_arbiter.sv|../ips/pulp_soc/rtl/pulp_soc/soc_clk_rst_gen.sv|../ips/pulp_soc/rtl/pulp_soc/periph_bus_wrap.sv|../ips/pulp_soc/rtl/pulp_soc/lint_jtag_wrap.sv|../ips/pulp_soc/rtl/pulp_soc/l2_ram_multi_bank.sv|../ips/pulp_soc/rtl/pulp_soc/boot_rom.sv|../ips/pulp_soc/rtl/pulp_soc/soc_interconnect.sv|
+Z23 !s90 -quiet|-sv|-work|/users/micas/vjain/tinyvers_main/install/modelsim_libs/pulp_soc_lib|-L|riscv_dbg_lib|-suppress|2583|-suppress|13314|+incdir+../ips/pulp_soc/../../rtl/includes|../ips/pulp_soc/rtl/pulp_soc/soc_interconnect.sv|../ips/pulp_soc/rtl/pulp_soc/boot_rom.sv|../ips/pulp_soc/rtl/pulp_soc/l2_ram_multi_bank.sv|../ips/pulp_soc/rtl/pulp_soc/lint_jtag_wrap.sv|../ips/pulp_soc/rtl/pulp_soc/periph_bus_wrap.sv|../ips/pulp_soc/rtl/pulp_soc/soc_clk_rst_gen.sv|../ips/pulp_soc/rtl/pulp_soc/soc_event_arbiter.sv|../ips/pulp_soc/rtl/pulp_soc/soc_event_generator.sv|../ips/pulp_soc/rtl/pulp_soc/soc_event_queue.sv|../ips/pulp_soc/rtl/pulp_soc/soc_interconnect_wrap.sv|../ips/pulp_soc/rtl/pulp_soc/soc_peripherals.sv|../ips/pulp_soc/rtl/pulp_soc/pulp_soc.sv|
+!i113 0
+Z24 o-suppress 2583 -suppress 13314 -quiet -sv -work /users/micas/vjain/tinyvers_main/install/modelsim_libs/pulp_soc_lib -L riscv_dbg_lib -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z25 !s92 -suppress 2583 -suppress 13314 -quiet -sv -work /users/micas/vjain/tinyvers_main/install/modelsim_libs/pulp_soc_lib -L riscv_dbg_lib +incdir+../ips/pulp_soc/../../rtl/includes -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R14
+YBRAM_PORT
+R1
+R2
+!i10b 1
+!s100 ZYl_>z>2VC6b4DUeD@Y8c0
+IIEMzG@>j`O0Fb3E5I2=8H2
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 809
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@b@r@a@m_@p@o@r@t
+YCLKGATE_CONFIG_BUS
+R1
+R2
+!i10b 1
+!s100 F[F1XDL=7[QH9mnC7HI9X2
+I6@@MP[iZObcA;EGC19@Ho2
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 687
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@c@l@k@g@a@t@e_@c@o@n@f@i@g_@b@u@s
+YCORE_PREF_BUS
+R1
+R2
+!i10b 1
+!s100 [1;n<jR]O`bkezDYeYf0^2
+IM3`oIbTI>Tg^KifcOYJKL3
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 1288
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@c@o@r@e_@p@r@e@f_@b@u@s
+Ycpu_marx_if
+R1
+R2
+!i10b 1
+!s100 22_[8DC5OMchLWTAmkFhO0
+I19`J4R<@NgFh`7NS3BM;z2
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 1418
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+vdummy_fll
+R1
+R20
+!i10b 1
+!s100 1ZM76VB^fI^]GL_[S`>YF3
+Ilm4:CKFPjFTcHabi10Ve@0
+R3
+Z26 !s105 soc_clk_rst_gen_sv_unit
+S1
+R0
+Z27 w1679390131
+Z28 8../ips/pulp_soc/rtl/pulp_soc/soc_clk_rst_gen.sv
+Z29 F../ips/pulp_soc/rtl/pulp_soc/soc_clk_rst_gen.sv
+Z30 L0 15
+R8
+r1
+!s85 0
+31
+R21
+R22
+R23
+!i113 0
+R24
+R25
+R14
+vfc_demux
+R1
+R2
+!i10b 1
+!s100 BFiCHP;goIkUTFmO7nKLL3
+I>mjgafY=ch:ma=DJjgGh33
+R3
+!s105 fc_demux_sv_unit
+S1
+R0
+R27
+8../ips/pulp_soc/rtl/fc/fc_demux.sv
+F../ips/pulp_soc/rtl/fc/fc_demux.sv
+Z31 L0 17
+R8
+r1
+!s85 0
+31
+R21
+Z32 !s107 ../ips/pulp_soc/../../rtl/includes/pulp_soc_defines.sv|../ips/pulp_soc/../../rtl/includes/soc_bus_defines.sv|../ips/pulp_soc/rtl/fc/fc_hwpe.sv|../ips/pulp_soc/rtl/fc/fc_subsystem.sv|../ips/pulp_soc/rtl/fc/fc_demux.sv|
+Z33 !s90 -quiet|-sv|-work|/users/micas/vjain/tinyvers_main/install/modelsim_libs/pulp_soc_lib|-suppress|2583|-suppress|13314|+incdir+../ips/pulp_soc/../../rtl/includes+../ips/pulp_soc/.|../ips/pulp_soc/rtl/fc/fc_demux.sv|../ips/pulp_soc/rtl/fc/fc_subsystem.sv|../ips/pulp_soc/rtl/fc/fc_hwpe.sv|
+!i113 0
+R12
+Z34 !s92 -suppress 2583 -suppress 13314 -quiet -sv -work /users/micas/vjain/tinyvers_main/install/modelsim_libs/pulp_soc_lib +incdir+../ips/pulp_soc/../../rtl/includes+../ips/pulp_soc/. -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R14
+vfc_hwpe
+R1
+R2
+!i10b 1
+!s100 mk_eImhI^Y8]@8:NbXoV[2
+I;Yn9G]o=1Z7`Nhb?>jhT50
+R3
+!s105 fc_hwpe_sv_unit
+S1
+R0
+R27
+8../ips/pulp_soc/rtl/fc/fc_hwpe.sv
+F../ips/pulp_soc/rtl/fc/fc_hwpe.sv
+Z35 L0 12
+R8
+r1
+!s85 0
+31
+R21
+R32
+R33
+!i113 0
+R12
+R34
+R14
+vfc_subsystem
+R1
+R2
+!i10b 1
+!s100 n8j@JM:^<g14Bo]4fPUY:1
+IL20DJZK>W]SVgAJ:1_OUl0
+R3
+!s105 fc_subsystem_sv_unit
+S1
+R0
+R27
+8../ips/pulp_soc/rtl/fc/fc_subsystem.sv
+F../ips/pulp_soc/rtl/fc/fc_subsystem.sv
+R19
+R8
+r1
+!s85 0
+31
+R21
+R32
+R33
+!i113 0
+R12
+R34
+R14
+YFLL_BUS
+R1
+R2
+!i10b 1
+!s100 o7nVOnjQBG^[R84EnR9zj2
+I:TZ4lF79]Nh8nEU95BCL;3
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 1250
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@f@l@l_@b@u@s
+vfreq_meter
+R1
+R2
+!i10b 1
+!s100 C?Y@T17]dhKL;D`Eo`:M63
+IXg<Bb_O64I1UcO6DHCVF`1
+R3
+!s105 freq_meter_sv_unit
+S1
+R0
+R5
+8../ips/pulp_soc/rtl/components/freq_meter.sv
+F../ips/pulp_soc/rtl/components/freq_meter.sv
+R35
+R8
+r1
+!s85 0
+31
+R9
+!s107 ../ips/pulp_soc/rtl/components/freq_meter.sv|
+!s90 -quiet|-sv|-work|/users/micas/vjain/tinyvers_main/install/modelsim_libs/pulp_soc_lib|-suppress|2583|-suppress|13314|+incdir+../ips/pulp_soc/../../rtl/includes|../ips/pulp_soc/rtl/components/freq_meter.sv|
+!i113 0
+R12
+R13
+R14
+vglitch_free_clk_mux
+R1
+R2
+!i10b 1
+!s100 77F43BTE1K1d2o11kUjdO3
+II[]bJ`1`Y>a><4cf78GKK2
+R3
+!s105 glitch_free_clk_mux_sv_unit
+S1
+R0
+R5
+8../ips/pulp_soc/rtl/components/glitch_free_clk_mux.sv
+F../ips/pulp_soc/rtl/components/glitch_free_clk_mux.sv
+R35
+R8
+r1
+!s85 0
+31
+R9
+R16
+R17
+!i113 0
+R12
+R13
+R14
+YL0_CTRL_UNIT_BUS
+R1
+R2
+!i10b 1
+!s100 BDS3[0]>H1;1@PMJ:J07k1
+IbZ3Em[J<:giKYjgOGV8ng3
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 1169
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@l0_@c@t@r@l_@u@n@i@t_@b@u@s
+vl2_ram_multi_bank
+R1
+R20
+!i10b 1
+!s100 aD6cfXS@fjmS7nA0K>o6D3
+I9J2ZPGS8WV=f91^lQ?`QM1
+R3
+!s105 l2_ram_multi_bank_sv_unit
+S1
+R0
+R27
+8../ips/pulp_soc/rtl/pulp_soc/l2_ram_multi_bank.sv
+F../ips/pulp_soc/rtl/pulp_soc/l2_ram_multi_bank.sv
+R35
+R8
+r1
+!s85 0
+31
+R21
+R22
+R23
+!i113 0
+R24
+R25
+R14
+vlint_jtag_wrap
+R1
+R20
+!i10b 1
+!s100 CfBSLk<a7jWi6QR;hIW222
+IIV<di3Hn6VMgWd1m^<K5f1
+R3
+!s105 lint_jtag_wrap_sv_unit
+S1
+R0
+R27
+8../ips/pulp_soc/rtl/pulp_soc/lint_jtag_wrap.sv
+F../ips/pulp_soc/rtl/pulp_soc/lint_jtag_wrap.sv
+R19
+R8
+r1
+!s85 0
+31
+R21
+R22
+R23
+!i113 0
+R24
+R25
+R14
+Ymarx_apu_if
+R1
+R2
+!i10b 1
+!s100 3PU<1ibcGCPDWIXRSle?10
+IY:QRi>gdEd9bV@BIL<UP;0
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 1344
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+Ymarx_arbiter_if
+R1
+R2
+!i10b 1
+!s100 UNhld1;15XfiA76IT=Ni03
+IlL5>:VP]HnLARdHcEfbDJ3
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 1386
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+YMESSAGE_BUS
+R1
+R2
+!i10b 1
+!s100 5NbmU>MCcRGMVQSLgB4V<2
+I>PZzKkARimzGKoGdmg4Mf1
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 135
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@m@e@s@s@a@g@e_@b@u@s
+YMMU_CONFIG_BUS
+R1
+R2
+!i10b 1
+!s100 ji^V]9hn24?N_VnXRnRGC1
+IzcSRJcjlQL1AeijIS`P8o0
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 732
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@m@m@u_@c@o@n@f@i@g_@b@u@s
+vmodel_8192x32_memory
+R1
+R2
+!i10b 1
+!s100 TC:91g2i7bnAPEU@3llU91
+IoRZz?Y8clDPBBc@BE<G=A1
+R3
+Z36 !s105 memory_models_sv_unit
+S1
+R0
+Z37 w1679395171
+Z38 8../ips/pulp_soc/rtl/components/memory_models.sv
+Z39 F../ips/pulp_soc/rtl/components/memory_models.sv
+L0 152
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+vmodel_sram_28672x32_scm_512x32
+R1
+R2
+!i10b 1
+!s100 ddg^l@BVFcCNDCT;PeV[g2
+I=2kIG2mHfe>;@GNPU?h>j0
+R3
+R36
+S1
+R0
+R37
+R38
+R39
+L0 248
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+YMP_ICACHE_CTRL_UNIT_BUS
+R1
+R2
+!i10b 1
+!s100 hb4=4>mbLm7Y3G>1^6S<f1
+IMk=RSlSB7z9Y`zfk7j9z62
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 917
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@m@p_@i@c@a@c@h@e_@c@t@r@l_@u@n@i@t_@b@u@s
+YMP_PF_ICACHE_CTRL_UNIT_BUS
+R1
+R2
+!i10b 1
+!s100 izBG=CcS=LCV;OS;zR_ZJ2
+IBcK:m;eWD3=0RZUMT;9Cl2
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 1006
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@m@p_@p@f_@i@c@a@c@h@e_@c@t@r@l_@u@n@i@t_@b@u@s
+vperiph_bus_wrap
+R1
+R20
+!i10b 1
+!s100 lO6BIo0LCi`;3SMM9l@1m2
+IH?h3MlkAOFbDFShli@j:d0
+R3
+!s105 periph_bus_wrap_sv_unit
+S1
+R0
+R27
+8../ips/pulp_soc/rtl/pulp_soc/periph_bus_wrap.sv
+F../ips/pulp_soc/rtl/pulp_soc/periph_bus_wrap.sv
+R19
+R8
+r1
+!s85 0
+31
+R21
+R22
+R23
+!i113 0
+R24
+R25
+R14
+YPRI_ICACHE_CTRL_UNIT_BUS
+R1
+R2
+!i10b 1
+!s100 GR;]NZ<WCb_ccVZb[_i[X0
+IcYz;GOkR4<Pdh0=B8kEjD3
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 1109
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@p@r@i_@i@c@a@c@h@e_@c@t@r@l_@u@n@i@t_@b@u@s
+vpulp_soc
+R1
+DXx13 riscv_dbg_lib 2 dm 0 22 ?LAk2ZZI9Y1Ub1J_>b8QV0
+R20
+!i10b 1
+!s100 ZNHN[N^NjCa1GgO?fU;hA2
+IgJ@[oQD3[mbbR5iQJ:Ul01
+R3
+!s105 pulp_soc_sv_unit
+S1
+R0
+R27
+8../ips/pulp_soc/rtl/pulp_soc/pulp_soc.sv
+F../ips/pulp_soc/rtl/pulp_soc/pulp_soc.sv
+R30
+R8
+r1
+!s85 0
+31
+R21
+R22
+R23
+!i113 0
+R24
+R25
+R14
+vscm_2048x32
+R1
+R2
+!i10b 1
+!s100 nef;PFmeY:ne?TTYfRY9i1
+Ia=lNN?P:LZi;b@A6YgDoo3
+R3
+!s105 scm_2048x32_sv_unit
+S1
+R0
+R5
+8../ips/pulp_soc/rtl/components/scm_2048x32.sv
+F../ips/pulp_soc/rtl/components/scm_2048x32.sv
+R35
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+vscm_512x32
+R1
+R2
+!i10b 1
+!s100 LIM;L=2hf5S<YozDFZ9<D1
+I0Gd@HV3HOaMdKRE8<ig6O0
+R3
+!s105 scm_512x32_sv_unit
+S1
+R0
+R5
+8../ips/pulp_soc/rtl/components/scm_512x32.sv
+F../ips/pulp_soc/rtl/components/scm_512x32.sv
+R35
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+vsoc_clk_rst_gen
+R1
+R20
+!i10b 1
+!s100 R[;@Qj>K<FhQAg2hh<hN_1
+Ij<M<CQ?cHiK<G]_=D8_VJ0
+R3
+R26
+S1
+R0
+R27
+R28
+R29
+L0 39
+R8
+r1
+!s85 0
+31
+R21
+R22
+R23
+!i113 0
+R24
+R25
+R14
+vsoc_event_arbiter
+R1
+R20
+!i10b 1
+!s100 N4giRHhWWMMAZd^IYXGf73
+IaEfFLSiA;jhEVhDaWfbGU3
+R3
+!s105 soc_event_arbiter_sv_unit
+S1
+R0
+R27
+8../ips/pulp_soc/rtl/pulp_soc/soc_event_arbiter.sv
+F../ips/pulp_soc/rtl/pulp_soc/soc_event_arbiter.sv
+R35
+R8
+r1
+!s85 0
+31
+R21
+R22
+R23
+!i113 0
+R24
+R25
+R14
+vsoc_event_generator
+R1
+R20
+!i10b 1
+!s100 eBkeP:5O^N@df@eTIeWif0
+Im?FX;20OzYVkcZ0XWnneB1
+R3
+!s105 soc_event_generator_sv_unit
+S1
+R0
+R27
+8../ips/pulp_soc/rtl/pulp_soc/soc_event_generator.sv
+F../ips/pulp_soc/rtl/pulp_soc/soc_event_generator.sv
+L0 48
+R8
+r1
+!s85 0
+31
+R21
+R22
+R23
+!i113 0
+R24
+R25
+R14
+vsoc_event_queue
+R1
+R20
+!i10b 1
+!s100 lQ>fPDJ[_bHG`_e@Eh^<50
+Ie?:aOL@RXGHb?aL6VQBfc0
+R3
+!s105 soc_event_queue_sv_unit
+S1
+R0
+R27
+8../ips/pulp_soc/rtl/pulp_soc/soc_event_queue.sv
+F../ips/pulp_soc/rtl/pulp_soc/soc_event_queue.sv
+R35
+R8
+r1
+!s85 0
+31
+R21
+R22
+R23
+!i113 0
+R24
+R25
+R14
+vsoc_interconnect
+R1
+R20
+!i10b 1
+!s100 k6Lg9Si[<8JD6_Y^i98mG3
+IA83;oEUP[A`3WJ]^:Z=oE0
+R3
+!s105 soc_interconnect_sv_unit
+S1
+R0
+R27
+8../ips/pulp_soc/rtl/pulp_soc/soc_interconnect.sv
+F../ips/pulp_soc/rtl/pulp_soc/soc_interconnect.sv
+R35
+R8
+r1
+!s85 0
+31
+R21
+R22
+R23
+!i113 0
+R24
+R25
+R14
+vsoc_interconnect_wrap
+R1
+R20
+!i10b 1
+!s100 be?021jZ7UQ0i<3d[R4T60
+I8]N_K_A;PE<Xd6zIHP1o51
+R3
+!s105 soc_interconnect_wrap_sv_unit
+S1
+R0
+R27
+8../ips/pulp_soc/rtl/pulp_soc/soc_interconnect_wrap.sv
+F../ips/pulp_soc/rtl/pulp_soc/soc_interconnect_wrap.sv
+R35
+R8
+r1
+!s85 0
+31
+R21
+R22
+R23
+!i113 0
+R24
+R25
+R14
+vsoc_peripherals
+R1
+R20
+!i10b 1
+!s100 fO2f5`Gl9B>Y7?W2:gX031
+I5aHzERd>W8^MZSU`ck^iY1
+R3
+!s105 soc_peripherals_sv_unit
+S1
+R0
+R27
+8../ips/pulp_soc/rtl/pulp_soc/soc_peripherals.sv
+F../ips/pulp_soc/rtl/pulp_soc/soc_peripherals.sv
+R30
+R8
+r1
+!s85 0
+31
+R21
+R22
+R23
+!i113 0
+R24
+R25
+R14
+YSP_ICACHE_CTRL_UNIT_BUS
+R1
+R2
+!i10b 1
+!s100 iWTiZgQ8^_^2K9L;R:L0P3
+Iz3R`S<7HC=;a0T7G?ZToc3
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 842
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@s@p_@i@c@a@c@h@e_@c@t@r@l_@u@n@i@t_@b@u@s
+vtcdm_arbiter_2x1
+R1
+R2
+!i10b 1
+!s100 2cdo8XS:<EhFYWc2Z304<3
+IzmFY5I_jUzQ09S;08neFT3
+R3
+!s105 tcdm_arbiter_2x1_sv_unit
+S1
+R0
+R5
+8../ips/pulp_soc/rtl/components/tcdm_arbiter_2x1.sv
+F../ips/pulp_soc/rtl/components/tcdm_arbiter_2x1.sv
+R31
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+YTCDM_BANK_MEM_BUS
+R1
+R2
+!i10b 1
+!s100 XUGKCa_DVWl2@adHA^JF73
+IYMW[6YIOChLjQ5>TEe?1<1
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 219
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@t@c@d@m_@b@a@n@k_@m@e@m_@b@u@s
+YTCDM_BUS
+R1
+R2
+!i10b 1
+!s100 U`W]m6KJ46l1Y;dJNh4h?1
+IXaABh4jMTZ_U>h1O5Aad30
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 298
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@t@c@d@m_@b@u@s
+vudma_subsystem
+R1
+R20
+!i10b 1
+!s100 l4F:]P_B6]8NoG0Rm8TX_2
+IWGKkl5^BdSB[`V]lh3f]Z2
+R3
+!s105 udma_subsystem_sv_unit
+S1
+R0
+R27
+8../ips/pulp_soc/rtl/udma_subsystem/udma_subsystem.sv
+F../ips/pulp_soc/rtl/udma_subsystem/udma_subsystem.sv
+L0 11
+R8
+r1
+!s85 0
+31
+R21
+!s107 ../ips/pulp_soc/rtl/udma_subsystem/udma_subsystem.sv|
+!s90 -quiet|-sv|-work|/users/micas/vjain/tinyvers_main/install/modelsim_libs/pulp_soc_lib|-suppress|2583|-suppress|13314|+incdir+../ips/pulp_soc/../../rtl/includes+../ips/pulp_soc/.|../ips/pulp_soc/rtl/udma_subsystem/udma_subsystem.sv|
+!i113 0
+R12
+R34
+R14
+YUNICAD_MEM_BUS_32
+R1
+R2
+!i10b 1
+!s100 e<zf9^9OK<BgY0aFAkmAX3
+IGbVdH64I@I<]al6lEfVFB1
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 272
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@u@n@i@c@a@d_@m@e@m_@b@u@s_32
+YUNICAD_MEM_BUS_64
+R1
+R2
+!i10b 1
+!s100 kQ53h4jE5[dL1>G6lzlaa1
+I>QoRSaGMRg=4mUj8755j83
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 246
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@u@n@i@c@a@d_@m@e@m_@b@u@s_64
+YXBAR_DEMUX_BUS
+R1
+R2
+!i10b 1
+!s100 Fe[NGG?L5P:90m@W]c_U^2
+I4RL<MjcmM^Ad[2ojSFhRI3
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 176
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@x@b@a@r_@d@e@m@u@x_@b@u@s
+YXBAR_PERIPH_BUS
+R1
+R2
+!i10b 1
+!s100 4JQ:Nh4R0`z8LEa9H8SQ22
+If7UZRDLSBE;N]=n6SBUgb3
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 94
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@x@b@a@r_@p@e@r@i@p@h_@b@u@s
+YXBAR_TCDM_BUS
+R1
+R2
+!i10b 1
+!s100 nRfe=PM8CCL?V00g=^ACd2
+IDjKe^Bf`]L0eQK9o6YJM62
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 56
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@x@b@a@r_@t@c@d@m_@b@u@s
+YXBAR_TCDM_BUS_64
+R1
+R2
+!i10b 1
+!s100 zfmOCS3<2eW0lY9IU1ldz1
+Iim9M;M19b@iP[;nl98FYQ0
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+R18
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R14
+n@x@b@a@r_@t@c@d@m_@b@u@s_64

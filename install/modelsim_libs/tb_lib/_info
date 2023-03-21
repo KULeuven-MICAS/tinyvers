@@ -1,0 +1,545 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/users/micas/vjain/tinyvers_main/sim
+YCPI
+Z1 DXx6 sv_std 3 std 0 22 d=_JfHTnXCN[H5FjiaJJc0
+Z2 !s110 1679395906
+!i10b 1
+!s100 E4;mD:dW`TW<af`]AeTLc0
+I29@5N;APh:YgZ[0FmA5:i0
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+Z4 !s105 dpi_models_sv_unit
+S1
+R0
+Z5 w1679390137
+Z6 8../rtl/tb/dpi_models/dpi_models.sv
+Z7 F../rtl/tb/dpi_models/dpi_models.sv
+L0 69
+Z8 OE;L;10.7c;67
+r1
+!s85 0
+31
+Z9 !s108 1679395906.000000
+!s107 ../rtl/tb/SimDTM.sv|../rtl/tb/SimJTAG.sv|../rtl/tb/tb_pulp.sv|../rtl/tb/tb_driver/tb_driver.sv|../rtl/tb/dpi_models/dpi_models.sv|../rtl/tb/tb_fs_handler.sv|../rtl/tb/tb_clk_gen.sv|../rtl/tb/pulp_tap_pkg.sv|../rtl/tb/jtag_pkg.sv|../rtl/tb/riscv_pkg.sv|
+Z10 !s90 -quiet|-sv|-work|/users/micas/vjain/tinyvers_main/install/modelsim_libs/tb_lib|-L|riscv_dbg_lib|-suppress|2583|-suppress|13314|../rtl/tb/riscv_pkg.sv|../rtl/tb/jtag_pkg.sv|../rtl/tb/pulp_tap_pkg.sv|../rtl/tb/tb_clk_gen.sv|../rtl/tb/tb_fs_handler.sv|../rtl/tb/dpi_models/dpi_models.sv|../rtl/tb/tb_driver/tb_driver.sv|../rtl/tb/tb_pulp.sv|../rtl/tb/SimJTAG.sv|../rtl/tb/SimDTM.sv|
+!i113 0
+Z11 o-suppress 2583 -suppress 13314 -quiet -sv -work /users/micas/vjain/tinyvers_main/install/modelsim_libs/tb_lib -L riscv_dbg_lib -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z12 tCvgOpt 0
+n@c@p@i
+YCTRL
+R1
+R2
+!i10b 1
+!s100 T42]LQj6bO@_LYSMI6Lf^1
+IWo98IMjoF[3IToTM`ZkY12
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 91
+R8
+r1
+!s85 0
+31
+R9
+Z13 !s107 ../rtl/tb/SimDTM.sv|../rtl/tb/SimJTAG.sv|../rtl/tb/tb_pulp.sv|../rtl/tb/tb_driver/tb_driver.sv|../rtl/tb/dpi_models/dpi_models.sv|../rtl/tb/tb_fs_handler.sv|../rtl/tb/tb_clk_gen.sv|../rtl/tb/pulp_tap_pkg.sv|../rtl/tb/jtag_pkg.sv|../rtl/tb/riscv_pkg.sv|
+R10
+!i113 0
+R11
+R12
+n@c@t@r@l
+Xdpi_models
+Z14 !s115 QSPI_CS
+Z15 !s115 GPIO
+Z16 !s115 QSPI
+Z17 !s115 CTRL
+!s115 I2S
+!s115 CPI
+Z18 !s115 UART
+Z19 !s115 JTAG
+R1
+R2
+!i10b 1
+!s100 80m37VNAFoo`O;<GSVE[32
+I?22]F[IX6NY5LPZa7TQcn0
+V?22]F[IX6NY5LPZa7TQcn0
+S1
+R0
+R5
+R6
+R7
+L0 100
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+YGPIO
+R1
+R2
+!i10b 1
+!s100 @zFHYNmTkU3S9eTk6bK2I1
+IFSL_BT>^M73]E]DY_PU0A3
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 41
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+n@g@p@i@o
+YI2S
+R1
+R2
+!i10b 1
+!s100 @W@I^iGafFE<H3dhL^UWO2
+I6UGaIRQ;5`WX_7JLD6Db43
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 79
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+n@i2@s
+YJTAG
+R1
+R2
+!i10b 1
+!s100 U;A_Ljg6D?V<Iok700GEm2
+I2aEUIoV_UdR;dao[D6PFY1
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 50
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+n@j@t@a@g
+Xjtag_pkg
+R1
+Z20 DXx13 riscv_dbg_lib 2 dm 0 22 ?LAk2ZZI9Y1Ub1J_>b8QV0
+Z21 DXx4 work 5 riscv 0 22 ]oC?MEYk_NkhLB6<3gZW53
+R2
+!i10b 1
+!s100 :ICaK6JEW]NFFW@bbP5>@2
+IA=;CmKhLXKQYbmWl`kL<?3
+VA=;CmKhLXKQYbmWl`kL<?3
+S1
+R0
+Z22 w1679390120
+8../rtl/tb/jtag_pkg.sv
+F../rtl/tb/jtag_pkg.sv
+Z23 L0 17
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+Xpulp_tap_pkg
+R1
+R20
+R21
+Z24 DXx4 work 8 jtag_pkg 0 22 A=;CmKhLXKQYbmWl`kL<?3
+R2
+!i10b 1
+!s100 F9efD?azIUJZ8L_XkU=a73
+IzbFE3mJ]X4n]ORW`b>9KR0
+VzbFE3mJ]X4n]ORW`b>9KR0
+S1
+R0
+R22
+8../rtl/tb/pulp_tap_pkg.sv
+F../rtl/tb/pulp_tap_pkg.sv
+Z25 L0 18
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+YQSPI
+R1
+R2
+!i10b 1
+!s100 ?z4N]3_eGcVlCNh[?gd0Q1
+IUBWjUU7IC6RBV9`nV=Vbd0
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+Z26 L0 26
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+n@q@s@p@i
+YQSPI_CS
+R1
+R2
+!i10b 1
+!s100 mX@d;R7F5AOLgE@K7:A:=1
+IT3_dAIHc3Col97joS[RTC0
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+R25
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+n@q@s@p@i_@c@s
+Xriscv
+R1
+R2
+!i10b 1
+!s100 6VTS:<[[nEenONkaM@7bE0
+I]oC?MEYk_NkhLB6<3gZW53
+V]oC?MEYk_NkhLB6<3gZW53
+S1
+R0
+R22
+8../rtl/tb/riscv_pkg.sv
+F../rtl/tb/riscv_pkg.sv
+R23
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+vSimDTM
+R1
+DXx4 work 14 SimDTM_sv_unit 0 22 gE6nmcid5_CeZY^aj2kaQ2
+R3
+r1
+!s85 0
+!i10b 1
+!s100 :k:?E_]@BA_UJm7iLJjWG1
+IjaUh@@aZ`n1FTn<4N_O;D3
+!s105 SimDTM_sv_unit
+S1
+R0
+R22
+Z27 8../rtl/tb/SimDTM.sv
+Z28 F../rtl/tb/SimDTM.sv
+R25
+R8
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+n@sim@d@t@m
+XSimDTM_sv_unit
+R1
+VgE6nmcid5_CeZY^aj2kaQ2
+r1
+!s85 0
+!i10b 1
+!s100 =ej9ekk4nCA>`QooIJU^g3
+IgE6nmcid5_CeZY^aj2kaQ2
+!i103 1
+S1
+R0
+R22
+R27
+R28
+L0 4
+R8
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+n@sim@d@t@m_sv_unit
+vSimJTAG
+R1
+DXx4 work 15 SimJTAG_sv_unit 0 22 XjQ5eCajH0;:B2Fmn3^3L3
+R3
+r1
+!s85 0
+!i10b 1
+!s100 6BZ9nT?lFCLbH`IJPVj9W1
+IOa6dUNzkE[LeX5`QJ_RPf3
+!s105 SimJTAG_sv_unit
+S1
+R0
+R22
+Z29 8../rtl/tb/SimJTAG.sv
+Z30 F../rtl/tb/SimJTAG.sv
+L0 13
+R8
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+n@sim@j@t@a@g
+XSimJTAG_sv_unit
+R1
+VXjQ5eCajH0;:B2Fmn3^3L3
+r1
+!s85 0
+!i10b 1
+!s100 >7FcThYZPAX`KAjTRTY@>3
+IXjQ5eCajH0;:B2Fmn3^3L3
+!i103 1
+S1
+R0
+R22
+R29
+R30
+L0 3
+R8
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+n@sim@j@t@a@g_sv_unit
+vtb_clk_gen
+R1
+R2
+!i10b 1
+!s100 e<VWA_hJLz09<E7hBB5672
+I_<R6]6D4PM<f<;J?cJ=1Y1
+R3
+!s105 tb_clk_gen_sv_unit
+S1
+R0
+R22
+8../rtl/tb/tb_clk_gen.sv
+F../rtl/tb/tb_clk_gen.sv
+R23
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+Xtb_driver
+R15
+R17
+!s115 I2S
+!s115 CPI
+R18
+R19
+R14
+R16
+R1
+DXx4 work 10 dpi_models 0 22 ?22]F[IX6NY5LPZa7TQcn0
+R2
+!i10b 1
+!s100 DiCZ7fLg9nADhD]Mz_A4@0
+I>L5j;^hYG1PCLz]c=BRfO0
+V>L5j;^hYG1PCLz]c=BRfO0
+S1
+R0
+R5
+8../rtl/tb/tb_driver/tb_driver.sv
+F../rtl/tb/tb_driver/tb_driver.sv
+R23
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+vtb_fs_handler
+R1
+R2
+!i10b 1
+!s100 CEjjdJ?VDQmMSL4[7ecmW2
+IL]iX__l?XT3JDk>GMkGL:0
+R3
+Z31 !s105 tb_fs_handler_sv_unit
+S1
+R0
+R22
+Z32 8../rtl/tb/tb_fs_handler.sv
+Z33 F../rtl/tb/tb_fs_handler.sv
+R26
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+vtb_fs_handler_debug
+R1
+R2
+!i10b 1
+!s100 [FeQddCa@>N8^Bz2@nnTT0
+I34MQ]oRc]b2N4[Mj5YD:>0
+R3
+R31
+S1
+R0
+R22
+R32
+R33
+L0 233
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+vtb_pulp
+R1
+R20
+R21
+R24
+DXx4 work 12 pulp_tap_pkg 0 22 zbFE3mJ]X4n]ORW`b>9KR0
+R2
+!i10b 1
+!s100 FkSNa=0k2U7XXMUo@O5^m3
+IIIQoCD?dY1Ra^CI=joCg>2
+R3
+!s105 tb_pulp_sv_unit
+S1
+R0
+R22
+8../rtl/tb/tb_pulp.sv
+F../rtl/tb/tb_pulp.sv
+L0 28
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+YUART
+R1
+R2
+!i10b 1
+!s100 JKOXXgWfjg_E=7:;2ohd[0
+IJaanM2oilojXkT:^1fAmW3
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 61
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 0
+R11
+R12
+n@u@a@r@t

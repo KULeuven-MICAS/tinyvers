@@ -1,0 +1,671 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/users/micas/vjain/tinyvers_main/sim
+Efll_clk_divider
+Z1 w1679390122
+Z2 DPx4 work 6 fllpkg 0 22 ing?1flL=H^87J;6W@kmb3
+Z3 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z4 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z5 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+R0
+Z6 8../ips/generic_FLL/fe/rtl/FLL_clk_divider.vhd
+Z7 F../ips/generic_FLL/fe/rtl/FLL_clk_divider.vhd
+l0
+L43
+VgB5elL@:a^VniK4h:Iejg0
+!s100 <7nioZ@XAoinIna=e=6D31
+Z8 OE;C;10.7c;67
+32
+Z9 !s110 1679395903
+!i10b 1
+Z10 !s108 1679395903.000000
+Z11 !s90 -quiet|-work|/users/micas/vjain/tinyvers_main/install/modelsim_libs/generic_FLL_lib|../ips/generic_FLL/fe/model/gf22_DCO_model.tc.vhd|../ips/generic_FLL/fe/model/gf22_FLL_model.vhd|../ips/generic_FLL/fe/rtl/FLLPkg.vhd|../ips/generic_FLL/fe/rtl/FLL_clk_divider.vhd|../ips/generic_FLL/fe/rtl/FLL_clk_period_quantizer.vhd|../ips/generic_FLL/fe/rtl/FLL_clock_gated.rtl.vhd|../ips/generic_FLL/fe/rtl/FLL_digital.vhd|../ips/generic_FLL/fe/rtl/FLL_dither_pattern_gen.vhd|../ips/generic_FLL/fe/rtl/FLL_glitchfree_clkdiv.vhd|../ips/generic_FLL/fe/rtl/FLL_glitchfree_clkmux.vhd|../ips/generic_FLL/fe/rtl/FLL_mux.rtl.vhd|../ips/generic_FLL/fe/rtl/FLL_loop_filter.vhd|../ips/generic_FLL/fe/rtl/FLL_reg.vhd|../ips/generic_FLL/fe/rtl/FLL_settling_monitor.vhd|../ips/generic_FLL/fe/rtl/FLL_synchroedge.vhd|../ips/generic_FLL/fe/rtl/FLL_zerodelta.vhd|
+!s107 ../ips/generic_FLL/fe/rtl/FLL_zerodelta.vhd|../ips/generic_FLL/fe/rtl/FLL_synchroedge.vhd|../ips/generic_FLL/fe/rtl/FLL_settling_monitor.vhd|../ips/generic_FLL/fe/rtl/FLL_reg.vhd|../ips/generic_FLL/fe/rtl/FLL_loop_filter.vhd|../ips/generic_FLL/fe/rtl/FLL_mux.rtl.vhd|../ips/generic_FLL/fe/rtl/FLL_glitchfree_clkmux.vhd|../ips/generic_FLL/fe/rtl/FLL_glitchfree_clkdiv.vhd|../ips/generic_FLL/fe/rtl/FLL_dither_pattern_gen.vhd|../ips/generic_FLL/fe/rtl/FLL_digital.vhd|../ips/generic_FLL/fe/rtl/FLL_clock_gated.rtl.vhd|../ips/generic_FLL/fe/rtl/FLL_clk_period_quantizer.vhd|../ips/generic_FLL/fe/rtl/FLL_clk_divider.vhd|../ips/generic_FLL/fe/rtl/FLLPkg.vhd|../ips/generic_FLL/fe/model/gf22_FLL_model.vhd|../ips/generic_FLL/fe/model/gf22_DCO_model.tc.vhd|
+!i113 0
+Z12 o-quiet -work /users/micas/vjain/tinyvers_main/install/modelsim_libs/generic_FLL_lib
+Z13 tExplicit 1 CvgOpt 0
+Artl
+R2
+R3
+R4
+R5
+DEx4 work 15 fll_clk_divider 0 22 gB5elL@:a^VniK4h:Iejg0
+l120
+L56
+VM<a3kK<W7KPW[CBk1dQ?[3
+!s100 QmSml16QPQ908SeoE:LDG0
+R8
+32
+R9
+!i10b 1
+R10
+R11
+Z14 !s107 ../ips/generic_FLL/fe/rtl/FLL_zerodelta.vhd|../ips/generic_FLL/fe/rtl/FLL_synchroedge.vhd|../ips/generic_FLL/fe/rtl/FLL_settling_monitor.vhd|../ips/generic_FLL/fe/rtl/FLL_reg.vhd|../ips/generic_FLL/fe/rtl/FLL_loop_filter.vhd|../ips/generic_FLL/fe/rtl/FLL_mux.rtl.vhd|../ips/generic_FLL/fe/rtl/FLL_glitchfree_clkmux.vhd|../ips/generic_FLL/fe/rtl/FLL_glitchfree_clkdiv.vhd|../ips/generic_FLL/fe/rtl/FLL_dither_pattern_gen.vhd|../ips/generic_FLL/fe/rtl/FLL_digital.vhd|../ips/generic_FLL/fe/rtl/FLL_clock_gated.rtl.vhd|../ips/generic_FLL/fe/rtl/FLL_clk_period_quantizer.vhd|../ips/generic_FLL/fe/rtl/FLL_clk_divider.vhd|../ips/generic_FLL/fe/rtl/FLLPkg.vhd|../ips/generic_FLL/fe/model/gf22_FLL_model.vhd|../ips/generic_FLL/fe/model/gf22_DCO_model.tc.vhd|
+!i113 0
+R12
+R13
+Efll_clk_period_quantizer
+R1
+R3
+R4
+R5
+R0
+Z15 8../ips/generic_FLL/fe/rtl/FLL_clk_period_quantizer.vhd
+Z16 F../ips/generic_FLL/fe/rtl/FLL_clk_period_quantizer.vhd
+l0
+L42
+VZ[_zMlACEajjaaG@;@GFO0
+!s100 W;RcHOI1fkz@Xg>XJK:_30
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Artl
+R3
+R4
+R5
+DEx4 work 24 fll_clk_period_quantizer 0 22 Z[_zMlACEajjaaG@;@GFO0
+l68
+L55
+VAGKW3b2z@fmGeQVV:g<HY3
+!s100 `=VD8Lgi73P46Mc[;XjnY2
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Efll_clock_gated
+R1
+R4
+R5
+R0
+Z17 8../ips/generic_FLL/fe/rtl/FLL_clock_gated.rtl.vhd
+Z18 F../ips/generic_FLL/fe/rtl/FLL_clock_gated.rtl.vhd
+l0
+L34
+VM]6j8O9n`9EbQU]9E2Yal0
+!s100 13Xl`oUfc@FmUikJ>A`8U1
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Artl
+R4
+R5
+DEx4 work 15 fll_clock_gated 0 22 M]6j8O9n`9EbQU]9E2Yal0
+l47
+L45
+Vo3;S2QXze:DElMj:ObNAG2
+!s100 433i489AZ^3N7XP2l`4ln1
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Efll_digital
+R1
+R2
+R3
+R4
+R5
+R0
+Z19 8../ips/generic_FLL/fe/rtl/FLL_digital.vhd
+Z20 F../ips/generic_FLL/fe/rtl/FLL_digital.vhd
+l0
+L38
+V2VCPkz=DJ8G^UTEe7kmRI2
+!s100 Q>Xh6z3S8G;ZH1YVKbOic3
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Artl
+R2
+R3
+R4
+R5
+DEx4 work 11 fll_digital 0 22 2VCPkz=DJ8G^UTEe7kmRI2
+l322
+L82
+ViA98MJ>ZW_UTFaQUi5`m=1
+!s100 iJ>KlKZe2oN9oN0iCSD6I1
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Efll_dither_pattern_gen
+R1
+R3
+R4
+R5
+R0
+Z21 8../ips/generic_FLL/fe/rtl/FLL_dither_pattern_gen.vhd
+Z22 F../ips/generic_FLL/fe/rtl/FLL_dither_pattern_gen.vhd
+l0
+L38
+Vl5L^>XWmJS>[:3aDT?hmU2
+!s100 aePcX4YjNi]0jci:kBbQ?1
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Artl
+R3
+R4
+R5
+DEx4 work 22 fll_dither_pattern_gen 0 22 l5L^>XWmJS>[:3aDT?hmU2
+l63
+L58
+VOJIm?b^BcQj]:a@F_D_Am0
+!s100 D5>SzH?W?@AaH4_IFh6H41
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Efll_glitchfree_clkdiv
+R1
+R2
+R3
+R4
+R5
+R0
+Z23 8../ips/generic_FLL/fe/rtl/FLL_glitchfree_clkdiv.vhd
+Z24 F../ips/generic_FLL/fe/rtl/FLL_glitchfree_clkdiv.vhd
+l0
+L38
+Vh7>d__3WZMbnZGjG]_ULf0
+!s100 3o6UzF7QfRFEidN^g;_R`0
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Artl
+R2
+R3
+R4
+R5
+DEx4 work 21 fll_glitchfree_clkdiv 0 22 h7>d__3WZMbnZGjG]_ULf0
+l75
+L51
+VN3?QOC6dC^l]3c>RzW=K42
+!s100 ?S23eSKV;;m8M5]kSCbCU2
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Efll_glitchfree_clkmux
+R1
+R3
+R4
+R5
+R0
+Z25 8../ips/generic_FLL/fe/rtl/FLL_glitchfree_clkmux.vhd
+Z26 F../ips/generic_FLL/fe/rtl/FLL_glitchfree_clkmux.vhd
+l0
+L48
+Vnl23WOKP^>Nc1?8EQmP>Z2
+!s100 MhHE4Eg:XJ9ARY6C^LH>G2
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Artl
+R3
+R4
+R5
+DEx4 work 21 fll_glitchfree_clkmux 0 22 nl23WOKP^>Nc1?8EQmP>Z2
+l77
+L58
+VDHKIF6S>=H49cI?o_>kUa3
+!s100 ]GQ>?zKc<8D;H[VB_Y>M11
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Efll_loop_filter
+R1
+R3
+R4
+R5
+R0
+Z27 8../ips/generic_FLL/fe/rtl/FLL_loop_filter.vhd
+Z28 F../ips/generic_FLL/fe/rtl/FLL_loop_filter.vhd
+l0
+L35
+V1e7HV_D5_BDK]iMF?cGnb1
+!s100 IY37fZ?Cjc0S3AHF=D3X=2
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Artl
+R3
+R4
+R5
+DEx4 work 15 fll_loop_filter 0 22 1e7HV_D5_BDK]iMF?cGnb1
+l80
+L63
+VXQgW0?hilWn5afTzXX3=@3
+!s100 2<eo66::E;<kmT6a=9D]72
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Efll_mux
+R1
+R4
+R5
+R0
+Z29 8../ips/generic_FLL/fe/rtl/FLL_mux.rtl.vhd
+Z30 F../ips/generic_FLL/fe/rtl/FLL_mux.rtl.vhd
+l0
+L33
+V<Qli0FS^E2:XTQF:YjImG0
+!s100 iZcBId>`<Fm]aCOIgGN8b0
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Artl
+R4
+R5
+DEx4 work 7 fll_mux 0 22 <Qli0FS^E2:XTQF:YjImG0
+l45
+L43
+VRl8Ho9R2IPZG9n;h2iNoC1
+!s100 J92?9HHh9g1E4G:mElHk;0
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Efll_reg
+R1
+R3
+R4
+R5
+R0
+Z31 8../ips/generic_FLL/fe/rtl/FLL_reg.vhd
+Z32 F../ips/generic_FLL/fe/rtl/FLL_reg.vhd
+l0
+L33
+V_L9jzP2<4WZ^UB0id>bYa2
+!s100 _=W;g8ZGJJNFUd`@fXNKO3
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Artl
+R3
+R4
+R5
+DEx4 work 7 fll_reg 0 22 _L9jzP2<4WZ^UB0id>bYa2
+l52
+L48
+VV:I5F4Y?nDa>WC?QDZQ@?2
+!s100 EYWJk8j8_PPBiA]nPOk:62
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Efll_settling_monitor
+R1
+R3
+R4
+R5
+R0
+Z33 8../ips/generic_FLL/fe/rtl/FLL_settling_monitor.vhd
+Z34 F../ips/generic_FLL/fe/rtl/FLL_settling_monitor.vhd
+l0
+L36
+VKDMl6KUg=K7I^ZC^9Nl3P3
+!s100 A1DP5Y6gMEWll:kIP@7S12
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Artl
+R3
+R4
+R5
+DEx4 work 20 fll_settling_monitor 0 22 KDMl6KUg=K7I^ZC^9Nl3P3
+l84
+L67
+VMe@a:U:0LBdF0FL0mm4K41
+!s100 IcLHFmD6T=MF^=`>2KXnX1
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Efll_synchroedge
+R1
+R3
+R4
+R5
+R0
+Z35 8../ips/generic_FLL/fe/rtl/FLL_synchroedge.vhd
+Z36 F../ips/generic_FLL/fe/rtl/FLL_synchroedge.vhd
+l0
+L33
+V@dTzm<<k@TJS4`=TAF3TM2
+!s100 jhhH1__MP^GOMC9K_R0lJ1
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Artl
+R3
+R4
+R5
+DEx4 work 15 fll_synchroedge 0 22 @dTzm<<k@TJS4`=TAF3TM2
+l49
+L47
+V8kziTTo=FRZg>ci[O>o]_0
+!s100 l;9oY3<6eA?6QVPXK@7>30
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Efll_zerodelta
+R1
+R3
+R4
+R5
+R0
+Z37 8../ips/generic_FLL/fe/rtl/FLL_zerodelta.vhd
+Z38 F../ips/generic_FLL/fe/rtl/FLL_zerodelta.vhd
+l0
+L54
+Vb?7XVd4IcE6[jOd`^EAE02
+!s100 eYa8U27J=<5>c3ZCon?Va3
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Artl
+R3
+R4
+R5
+DEx4 work 13 fll_zerodelta 0 22 b?7XVd4IcE6[jOd`^EAE02
+l81
+L70
+VzT@SQzG>GZoShlIQlkOoj0
+!s100 j5UGYTd=J98jdU>L<W9o72
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Pfllpkg
+R3
+R4
+R5
+R1
+R0
+Z39 8../ips/generic_FLL/fe/rtl/FLLPkg.vhd
+Z40 F../ips/generic_FLL/fe/rtl/FLLPkg.vhd
+l0
+L25
+Ving?1flL=H^87J;6W@kmb3
+!s100 2PfP47_=_FCnc=_PTJzdU2
+R8
+32
+b1
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Bbody
+R2
+R3
+R4
+R5
+l0
+L35
+V4AGh?ZUSSaWWKRGNndON91
+!s100 MN>ogH7F34F0A;9V_Wm6Z3
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Egf22_dco
+R1
+Z41 DPx4 ieee 9 math_real 0 22 gNk<PdFJ<XNPcfef`f?Z81
+R3
+R4
+R5
+R0
+Z42 8../ips/generic_FLL/fe/model/gf22_DCO_model.tc.vhd
+Z43 F../ips/generic_FLL/fe/model/gf22_DCO_model.tc.vhd
+l0
+L48
+Vfk_dB8EGT;mK0?;Cmz>m50
+!s100 Z5nfOn@iRW^6PZ:LRiBlX3
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Abehavioral
+R41
+R3
+R4
+R5
+DEx4 work 8 gf22_dco 0 22 fk_dB8EGT;mK0?;Cmz>m50
+l68
+L59
+VCn0c[PPJRJl8MJK8D2hBe1
+!s100 33`Lzzln5^GYZD<lI@B6_2
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Egf22_fll
+R1
+R3
+R4
+R5
+R0
+Z44 8../ips/generic_FLL/fe/model/gf22_FLL_model.vhd
+Z45 F../ips/generic_FLL/fe/model/gf22_FLL_model.vhd
+l0
+L36
+VbZe^3lQFHbPoGDN]<FW;:2
+!s100 @IgMAkVCK:MMF9H^fTnW[2
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13
+Abehavioral
+R3
+R4
+R5
+DEx4 work 8 gf22_fll 0 22 bZe^3lQFHbPoGDN]<FW;:2
+l111
+L62
+V4YQ6KK>gb6j^14Yk]mdB;0
+!s100 T?G:VjMB:Z=kZmD@VVW873
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R14
+!i113 0
+R12
+R13

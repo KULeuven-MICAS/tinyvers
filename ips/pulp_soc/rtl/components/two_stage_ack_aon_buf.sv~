@@ -1,0 +1,12 @@
+module two_stage_ack_aon_buf
+  (
+    output logic sleep_signal_buf
+  );
+
+logic s_sleep_signal_buf_1;
+logic s_sleep_signal_buf_2;
+
+SC7P5T_AONBUFX8_CSC28L(.A(s_sleep_signal_buf_1), .Z(s_sleep_signal_buf_2));
+SC7P5T_AONBUFX8_CSC28L(.A(s_sleep_signal_buf_2), .Z(sleep_signal_buf));
+
+endmodule

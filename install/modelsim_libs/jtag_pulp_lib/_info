@@ -1,0 +1,210 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/users/micas/vjain/tinyvers_main/sim
+vbscell
+Z1 DXx6 sv_std 3 std 0 22 d=_JfHTnXCN[H5FjiaJJc0
+Z2 !s110 1679395901
+!i10b 1
+!s100 5FQZDjbVMFFWbe?KY[iO83
+IQQi@ZzdfCiDSGG;Bn0=e02
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+!s105 bscell_sv_unit
+S1
+R0
+Z4 w1679390143
+8../ips/jtag_pulp/src/bscell.sv
+F../ips/jtag_pulp/src/bscell.sv
+Z5 L0 11
+Z6 OE;L;10.7c;67
+r1
+!s85 0
+31
+Z7 !s108 1679395901.000000
+!s107 ../ips/jtag_pulp/src/tap_top.v|../ips/jtag_pulp/src/jtag_sync.sv|../ips/jtag_pulp/src/jtag_rst_synch.sv|../ips/jtag_pulp/src/jtagreg.sv|../ips/jtag_pulp/src/jtag_enable_synch.sv|../ips/jtag_pulp/src/jtag_enable.sv|../ips/jtag_pulp/src/jtag_axi_wrap.sv|../ips/jtag_pulp/src/bscell.sv|
+Z8 !s90 -quiet|-sv|-work|/users/micas/vjain/tinyvers_main/install/modelsim_libs/jtag_pulp_lib|-suppress|2583|-suppress|13314|+incdir+../ips/jtag_pulp/../../rtl/includes|../ips/jtag_pulp/src/bscell.sv|../ips/jtag_pulp/src/jtag_axi_wrap.sv|../ips/jtag_pulp/src/jtag_enable.sv|../ips/jtag_pulp/src/jtag_enable_synch.sv|../ips/jtag_pulp/src/jtagreg.sv|../ips/jtag_pulp/src/jtag_rst_synch.sv|../ips/jtag_pulp/src/jtag_sync.sv|../ips/jtag_pulp/src/tap_top.v|
+!i113 0
+Z9 o-suppress 2583 -suppress 13314 -quiet -sv -work /users/micas/vjain/tinyvers_main/install/modelsim_libs/jtag_pulp_lib -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z10 !s92 -suppress 2583 -suppress 13314 -quiet -sv -work /users/micas/vjain/tinyvers_main/install/modelsim_libs/jtag_pulp_lib +incdir+../ips/jtag_pulp/../../rtl/includes -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z11 tCvgOpt 0
+vjtag_axi_wrap
+R1
+R2
+!i10b 1
+!s100 nPhJO`PhE26>AjZU]MPI=2
+IE^2az[:HGGL52BKh6hRVc3
+R3
+!s105 jtag_axi_wrap_sv_unit
+S1
+R0
+R4
+8../ips/jtag_pulp/src/jtag_axi_wrap.sv
+F../ips/jtag_pulp/src/jtag_axi_wrap.sv
+L0 12
+R6
+r1
+!s85 0
+31
+R7
+Z12 !s107 ../ips/jtag_pulp/src/tap_top.v|../ips/jtag_pulp/src/jtag_sync.sv|../ips/jtag_pulp/src/jtag_rst_synch.sv|../ips/jtag_pulp/src/jtagreg.sv|../ips/jtag_pulp/src/jtag_enable_synch.sv|../ips/jtag_pulp/src/jtag_enable.sv|../ips/jtag_pulp/src/jtag_axi_wrap.sv|../ips/jtag_pulp/src/bscell.sv|
+R8
+!i113 0
+R9
+R10
+R11
+vjtag_enable
+R1
+R2
+!i10b 1
+!s100 ?EW222z`:Gm`[nCCWTVG90
+I]=;T68XWeS9NlnI1?6PDO0
+R3
+!s105 jtag_enable_sv_unit
+S1
+R0
+R4
+8../ips/jtag_pulp/src/jtag_enable.sv
+F../ips/jtag_pulp/src/jtag_enable.sv
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10
+R11
+vjtag_enable_synch
+R1
+R2
+!i10b 1
+!s100 [c;Q`zZJH>YLCz8:=R]ZI3
+I=bkDB;iA8j^hIiiNl2[6Z1
+R3
+!s105 jtag_enable_synch_sv_unit
+S1
+R0
+R4
+8../ips/jtag_pulp/src/jtag_enable_synch.sv
+F../ips/jtag_pulp/src/jtag_enable_synch.sv
+R5
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10
+R11
+vjtag_rst_synch
+R1
+R2
+!i10b 1
+!s100 Y^261B<_]GNN4<H^YR?1U2
+I0AgJcMg;M=UXgFiGI;KC72
+R3
+!s105 jtag_rst_synch_sv_unit
+S1
+R0
+R4
+8../ips/jtag_pulp/src/jtag_rst_synch.sv
+F../ips/jtag_pulp/src/jtag_rst_synch.sv
+R5
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10
+R11
+vjtag_sync
+R1
+R2
+!i10b 1
+!s100 KU>HC4fETE5YE?GDb?X^d0
+I]zB;3jJ>PhP0456D4NKKM2
+R3
+!s105 jtag_sync_sv_unit
+S1
+R0
+R4
+8../ips/jtag_pulp/src/jtag_sync.sv
+F../ips/jtag_pulp/src/jtag_sync.sv
+R5
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10
+R11
+vjtagreg
+R1
+R2
+!i10b 1
+!s100 >VVRSeW<;T=K4zib4jORX1
+Ib1Z^QIM[f<kY`n?:JT^>?3
+R3
+!s105 jtagreg_sv_unit
+S1
+R0
+R4
+8../ips/jtag_pulp/src/jtagreg.sv
+F../ips/jtag_pulp/src/jtagreg.sv
+R5
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10
+R11
+vtap_top
+R1
+R2
+!i10b 1
+!s100 Z[JMIeE^RT2:keQ^o9DSV3
+IbnWPVNQ:=P3o4cDV6PdRo2
+R3
+!s105 tap_top_v_unit
+S1
+R0
+R4
+8../ips/jtag_pulp/src/tap_top.v
+F../ips/jtag_pulp/src/tap_top.v
+L0 42
+R6
+r1
+!s85 0
+31
+R7
+R12
+R8
+!i113 0
+R9
+R10
+R11
