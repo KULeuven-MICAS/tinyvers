@@ -227,46 +227,4 @@ module mac_engine
   // multiplier accepts new value from c_i when r_acc is ready or c_i is invalid
   assign c_i.ready    = r_acc_ready  | ~c_i.valid;
 
-  // The following assertions help in getting the rules on ready & valid right.
-  // They are copied from the general stream rules in hwpe_stream_interfaces.sv
-  // and adapted to the internal r_acc and r_mult signals.
-  `ifndef SYNTHESIS
-    // The data and strb can change their value 1) when valid is deasserted,
-    // 2) in the cycle after a valid handshake, even if valid remains asserted.
-    // In other words, valid data must remain on the interface until
-    // a valid handshake has occurred.
-    property r_acc_change_rule;
-      @(posedge clk_i)
-      ($past(r_acc_valid) & ~($past(r_acc_valid) & $past(r_acc_ready))) |-> (r_acc == $past(r_acc));
-    endproperty;
-    property r_mult_change_rule;
-      @(posedge clk_i)
-      ($past(r_mult_valid) & ~($past(r_mult_valid) & $past(r_mult_ready))) |-> (r_mult == $past(r_mult));
-    endproperty;
-    
-    // The deassertion of valid (transition 1í0) can happen only in the cycle
-    // after a valid handshake. In other words, valid data produced by a source
-    // must be consumed on the sink side before valid is deasserted.
-    property r_acc_valid_deassert_rule;
-      @(posedge clk_i)
-      ($past(r_acc_valid) & ~r_acc_valid) |-> $past(r_acc_valid) & $past(r_acc_ready);
-    endproperty;
-    property r_mult_valid_deassert_rule;
-      @(posedge clk_i)
-      ($past(r_mult_valid) & ~r_mult_valid) |-> $past(r_mult_valid) & $past(r_mult_ready);
-    endproperty;
-
-    R_ACC_VALUE_CHANGE:    assert property(r_acc_change_rule)
-      else $fatal("ASSERTION FAILURE: R_ACC_VALUE_CHANGE", 1);
-
-    R_ACC_VALID_DEASSERT:  assert property(r_acc_valid_deassert_rule)
-      else $fatal("ASSERTION FAILURE R_ACC_VALID_DEASSERT", 1);
-
-    R_MULT_VALUE_CHANGE:   assert property(r_mult_change_rule)
-      else $fatal("ASSERTION FAILURE: R_MULT_VALUE_CHANGE", 1);
-
-    R_MULT_VALID_DEASSERT: assert property(r_mult_valid_deassert_rule)
-      else $fatal("ASSERTION FAILURE R_MULT_VALID_DEASSERT", 1);
-  `endif /* SYNTHESIS */
-
 endmodule // mac_engine

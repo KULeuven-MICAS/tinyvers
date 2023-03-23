@@ -9,7 +9,7 @@
 // specific language governing permissions and limitations under the License.
 
 
-`include "pulp_soc_defines.sv"
+`include "../../../../rtl/includes/pulp_soc_defines.sv"
 
 `ifndef PULP_FPGA_SIM
   `define PULP_FPGA_NETLIST

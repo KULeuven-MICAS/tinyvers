@@ -32,7 +32,7 @@
 //                                                                            //
 ////////////////////////////////////////////////////////////////////////////////
 
-`include "apu_macros.sv"
+`include "./include/apu_macros.sv"
 
 import apu_core_package::*;
 import riscv_defines::*;

@@ -9,7 +9,7 @@
 // specific language governing permissions and limitations under the License.
 
 
-`include "periph_bus_defines.sv"
+`include "../../../../rtl/includes/periph_bus_defines.sv"
 
 module periph_bus_wrap #(
     parameter APB_ADDR_WIDTH = 32,

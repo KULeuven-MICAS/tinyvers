@@ -9,7 +9,7 @@
 // specific language governing permissions and limitations under the License.
 
 
-`include "pulp_soc_defines.sv"
+`include "../../../../rtl/includes/pulp_soc_defines.sv"
 
 module axi_slice_dc_master_wrap
   #(

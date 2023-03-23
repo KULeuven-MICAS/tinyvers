@@ -9,8 +9,8 @@
 // specific language governing permissions and limitations under the License.
 
 
-`include "pulp_soc_defines.sv"
-`include "soc_bus_defines.sv"
+`include "../../../../rtl/includes/pulp_soc_defines.sv"
+`include "../../../../rtl/includes/soc_bus_defines.sv"
 
 module pulp_soc
     import dm::*;
