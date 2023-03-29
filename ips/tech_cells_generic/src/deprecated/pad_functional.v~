@@ -14,7 +14,6 @@ module pad_functional_h_pd (
 	output wire O;
 	input wire PEN;
 	inout wire PAD;
-	/*
 	LP_INLINE_IO_H pad_i(
 		.DATA(I),
 		.Y(O),
@@ -28,7 +27,7 @@ module pad_functional_h_pd (
 		.PUEN(1'b0),
 		.PDEN(1'b1),
 		.RETC()
-	);*/
+	);
 endmodule
 module pad_functional_v_pd (
 	OEN,
@@ -46,7 +45,6 @@ module pad_functional_v_pd (
 	output wire O;
 	input wire PEN;
 	inout wire PAD;
-	/*
 	LP_INLINE_IO_H pad_i(
 		.DATA(I),
 		.Y(O),
@@ -60,7 +58,7 @@ module pad_functional_v_pd (
 		.PUEN(1'b0),
 		.PDEN(1'b1),
 		.RETC()
-	);*/
+	);
 endmodule
 module pad_functional_h_pu (
 	OEN,
@@ -78,7 +76,6 @@ module pad_functional_h_pu (
 	output wire O;
 	input wire PEN;
 	inout wire PAD;
-	/*
 	LP_INLINE_IO_H pad_i(
 		.DATA(I),
 		.Y(O),
@@ -92,7 +89,7 @@ module pad_functional_h_pu (
 		.PUEN(1'b1),
 		.PDEN(1'b0),
 		.RETC()
-	);*/
+	);
 endmodule
 module pad_functional_v_pu (
 	OEN,
@@ -110,7 +107,6 @@ module pad_functional_v_pu (
 	output wire O;
 	input wire PEN;
 	inout wire PAD;
-	/*
 	LP_INLINE_IO_H pad_i(
 		.DATA(I),
 		.Y(O),
@@ -124,5 +120,5 @@ module pad_functional_v_pu (
 		.PUEN(1'b1),
 		.PDEN(1'b0),
 		.RETC()
-	);*/
+	);
 endmodule

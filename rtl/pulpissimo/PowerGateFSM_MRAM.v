@@ -17,15 +17,15 @@ module PowerGateFSM_MRAM (
 	isolate,
 	done
 );
-	parameter realtime T_SD = 30517;
-	parameter realtime T_RT = 30517;
-	parameter realtime T_PR = 30517;
-	parameter realtime T_RSW = 30517;
-	parameter realtime T_RH = 30517;
-	parameter realtime T_DPDS = 30517;
-	parameter realtime T_DPDH = 30517;
-	parameter realtime T_EXTERNAL_VDD_ACTIVATION = 30517;
-	parameter realtime T_CLK = 30517;
+	parameter T_SD = 30517;
+	parameter T_RT = 30517;
+	parameter T_PR = 30517;
+	parameter T_RSW = 30517;
+	parameter T_RH = 30517;
+	parameter T_DPDS = 30517;
+	parameter T_DPDH = 30517;
+	parameter T_EXTERNAL_VDD_ACTIVATION = 30517;
+	parameter T_CLK = 30517;
 	input clk;
 	input rst;
 	input power;

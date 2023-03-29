@@ -1,0 +1,11 @@
+conda activate pulp
+source /esat/micas-data/data/design/scripts/questasim_10.7c.rc
+cd /volume1/users/vjain/pulp-sdk/
+source configs/pulpissimo.sh
+source configs/platform-rtl.sh
+source pkg/sdk/dev/sourceme.sh
+cd /volume1/users/vjain/pulp-rt-examples/hello/
+export PULP_RISCV_GCC_TOOLCHAIN=/volume1/users/vjain/pulp-riscv-gnu-toolchain/output/riscv/
+export LD_LIBRARY_PATH=/users/micas/vjain/anaconda3/envs/pulp/lib/:$LD_LIBRARY_PATH
+export VSIM_PATH=/volume1/users/vjain/pulpissimo/sim
+export XCSIM_PATH=$VSIM_PATH

@@ -18,7 +18,6 @@ module MEMS1D_BUFG_512x32_wrapper (
 	input [31:0] D;
 	input [31:0] BW;
 	output wire [31:0] Q;
-	/*
 	wire DEEPSLEEP;
 	wire POWERGATE;
 	buf (DEEPSLEEP, 1'b0);
@@ -141,20 +140,6 @@ module MEMS1D_BUFG_512x32_wrapper (
 	buf (RBF0A[4], 1'b0);
 	buf (RBF0A[5], 1'b0);
 	buf (RBF0A[6], 1'b0);
-	*/
-
-        wire spare_wen0_s;
-	buf (spare_wen0_s, 1'b0);
-	sky130_sram_1rw_32x512_32 I1(
-		.clk0(CLK),
-		.csb0(CEN),
-		.web0(RDWEN),
-		.spare_wen0(spare_wen0_s),
-		.addr0({1'b0,AS,AW,AC}),
-		.din0(D),
-		.dout0(Q)
-	);
-	/*
 	MEMS1D_BUFG_512x32 I1(
 		.CLK(CLK),
 		.CEN(CEN),
@@ -188,7 +173,7 @@ module MEMS1D_BUFG_512x32_wrapper (
 		.QRB(QRB),
 		.Q(Q),
 		.OBSV_CTL(OBSV_CTL)
-	);*/
+	);
 endmodule
 module MEMS1D_BUFG_1024x32_wrapper (
 	CLK,
@@ -210,7 +195,6 @@ module MEMS1D_BUFG_1024x32_wrapper (
 	input [31:0] D;
 	input [31:0] BW;
 	output wire [31:0] Q;
-	/*
 	wire DEEPSLEEP;
 	wire POWERGATE;
 	buf (DEEPSLEEP, 1'b0);
@@ -334,19 +318,6 @@ module MEMS1D_BUFG_1024x32_wrapper (
 	buf (RBF0A[4], 1'b0);
 	buf (RBF0A[5], 1'b0);
 	buf (RBF0A[6], 1'b0);
-        wire spare_wen0_s;
-        buf (spare_wen0_s, 1'b0);*/
-
-        sky130_sram_1rw_32x1024_32 I1(
-	        .clk0(CLK),
-	        .csb0(CEN),
-	        .web0(RDWEN),
-	        .spare_wen0(spare_wen0_s),
-	        .addr0({1'b0,AS,AW,AC}),
-	        .din0(D),
-	        .dout0(Q)
-	);
-/*
 	MEMS1D_BUFG_1024x32 I1(
 		.CLK(CLK),
 		.CEN(CEN),
@@ -380,7 +351,7 @@ module MEMS1D_BUFG_1024x32_wrapper (
 		.QRB(QRB),
 		.Q(Q),
 		.OBSV_CTL(OBSV_CTL)
-	);*/
+	);
 endmodule
 module MEMS1D_BUFG_2048x32_wrapper (
 	CLK,
@@ -402,7 +373,6 @@ module MEMS1D_BUFG_2048x32_wrapper (
 	input [31:0] D;
 	input [31:0] BW;
 	output wire [31:0] Q;
-	/*
 	wire DEEPSLEEP;
 	wire POWERGATE;
 	buf (DEEPSLEEP, 1'b0);
@@ -560,19 +530,7 @@ module MEMS1D_BUFG_2048x32_wrapper (
 		.QRB(QRB),
 		.Q(Q),
 		.OBSV_CTL(OBSV_CTL)
-	);*/
-        wire spare_wen0_s;
-        buf (spare_wen0_s, 1'b0);
-        sky130_sram_1rw_32x2048_32 I1(
-	      .clk0(CLK),
-	      .csb0(CEN),
-	      .web0(RDWEN),
-	      .spare_wen0(spare_wen0_s),
-	      .addr0({1'b0,AS,AW,AC}),
-	      .din0(D),
-	      .dout0(Q)
 	);
-
 endmodule
 module MEMS1D_BUFG_4096x32_wrapper (
 	CLK,
@@ -594,7 +552,6 @@ module MEMS1D_BUFG_4096x32_wrapper (
 	input [31:0] D;
 	input [31:0] BW;
 	output wire [31:0] Q;
-	/*
 	wire DEEPSLEEP;
 	wire POWERGATE;
 	buf (DEEPSLEEP, 1'b0);
@@ -753,20 +710,7 @@ module MEMS1D_BUFG_4096x32_wrapper (
 		.QRB(QRB),
 		.Q(Q),
 		.OBSV_CTL(OBSV_CTL)
-	);*/
-
-        wire spare_wen0_s;
-        buf (spare_wen0_s, 1'b0);
-        sky130_sram_1rw_32x4096_32 I1(
-  	      .clk0(CLK),
-              .csb0(CEN),
-	      .web0(RDWEN),
-	      .spare_wen0(spare_wen0_s),
-	      .addr0({1'b0,AS,AW,AC}),
-	      .din0(D),
-	      .dout0(Q)
 	);
-
 endmodule
 module MEMROMIU_FUN_wrapper (
 	CLK,

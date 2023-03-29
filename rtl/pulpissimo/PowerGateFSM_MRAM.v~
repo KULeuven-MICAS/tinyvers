@@ -2,6 +2,7 @@ module PowerGateFSM_MRAM (
 	clk,
 	rst,
 	power,
+	external_pg,
 	VDDA_out,
 	VDD_out,
 	VREF_out,
@@ -11,10 +12,12 @@ module PowerGateFSM_MRAM (
 	TRIM,
 	DPD,
 	CEb_HIGH,
+	wu_bypass_mux,
+	isolate_byp,
 	isolate,
 	done
 );
-	parameter realtime T_SD = 30517;
+	parameter T_SD = 30517;
 	parameter realtime T_RT = 30517;
 	parameter realtime T_PR = 30517;
 	parameter realtime T_RSW = 30517;
@@ -26,6 +29,7 @@ module PowerGateFSM_MRAM (
 	input clk;
 	input rst;
 	input power;
+	input external_pg;
 	output wire VDDA_out;
 	output wire VDD_out;
 	output wire VREF_out;
@@ -35,7 +39,9 @@ module PowerGateFSM_MRAM (
 	output wire TRIM;
 	output wire DPD;
 	output wire CEb_HIGH;
-	output wire isolate;
+	input wu_bypass_mux;
+	input isolate_byp;
+	output reg isolate;
 	output reg done;
 	localparam signed [31:0] P_SD = 1;
 	localparam signed [31:0] P_RT = 1;
@@ -44,7 +50,7 @@ module PowerGateFSM_MRAM (
 	localparam signed [31:0] P_RH = 1;
 	localparam signed [31:0] P_DPDS = 1;
 	localparam signed [31:0] P_DPDH = 1;
-	localparam signed [31:0] P_EXTERNAL_VDD_ACTIVATION = 1;
+	localparam signed [31:0] P_EXTERNAL_VDD_ACTIVATION = 2;
 	localparam signed [31:0] P_TRIM = 1;
 	parameter integer CNT_W = 8;
 	wire [CNT_W - 1:0] cnt;
@@ -60,6 +66,13 @@ module PowerGateFSM_MRAM (
 		.wen(1'b1)
 	);
 	parameter integer STATE_W = 5;
+	reg isolate_int;
+	reg isolate_byp_int;
+	always @(*)
+		if (wu_bypass_mux)
+			isolate = isolate_byp;
+		else
+			isolate = isolate_int;
 	reg [STATE_W - 1:0] state;
 	reg [STATE_W - 1:0] state_nxt;
 	function automatic [STATE_W - 1:0] sv2v_cast_B8280;
@@ -72,19 +85,19 @@ module PowerGateFSM_MRAM (
 		else
 			state <= state_nxt;
 	always @(*) begin
-		state_nxt = sv2v_cast_B8280(13);
+		state_nxt = sv2v_cast_B8280(14);
 		cnt_nxt = 0;
 		case (state)
 			sv2v_cast_B8280(0): begin
-				if (power)
+				if (power || external_pg)
 					state_nxt = sv2v_cast_B8280(1);
 				else
 					state_nxt = sv2v_cast_B8280(0);
 				cnt_nxt = 0;
 			end
 			sv2v_cast_B8280(1):
-				if (cnt == 0) begin
-					if (power)
+				if (cnt == 1) begin
+					if (power || external_pg)
 						state_nxt = sv2v_cast_B8280(2);
 					else
 						state_nxt = sv2v_cast_B8280(0);
@@ -95,8 +108,8 @@ module PowerGateFSM_MRAM (
 					cnt_nxt = cnt + 1;
 				end
 			sv2v_cast_B8280(2):
-				if (cnt == 0) begin
-					if (power)
+				if (cnt == 1) begin
+					if (power || external_pg)
 						state_nxt = sv2v_cast_B8280(3);
 					else
 						state_nxt = sv2v_cast_B8280(1);
@@ -108,7 +121,7 @@ module PowerGateFSM_MRAM (
 				end
 			sv2v_cast_B8280(3):
 				if (cnt == 0) begin
-					if (power)
+					if (power || external_pg)
 						state_nxt = sv2v_cast_B8280(4);
 					else
 						state_nxt = sv2v_cast_B8280(2);
@@ -120,8 +133,8 @@ module PowerGateFSM_MRAM (
 				end
 			sv2v_cast_B8280(4):
 				if (cnt == 0) begin
-					if (power)
-						state_nxt = sv2v_cast_B8280(5);
+					if (power || external_pg)
+						state_nxt = sv2v_cast_B8280(6);
 					else
 						state_nxt = sv2v_cast_B8280(3);
 					cnt_nxt = 0;
@@ -132,7 +145,7 @@ module PowerGateFSM_MRAM (
 				end
 			sv2v_cast_B8280(5):
 				if (cnt == 0) begin
-					if (power)
+					if (power || external_pg)
 						state_nxt = sv2v_cast_B8280(6);
 					else
 						state_nxt = sv2v_cast_B8280(4);
@@ -144,7 +157,7 @@ module PowerGateFSM_MRAM (
 				end
 			sv2v_cast_B8280(6):
 				if (cnt == 0) begin
-					if (power)
+					if (power || external_pg)
 						state_nxt = sv2v_cast_B8280(7);
 					else
 						state_nxt = sv2v_cast_B8280(5);
@@ -156,7 +169,7 @@ module PowerGateFSM_MRAM (
 				end
 			sv2v_cast_B8280(7):
 				if (cnt == 0) begin
-					if (power)
+					if (power || external_pg)
 						state_nxt = sv2v_cast_B8280(8);
 					else
 						state_nxt = sv2v_cast_B8280(6);
@@ -168,20 +181,20 @@ module PowerGateFSM_MRAM (
 				end
 			sv2v_cast_B8280(8):
 				if (cnt == 0) begin
-					if (power)
-						state_nxt = sv2v_cast_B8280(13);
+					if (power || external_pg)
+						state_nxt = sv2v_cast_B8280(9);
 					else
-						state_nxt = sv2v_cast_B8280(5);
+						state_nxt = sv2v_cast_B8280(7);
 					cnt_nxt = 0;
 				end
 				else begin
 					state_nxt = state;
 					cnt_nxt = cnt + 1;
 				end
-			sv2v_cast_B8280(11):
+			sv2v_cast_B8280(9):
 				if (cnt == 0) begin
-					if (power)
-						state_nxt = sv2v_cast_B8280(12);
+					if (power || external_pg)
+						state_nxt = sv2v_cast_B8280(14);
 					else
 						state_nxt = sv2v_cast_B8280(6);
 					cnt_nxt = 0;
@@ -190,31 +203,43 @@ module PowerGateFSM_MRAM (
 					state_nxt = state;
 					cnt_nxt = cnt + 1;
 				end
-			sv2v_cast_B8280(10):
+			sv2v_cast_B8280(12):
 				if (cnt == 0) begin
-					if (power)
-						state_nxt = sv2v_cast_B8280(11);
+					if (power || external_pg)
+						state_nxt = sv2v_cast_B8280(13);
 					else
-						state_nxt = sv2v_cast_B8280(11);
+						state_nxt = sv2v_cast_B8280(7);
 					cnt_nxt = 0;
 				end
 				else begin
 					state_nxt = state;
 					cnt_nxt = cnt + 1;
 				end
-			sv2v_cast_B8280(13): begin
-				if (power)
-					state_nxt = sv2v_cast_B8280(13);
+			sv2v_cast_B8280(11):
+				if (cnt == 0) begin
+					if (power || external_pg)
+						state_nxt = sv2v_cast_B8280(12);
+					else
+						state_nxt = sv2v_cast_B8280(12);
+					cnt_nxt = 0;
+				end
+				else begin
+					state_nxt = state;
+					cnt_nxt = cnt + 1;
+				end
+			sv2v_cast_B8280(14): begin
+				if (power || external_pg)
+					state_nxt = sv2v_cast_B8280(14);
 				else
-					state_nxt = sv2v_cast_B8280(10);
+					state_nxt = sv2v_cast_B8280(11);
 				cnt_nxt = 0;
 			end
 			default: state_nxt = sv2v_cast_B8280(0);
 		endcase
 	end
-	wire [1:1] sv2v_tmp_CA34C;
-	assign sv2v_tmp_CA34C = ((power == 1) && (state == sv2v_cast_B8280(13))) || ((power == 0) && (state == sv2v_cast_B8280(0)));
-	always @(*) done = sv2v_tmp_CA34C;
+	wire [1:1] sv2v_tmp_A4D37;
+	assign sv2v_tmp_A4D37 = ((power == 1) && (state == sv2v_cast_B8280(14))) || ((power == 0) && (state == sv2v_cast_B8280(0)));
+	always @(*) done = sv2v_tmp_A4D37;
 	reg VDDA_out_nxt;
 	reg VDD_out_nxt;
 	reg VREF_out_nxt;
@@ -315,6 +340,8 @@ module PowerGateFSM_MRAM (
 		.dout(CEb_HIGH),
 		.wen(1'b1)
 	);
+	wire [1:1] sv2v_tmp_isolate_reg_dout;
+	always @(*) isolate_int = sv2v_tmp_isolate_reg_dout;
 	reg_arstn #(
 		.DATA_W(1),
 		.PRESET_VAL('b1)
@@ -322,7 +349,7 @@ module PowerGateFSM_MRAM (
 		.clk(clk),
 		.arst_n(rst),
 		.din(isolate_nxt),
-		.dout(isolate),
+		.dout(sv2v_tmp_isolate_reg_dout),
 		.wen(1'b1)
 	);
 	always @(*) begin
@@ -351,18 +378,18 @@ module PowerGateFSM_MRAM (
 			end
 			sv2v_cast_B8280(1): begin
 				VDDA_out_nxt = 1'b0;
-				VDD_out_nxt = power;
+				VDD_out_nxt = power || external_pg;
 				VREF_out_nxt = 1'b0;
 				PORb_nxt = 1'b0;
 				RETb_nxt = 1'b0;
 				RSTb_nxt = 1'b0;
 				isolate_nxt = 1'b1;
 				TRIM_nxt = 1'b0;
-				DPD_nxt = 1'b0 || ~power;
+				DPD_nxt = 1'b0 || ~(power || external_pg);
 				CEb_HIGH_nxt = 1'b1;
 			end
 			sv2v_cast_B8280(2): begin
-				VDDA_out_nxt = power;
+				VDDA_out_nxt = power || external_pg;
 				VDD_out_nxt = 1'b1;
 				VREF_out_nxt = 1'b0;
 				PORb_nxt = 1'b0;
@@ -370,31 +397,31 @@ module PowerGateFSM_MRAM (
 				RSTb_nxt = 1'b0;
 				isolate_nxt = 1'b1;
 				TRIM_nxt = 1'b0;
-				DPD_nxt = 1'b0 || ~power;
+				DPD_nxt = 1'b0 || ~(power || external_pg);
 				CEb_HIGH_nxt = 1'b1;
 			end
 			sv2v_cast_B8280(3): begin
 				VDDA_out_nxt = 1'b1;
 				VDD_out_nxt = 1'b1;
-				VREF_out_nxt = power;
+				VREF_out_nxt = power || external_pg;
 				PORb_nxt = 1'b0;
 				RETb_nxt = 1'b0;
 				RSTb_nxt = 1'b0;
 				isolate_nxt = 1'b1;
 				TRIM_nxt = 1'b0;
-				DPD_nxt = 1'b0 || ~power;
+				DPD_nxt = 1'b0 || ~(power || external_pg);
 				CEb_HIGH_nxt = 1'b1;
 			end
 			sv2v_cast_B8280(4): begin
 				VDDA_out_nxt = 1'b1;
 				VDD_out_nxt = 1'b1;
 				VREF_out_nxt = 1'b1;
-				PORb_nxt = power;
-				RETb_nxt = power;
+				PORb_nxt = power || external_pg;
+				RETb_nxt = power || external_pg;
 				RSTb_nxt = 1'b0;
 				isolate_nxt = 1'b1;
 				TRIM_nxt = 1'b0;
-				DPD_nxt = 1'b0 || ~power;
+				DPD_nxt = 1'b0 || ~(power || external_pg);
 				CEb_HIGH_nxt = 1'b1;
 			end
 			sv2v_cast_B8280(5): begin
@@ -402,11 +429,11 @@ module PowerGateFSM_MRAM (
 				VDD_out_nxt = 1'b1;
 				VREF_out_nxt = 1'b1;
 				PORb_nxt = 1'b1;
-				RETb_nxt = 1'b1;
-				RSTb_nxt = power;
+				RETb_nxt = power || external_pg;
+				RSTb_nxt = 1'b0;
 				isolate_nxt = 1'b1;
 				TRIM_nxt = 1'b0;
-				DPD_nxt = 1'b0 || ~power;
+				DPD_nxt = 1'b0 || ~(power || external_pg);
 				CEb_HIGH_nxt = 1'b1;
 			end
 			sv2v_cast_B8280(6): begin
@@ -415,13 +442,25 @@ module PowerGateFSM_MRAM (
 				VREF_out_nxt = 1'b1;
 				PORb_nxt = 1'b1;
 				RETb_nxt = 1'b1;
-				RSTb_nxt = 1'b1;
-				isolate_nxt = ~power;
+				RSTb_nxt = power || external_pg;
+				isolate_nxt = 1'b1;
 				TRIM_nxt = 1'b0;
-				DPD_nxt = 1'b0 || ~power;
+				DPD_nxt = 1'b0 || ~(power || external_pg);
 				CEb_HIGH_nxt = 1'b1;
 			end
 			sv2v_cast_B8280(7): begin
+				VDDA_out_nxt = 1'b1;
+				VDD_out_nxt = 1'b1;
+				VREF_out_nxt = 1'b1;
+				PORb_nxt = 1'b1;
+				RETb_nxt = 1'b1;
+				RSTb_nxt = 1'b1;
+				isolate_nxt = ~(power || external_pg);
+				TRIM_nxt = 1'b0;
+				DPD_nxt = 1'b0 || ~(power || external_pg);
+				CEb_HIGH_nxt = 1'b1;
+			end
+			sv2v_cast_B8280(8): begin
 				VDDA_out_nxt = 1'b1;
 				VDD_out_nxt = 1'b1;
 				VREF_out_nxt = 1'b1;
@@ -433,19 +472,7 @@ module PowerGateFSM_MRAM (
 				DPD_nxt = 1'b0;
 				CEb_HIGH_nxt = 1'b1;
 			end
-			sv2v_cast_B8280(8): begin
-				VDDA_out_nxt = 1'b1;
-				VDD_out_nxt = 1'b1;
-				VREF_out_nxt = 1'b1;
-				PORb_nxt = 1'b1;
-				RETb_nxt = 1'b1;
-				RSTb_nxt = 1'b1;
-				isolate_nxt = 1'b0;
-				TRIM_nxt = 1'b0;
-				DPD_nxt = 1'b0;
-				CEb_HIGH_nxt = 1'b1;
-			end
-			sv2v_cast_B8280(10): begin
+			sv2v_cast_B8280(9): begin
 				VDDA_out_nxt = 1'b1;
 				VDD_out_nxt = 1'b1;
 				VREF_out_nxt = 1'b1;
@@ -466,7 +493,7 @@ module PowerGateFSM_MRAM (
 				RSTb_nxt = 1'b1;
 				isolate_nxt = 1'b0;
 				TRIM_nxt = 1'b0;
-				DPD_nxt = 1'b1;
+				DPD_nxt = 1'b0;
 				CEb_HIGH_nxt = 1'b1;
 			end
 			sv2v_cast_B8280(12): begin
@@ -478,10 +505,22 @@ module PowerGateFSM_MRAM (
 				RSTb_nxt = 1'b1;
 				isolate_nxt = 1'b0;
 				TRIM_nxt = 1'b0;
-				DPD_nxt = 1'b0;
+				DPD_nxt = 1'b1;
 				CEb_HIGH_nxt = 1'b1;
 			end
 			sv2v_cast_B8280(13): begin
+				VDDA_out_nxt = 1'b1;
+				VDD_out_nxt = 1'b1;
+				VREF_out_nxt = 1'b1;
+				PORb_nxt = 1'b1;
+				RETb_nxt = 1'b1;
+				RSTb_nxt = 1'b1;
+				isolate_nxt = 1'b0;
+				TRIM_nxt = 1'b0;
+				DPD_nxt = 1'b0;
+				CEb_HIGH_nxt = 1'b1;
+			end
+			sv2v_cast_B8280(14): begin
 				VDDA_out_nxt = 1'b1;
 				VDD_out_nxt = 1'b1;
 				VREF_out_nxt = 1'b1;
