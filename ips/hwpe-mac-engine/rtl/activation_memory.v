@@ -25,8 +25,8 @@ module activation_memory (
 	input scan_en_in;
 	input [2:0] mode;
 	input wr_en_ext;
-	localparam integer parameters_TOTAL_ACTIVATION_MEMORY_SIZE = 256;
-	localparam integer parameters_INPUT_CHANNEL_ADDR_SIZE = 8;
+	localparam integer parameters_TOTAL_ACTIVATION_MEMORY_SIZE = 4096;
+	localparam integer parameters_INPUT_CHANNEL_ADDR_SIZE = 12;
 	input [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] wr_addr_ext;
 	localparam integer parameters_ACT_DATA_WIDTH = 8;
 	localparam integer parameters_N_DIM_ARRAY = 4;
