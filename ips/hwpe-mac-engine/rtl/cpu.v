@@ -106,8 +106,8 @@ module cpu (
 	reg signed [(parameters_N_DIM_ARRAY * parameters_WEIGHT_DATA_WIDTH) - 1:0] fc_input_array;
 	localparam integer parameters_NUMBER_OF_CR_SIGNALS = 18;
 	wire [((parameters_N_DIM_ARRAY * parameters_N_DIM_ARRAY) * parameters_NUMBER_OF_CR_SIGNALS) - 1:0] CR_PE_array;
-	localparam integer parameters_TOTAL_ACTIVATION_MEMORY_SIZE = 16384;
-	localparam integer parameters_INPUT_CHANNEL_ADDR_SIZE = 14;
+	localparam integer parameters_TOTAL_ACTIVATION_MEMORY_SIZE = 32768;
+	localparam integer parameters_INPUT_CHANNEL_ADDR_SIZE = 15;
 	reg [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] input_channel_rd_addr;
 	wire [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] input_channel_rd_addr_nl;
 	wire [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] input_channel_rd_addr_cu;

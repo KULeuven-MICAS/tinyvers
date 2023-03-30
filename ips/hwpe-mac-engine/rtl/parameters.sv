@@ -21,7 +21,7 @@ package parameters;
 //input channel memory
 	parameter integer INPUT_CHANNEL_DATA_WIDTH=8;
 
-        parameter integer TOTAL_ACTIVATION_MEMORY_SIZE=2**14; //
+        parameter integer TOTAL_ACTIVATION_MEMORY_SIZE=2**15; //
         parameter integer MACRO_SRAM_N_WORDS_ACT= 2048;
         parameter integer MACRO_SRAM_BITS_PER_WORD_ACT= 32;
 

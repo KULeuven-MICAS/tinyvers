@@ -99,8 +99,8 @@ module control_unit (
 	output reg [parameters_NUMBER_OF_NONLINEAR_FUNCTIONS_BITS - 1:0] type_nonlinear_function;
 	output reg wr_en_output_buffer;
 	output reg clear;
-	localparam integer parameters_TOTAL_ACTIVATION_MEMORY_SIZE = 16384;
-	localparam integer parameters_INPUT_CHANNEL_ADDR_SIZE = 14;
+	localparam integer parameters_TOTAL_ACTIVATION_MEMORY_SIZE = 32768;
+	localparam integer parameters_INPUT_CHANNEL_ADDR_SIZE = 15;
 	output reg [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] input_channel_rd_addr;
 	output reg input_channel_rd_en;
 	localparam integer parameters_TOTAL_WEIGHT_MEMORY_SIZE = 16384;
