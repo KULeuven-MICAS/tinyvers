@@ -99,17 +99,17 @@ module control_unit (
 	output reg [parameters_NUMBER_OF_NONLINEAR_FUNCTIONS_BITS - 1:0] type_nonlinear_function;
 	output reg wr_en_output_buffer;
 	output reg clear;
-	localparam integer parameters_TOTAL_ACTIVATION_MEMORY_SIZE = 65536;
-	localparam integer parameters_INPUT_CHANNEL_ADDR_SIZE = 16;
+	localparam integer parameters_TOTAL_ACTIVATION_MEMORY_SIZE = 256;
+	localparam integer parameters_INPUT_CHANNEL_ADDR_SIZE = 8;
 	output reg [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] input_channel_rd_addr;
 	output reg input_channel_rd_en;
-	localparam integer parameters_TOTAL_WEIGHT_MEMORY_SIZE = 65536;
-	localparam integer parameters_WEIGHT_MEMORY_ADDR_SIZE = 16;
+	localparam integer parameters_TOTAL_WEIGHT_MEMORY_SIZE = 256;
+	localparam integer parameters_WEIGHT_MEMORY_ADDR_SIZE = 8;
 	output reg [parameters_WEIGHT_MEMORY_ADDR_SIZE - 1:0] weight_rd_addr;
 	output reg weight_rd_en;
 	output reg [2:0] mode;
 	localparam integer parameters_NUMBER_OF_CR_SIGNALS = 18;
-	localparam integer parameters_N_DIM_ARRAY = 8;
+	localparam integer parameters_N_DIM_ARRAY = 4;
 	output reg [((parameters_N_DIM_ARRAY * parameters_N_DIM_ARRAY) * parameters_NUMBER_OF_CR_SIGNALS) - 1:0] CR_PE_array;
 	output reg enable_pe_array;
 	output reg enable_input_fifo;
@@ -1515,7 +1515,7 @@ module control_unit (
 			default: next_state = state;
 		endcase
 	end
-	localparam integer parameters_N_DIM_ARRAY_LOG = 3;
+	localparam integer parameters_N_DIM_ARRAY_LOG = 2;
 	always @(*) begin
 		write_l2_l1 = CONF_WRITE_L2_L1;
 		OUTPUT_TILE_SIZE = CONF_OUTPUT_CHANNEL_SIZE;

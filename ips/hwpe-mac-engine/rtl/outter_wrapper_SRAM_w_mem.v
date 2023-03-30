@@ -21,9 +21,9 @@ module outter_wrapper_SRAM_w_mem (
 	parameter integer SRAM_blocks_per_column = 2;
 	parameter SRAM_numBit = 8;
 	parameter SRAM_numWordAddr = 10;
-	localparam integer parameters_N_DIM_ARRAY = 8;
+	localparam integer parameters_N_DIM_ARRAY = 4;
 	localparam parameters_SUBBLOCK_W_MEM_NUMBER_OF_SUBBLOCKS = parameters_N_DIM_ARRAY;
-	localparam parameters_SUBBLOCK_W_MEM_NUMBER_OF_SUBBLOCKS_log = 3;
+	localparam parameters_SUBBLOCK_W_MEM_NUMBER_OF_SUBBLOCKS_log = 2;
 	parameter SRAM_outter_wrapper_totalWordAddr = ((SRAM_numWordAddr + $clog2(SRAM_blocks_per_row)) + $clog2(SRAM_blocks_per_column)) + parameters_SUBBLOCK_W_MEM_NUMBER_OF_SUBBLOCKS_log;
 	input clk;
 	input reset;
@@ -34,8 +34,8 @@ module outter_wrapper_SRAM_w_mem (
 	localparam parameters_SUBBLOCK_W_MEM_SRAM_blocks_per_row = parameters_N_DIM_ARRAY;
 	localparam integer parameters_WEIGHT_DATA_WIDTH = 8;
 	input signed [(parameters_SUBBLOCK_W_MEM_SRAM_blocks_per_row * parameters_WEIGHT_DATA_WIDTH) - 1:0] wr_data_cnn;
-	localparam integer parameters_TOTAL_WEIGHT_MEMORY_SIZE = 65536;
-	localparam integer parameters_WEIGHT_MEMORY_ADDR_SIZE = 16;
+	localparam integer parameters_TOTAL_WEIGHT_MEMORY_SIZE = 256;
+	localparam integer parameters_WEIGHT_MEMORY_ADDR_SIZE = 8;
 	localparam parameters_CNN_W_MEM_SRAM_totalWordAddr = parameters_WEIGHT_MEMORY_ADDR_SIZE;
 	input [parameters_CNN_W_MEM_SRAM_totalWordAddr - 1:0] wr_addr_cnn;
 	input wr_enable_fc;
@@ -87,7 +87,7 @@ module outter_wrapper_SRAM_w_mem (
 			);
 		end
 	endgenerate
-	localparam integer parameters_N_DIM_ARRAY_LOG = 3;
+	localparam integer parameters_N_DIM_ARRAY_LOG = 2;
 	always @(*) begin
 		for (i = 0; i < parameters_SUBBLOCK_W_MEM_NUMBER_OF_SUBBLOCKS; i = i + 1)
 			begin

@@ -25,11 +25,11 @@ module activation_memory (
 	input scan_en_in;
 	input [2:0] mode;
 	input wr_en_ext;
-	localparam integer parameters_TOTAL_ACTIVATION_MEMORY_SIZE = 65536;
-	localparam integer parameters_INPUT_CHANNEL_ADDR_SIZE = 16;
+	localparam integer parameters_TOTAL_ACTIVATION_MEMORY_SIZE = 256;
+	localparam integer parameters_INPUT_CHANNEL_ADDR_SIZE = 8;
 	input [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] wr_addr_ext;
 	localparam integer parameters_ACT_DATA_WIDTH = 8;
-	localparam integer parameters_N_DIM_ARRAY = 8;
+	localparam integer parameters_N_DIM_ARRAY = 4;
 	input signed [(parameters_N_DIM_ARRAY * parameters_ACT_DATA_WIDTH) - 1:0] wr_data_ext;
 	input loading_in_parallel;
 	input signed [(parameters_N_DIM_ARRAY * parameters_ACT_DATA_WIDTH) - 1:0] wr_input_word;
@@ -70,7 +70,7 @@ module activation_memory (
 	reg rd_en_ext_1;
 	reg [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] rd_addr_ext_1;
 	wire signed [(parameters_N_DIM_ARRAY * parameters_ACT_DATA_WIDTH) - 1:0] rd_data_ext_1;
-	localparam integer parameters_N_DIM_ARRAY_LOG = 3;
+	localparam integer parameters_N_DIM_ARRAY_LOG = 2;
 	wire [parameters_N_DIM_ARRAY_LOG - 1:0] j_signal [parameters_N_DIM_ARRAY - 1:0];
 	reg [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] rd_addr_plus_offset_reg;
 	reg rd_enable_muxed;

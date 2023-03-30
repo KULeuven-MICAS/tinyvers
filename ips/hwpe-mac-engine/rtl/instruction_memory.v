@@ -17,7 +17,7 @@ module instruction_memory (
 	localparam integer parameters_INSTRUCTION_MEMORY_FIELDS = 32;
 	localparam integer parameters_INSTRUCTION_MEMORY_WIDTH = 32;
 	output wire [(parameters_INSTRUCTION_MEMORY_FIELDS * parameters_INSTRUCTION_MEMORY_WIDTH) - 1:0] instruction;
-	localparam integer parameters_INSTRUCTION_MEMORY_SIZE = 16;
+	localparam integer parameters_INSTRUCTION_MEMORY_SIZE = 4;
 	reg [(parameters_INSTRUCTION_MEMORY_FIELDS * parameters_INSTRUCTION_MEMORY_WIDTH) - 1:0] instruction_memory [parameters_INSTRUCTION_MEMORY_SIZE - 1:0];
 	reg [parameters_INSTRUCTION_MEMORY_WIDTH - 1:0] im_file [0:(parameters_INSTRUCTION_MEMORY_SIZE * parameters_INSTRUCTION_MEMORY_FIELDS) - 1];
 	integer i;

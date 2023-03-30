@@ -15,7 +15,7 @@ module output_allignment_padding (
 	input [2:0] padd_zeros_right;
 	input reinitialize_padding;
 	localparam integer parameters_ACT_DATA_WIDTH = 8;
-	localparam integer parameters_N_DIM_ARRAY = 8;
+	localparam integer parameters_N_DIM_ARRAY = 4;
 	input signed [(parameters_N_DIM_ARRAY * parameters_ACT_DATA_WIDTH) - 1:0] input_word;
 	input input_enable;
 	output reg signed [(parameters_N_DIM_ARRAY * parameters_ACT_DATA_WIDTH) - 1:0] output_word;

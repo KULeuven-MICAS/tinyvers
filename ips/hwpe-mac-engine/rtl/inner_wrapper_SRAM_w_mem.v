@@ -14,9 +14,9 @@ module inner_wrapper_SRAM_w_mem (
 	parameter SRAM_numBit = 8;
 	parameter SRAM_numWordAddr = 10;
 	parameter SRAM_blocks_per_row_log = $clog2(SRAM_blocks_per_row);
-	localparam integer parameters_N_DIM_ARRAY = 8;
+	localparam integer parameters_N_DIM_ARRAY = 4;
 	localparam parameters_SUBBLOCK_W_MEM_NUMBER_OF_SUBBLOCKS = parameters_N_DIM_ARRAY;
-	localparam parameters_SUBBLOCK_W_MEM_NUMBER_OF_SUBBLOCKS_log = 3;
+	localparam parameters_SUBBLOCK_W_MEM_NUMBER_OF_SUBBLOCKS_log = 2;
 	parameter SRAM_totalWordAddr = ((SRAM_numWordAddr + SRAM_blocks_per_row_log) + $clog2(SRAM_blocks_per_column)) + parameters_SUBBLOCK_W_MEM_NUMBER_OF_SUBBLOCKS_log;
 	input clk;
 	input reset;

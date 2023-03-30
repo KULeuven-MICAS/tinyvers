@@ -5,7 +5,7 @@ package parameters;
 //////////////////// HARDWARE DESIGN VARIABLES //////////////////////////////////////////////////////
 // Instruction Memory
 	parameter integer INSTRUCTION_MEMORY_WIDTH=32;
-	parameter integer INSTRUCTION_MEMORY_SIZE=4; //1024 instrunctions
+	parameter integer INSTRUCTION_MEMORY_SIZE=16; //1024 instrunctions
 	parameter integer INSTRUCTION_MEMORY_FIELDS=32;
 
 //Mode variables
@@ -15,13 +15,13 @@ package parameters;
 	parameter integer MODE_EWS=3;
 
 // Design parameters
-	parameter integer N_DIM_ARRAY=4;
+	parameter integer N_DIM_ARRAY=8;
 	parameter integer N_DIM_ARRAY_LOG = $clog2(N_DIM_ARRAY);
 	parameter integer SIZE_ARRAY= N_DIM_ARRAY*N_DIM_ARRAY;
 //input channel memory
 	parameter integer INPUT_CHANNEL_DATA_WIDTH=8;
 
-        parameter integer TOTAL_ACTIVATION_MEMORY_SIZE=2**8; //
+        parameter integer TOTAL_ACTIVATION_MEMORY_SIZE=2**16; //
         parameter integer MACRO_SRAM_N_WORDS_ACT= 2048;
         parameter integer MACRO_SRAM_BITS_PER_WORD_ACT= 32;
 
@@ -46,7 +46,7 @@ package parameters;
 //weight memory with double buffering
 	parameter integer WEIGHT_DATA_WIDTH=8;
 	
-	parameter integer TOTAL_WEIGHT_MEMORY_SIZE = (2**8);   // Total memory for double buffering
+	parameter integer TOTAL_WEIGHT_MEMORY_SIZE = (2**16);   // Total memory for double buffering
         parameter integer MACRO_SRAM_N_WORDS_WEIGHT= 512;
         parameter integer MACRO_SRAM_BITS_PER_WORD_WEIGHT= 32;
 
@@ -82,7 +82,7 @@ parameter SUBBLOCK_W_MEM_SRAM_blocks_per_column = (TOTAL_WEIGHT_MEMORY_SIZE/(SUB
 	parameter integer NUMBER_OF_NONLINEAR_FUNCTIONS_BITS=3;
 
 // LUT
-	parameter integer LUT_SIZE=64;
+	parameter integer LUT_SIZE=128;
 	parameter integer LUT_ADDR = $clog2(LUT_SIZE);
 	parameter integer LUT_DATA_WIDTH=8;
 
@@ -100,7 +100,7 @@ parameter SUBBLOCK_W_MEM_SRAM_blocks_per_column = (TOTAL_WEIGHT_MEMORY_SIZE/(SUB
 
 
 /////////////////////////////////////// Structural Sparsity /////////////////////////////////////////////////////
-        parameter integer STR_SP_MEMORY_SIZE=2**8;
+        parameter integer STR_SP_MEMORY_SIZE=2**11;
         parameter integer STR_SP_MEMORY_WORD=32;
         parameter integer STR_SP_MEMORY_WORD_LOG=$clog2(STR_SP_MEMORY_WORD);
         parameter integer BLOCK_SPARSE=0;

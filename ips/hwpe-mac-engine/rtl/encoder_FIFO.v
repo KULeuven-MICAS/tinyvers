@@ -14,8 +14,8 @@ module encoder_FIFO (
 );
 	input clk;
 	input reset;
-	localparam integer parameters_TOTAL_ACTIVATION_MEMORY_SIZE = 65536;
-	localparam integer parameters_INPUT_CHANNEL_ADDR_SIZE = 16;
+	localparam integer parameters_TOTAL_ACTIVATION_MEMORY_SIZE = 256;
+	localparam integer parameters_INPUT_CHANNEL_ADDR_SIZE = 8;
 	input [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] input_wr_address;
 	input [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] input_rd_address;
 	input rd_enable;

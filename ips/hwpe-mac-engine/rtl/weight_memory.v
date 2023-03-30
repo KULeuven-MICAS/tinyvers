@@ -22,10 +22,10 @@ module weight_memory (
 	input enable;
 	input scan_en_in;
 	input wr_en_ext_fc_w;
-	localparam integer parameters_TOTAL_WEIGHT_MEMORY_SIZE = 65536;
-	localparam integer parameters_WEIGHT_MEMORY_ADDR_SIZE = 16;
+	localparam integer parameters_TOTAL_WEIGHT_MEMORY_SIZE = 256;
+	localparam integer parameters_WEIGHT_MEMORY_ADDR_SIZE = 8;
 	input [parameters_WEIGHT_MEMORY_ADDR_SIZE - 1:0] wr_addr_ext_fc_w;
-	localparam integer parameters_N_DIM_ARRAY = 8;
+	localparam integer parameters_N_DIM_ARRAY = 4;
 	localparam integer parameters_WEIGHT_DATA_WIDTH = 8;
 	input signed [(parameters_N_DIM_ARRAY * parameters_WEIGHT_DATA_WIDTH) - 1:0] wr_data_ext_fc_w;
 	input wr_en_ext_cnn_w;
@@ -77,7 +77,7 @@ module weight_memory (
 	integer m;
 	genvar r;
 	assign rd_addr_plus_offset = rd_addr + weight_memory_pointer;
-	localparam integer parameters_N_DIM_ARRAY_LOG = 3;
+	localparam integer parameters_N_DIM_ARRAY_LOG = 2;
 	assign rd_addr_fc = {rd_addr_plus_offset[(parameters_FC_W_MEM_SRAM_totalWordAddr - (2 * parameters_N_DIM_ARRAY_LOG)) - 1:0], {2 * parameters_N_DIM_ARRAY_LOG {1'b0}}};
 	assign rd_addr_cnn = {rd_addr_plus_offset[(parameters_CNN_W_MEM_SRAM_totalWordAddr - parameters_N_DIM_ARRAY_LOG) - 1:0], {parameters_N_DIM_ARRAY_LOG {1'b0}}};
 	localparam integer parameters_MODE_CNN = 1;

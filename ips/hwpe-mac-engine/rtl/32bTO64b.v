@@ -14,7 +14,7 @@ module stream32bTO64b (
 	localparam integer parameters_ACT_DATA_WIDTH = 8;
 	input signed [(4 * parameters_ACT_DATA_WIDTH) - 1:0] input_word;
 	input [31:0] input_addr;
-	localparam integer parameters_N_DIM_ARRAY = 8;
+	localparam integer parameters_N_DIM_ARRAY = 4;
 	output wire signed [(parameters_N_DIM_ARRAY * parameters_ACT_DATA_WIDTH) - 1:0] output_word;
 	output wire [31:0] output_addr;
 	output wire output_en;

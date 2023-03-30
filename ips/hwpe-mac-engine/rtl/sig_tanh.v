@@ -23,8 +23,8 @@ module sig_tanh (
 	input [1:0] PRECISION;
 	input enable_nonlinear_block;
 	input wr_en_ext_lut;
-	localparam integer parameters_LUT_SIZE = 128;
-	localparam integer parameters_LUT_ADDR = 7;
+	localparam integer parameters_LUT_SIZE = 64;
+	localparam integer parameters_LUT_ADDR = 6;
 	input [parameters_LUT_ADDR - 1:0] wr_addr_ext_lut;
 	localparam integer parameters_LUT_DATA_WIDTH = 8;
 	input signed [parameters_LUT_DATA_WIDTH - 1:0] wr_data_ext_lut;
@@ -34,10 +34,10 @@ module sig_tanh (
 	localparam integer parameters_NUMBER_OF_NONLINEAR_FUNCTIONS_BITS = 3;
 	input [parameters_NUMBER_OF_NONLINEAR_FUNCTIONS_BITS - 1:0] type_nonlinear_function;
 	localparam integer parameters_INPUT_CHANNEL_DATA_WIDTH = 8;
-	localparam integer parameters_N_DIM_ARRAY = 8;
+	localparam integer parameters_N_DIM_ARRAY = 4;
 	input signed [(parameters_N_DIM_ARRAY * parameters_INPUT_CHANNEL_DATA_WIDTH) - 1:0] read_word;
-	localparam integer parameters_TOTAL_ACTIVATION_MEMORY_SIZE = 65536;
-	localparam integer parameters_INPUT_CHANNEL_ADDR_SIZE = 16;
+	localparam integer parameters_TOTAL_ACTIVATION_MEMORY_SIZE = 256;
+	localparam integer parameters_INPUT_CHANNEL_ADDR_SIZE = 8;
 	output reg [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] input_channel_rd_addr;
 	output reg input_channel_rd_en;
 	output reg wr_en_output_buffer_nl;
@@ -212,7 +212,7 @@ module sig_tanh (
 			4: output_word = output_act;
 		endcase
 	end
-	localparam integer parameters_N_DIM_ARRAY_LOG = 3;
+	localparam integer parameters_N_DIM_ARRAY_LOG = 2;
 	always @(*) begin
 		enable_relu = 0;
 		wr_en_output_buffer_nl = 0;

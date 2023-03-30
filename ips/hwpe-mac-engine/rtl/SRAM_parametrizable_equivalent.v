@@ -19,7 +19,7 @@ module SRAM_parametrizable_equivalent (
 	output reg [numBit - 1:0] Q;
 	wire CLK_gated;
 	MEMS1D_BUFG_2048x32_wrapper SRAM_i(
-		.CLK(CLK),
+		.CLK(CLK_gated),
 		.D(D),
 		.AS(A[10:9]),
 		.AW(A[8:2]),
@@ -28,5 +28,11 @@ module SRAM_parametrizable_equivalent (
 		.RDWEN(WEB),
 		.BW(1'sb1),
 		.Q(Q)
+	);
+	pulp_clock_gating i_clk_gate_l1_act(
+		.clk_i(CLK),
+		.en_i(~scan_en_in),
+		.test_en_i(1'b0),
+		.clk_o(CLK_gated)
 	);
 endmodule

@@ -34,7 +34,7 @@ module inner_wrapper_SRAM_act_mem (
 	input signed [(SRAM_blocks_per_row * SRAM_numBit) - 1:0] wr_data_ext;
 	input rd_enable_ext;
 	input [SRAM_totalWordAddr - 1:0] rd_addr_ext;
-	localparam integer parameters_N_DIM_ARRAY = 8;
+	localparam integer parameters_N_DIM_ARRAY = 4;
 	output reg signed [(parameters_N_DIM_ARRAY * SRAM_numBit) - 1:0] rd_data_ext;
 	output wire signed [(SRAM_blocks_per_row * SRAM_numBit) - 1:0] rd_data;
 	reg signed [(SRAM_blocks_per_row * SRAM_numBit) - 1:0] rd_data_temp;

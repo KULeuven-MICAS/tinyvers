@@ -46,7 +46,7 @@ module array_pes (
 	input loading_in_parallel;
 	input enable_input_fifo;
 	localparam integer parameters_NUMBER_OF_CR_SIGNALS = 18;
-	localparam integer parameters_N_DIM_ARRAY = 8;
+	localparam integer parameters_N_DIM_ARRAY = 4;
 	input [((parameters_N_DIM_ARRAY * parameters_N_DIM_ARRAY) * parameters_NUMBER_OF_CR_SIGNALS) - 1:0] CR_PE_array;
 	localparam integer parameters_WEIGHT_DATA_WIDTH = 8;
 	input signed [(parameters_N_DIM_ARRAY * parameters_WEIGHT_DATA_WIDTH) - 1:0] cnn_weights_array;
