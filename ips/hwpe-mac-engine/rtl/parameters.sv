@@ -46,7 +46,7 @@ package parameters;
 //weight memory with double buffering
 	parameter integer WEIGHT_DATA_WIDTH=8;
 	
-	parameter integer TOTAL_WEIGHT_MEMORY_SIZE = (2**13);   // Total memory for double buffering
+	parameter integer TOTAL_WEIGHT_MEMORY_SIZE = (2**14);   // Total memory for double buffering
         parameter integer MACRO_SRAM_N_WORDS_WEIGHT= 512;
         parameter integer MACRO_SRAM_BITS_PER_WORD_WEIGHT= 32;
 

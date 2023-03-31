@@ -103,8 +103,8 @@ module control_unit (
 	localparam integer parameters_INPUT_CHANNEL_ADDR_SIZE = 14;
 	output reg [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] input_channel_rd_addr;
 	output reg input_channel_rd_en;
-	localparam integer parameters_TOTAL_WEIGHT_MEMORY_SIZE = 8192;
-	localparam integer parameters_WEIGHT_MEMORY_ADDR_SIZE = 13;
+	localparam integer parameters_TOTAL_WEIGHT_MEMORY_SIZE = 16384;
+	localparam integer parameters_WEIGHT_MEMORY_ADDR_SIZE = 14;
 	output reg [parameters_WEIGHT_MEMORY_ADDR_SIZE - 1:0] weight_rd_addr;
 	output reg weight_rd_en;
 	output reg [2:0] mode;

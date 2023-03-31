@@ -34,8 +34,8 @@ module outter_wrapper_SRAM_w_mem (
 	localparam parameters_SUBBLOCK_W_MEM_SRAM_blocks_per_row = parameters_N_DIM_ARRAY;
 	localparam integer parameters_WEIGHT_DATA_WIDTH = 8;
 	input signed [(parameters_SUBBLOCK_W_MEM_SRAM_blocks_per_row * parameters_WEIGHT_DATA_WIDTH) - 1:0] wr_data_cnn;
-	localparam integer parameters_TOTAL_WEIGHT_MEMORY_SIZE = 8192;
-	localparam integer parameters_WEIGHT_MEMORY_ADDR_SIZE = 13;
+	localparam integer parameters_TOTAL_WEIGHT_MEMORY_SIZE = 16384;
+	localparam integer parameters_WEIGHT_MEMORY_ADDR_SIZE = 14;
 	localparam parameters_CNN_W_MEM_SRAM_totalWordAddr = parameters_WEIGHT_MEMORY_ADDR_SIZE;
 	input [parameters_CNN_W_MEM_SRAM_totalWordAddr - 1:0] wr_addr_cnn;
 	input wr_enable_fc;

@@ -112,8 +112,8 @@ module cpu (
 	wire [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] input_channel_rd_addr_nl;
 	wire [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] input_channel_rd_addr_cu;
 	wire [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] input_channel_rd_addr_encoded;
-	localparam integer parameters_TOTAL_WEIGHT_MEMORY_SIZE = 8192;
-	localparam integer parameters_WEIGHT_MEMORY_ADDR_SIZE = 13;
+	localparam integer parameters_TOTAL_WEIGHT_MEMORY_SIZE = 16384;
+	localparam integer parameters_WEIGHT_MEMORY_ADDR_SIZE = 14;
 	wire [parameters_WEIGHT_MEMORY_ADDR_SIZE - 1:0] weight_rd_addr;
 	localparam integer parameters_INPUT_CHANNEL_DATA_WIDTH = 8;
 	wire signed [(parameters_N_DIM_ARRAY * parameters_INPUT_CHANNEL_DATA_WIDTH) - 1:0] input_channel_read_word;
