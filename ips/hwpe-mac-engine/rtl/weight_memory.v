@@ -22,8 +22,8 @@ module weight_memory (
 	input enable;
 	input scan_en_in;
 	input wr_en_ext_fc_w;
-	localparam integer parameters_TOTAL_WEIGHT_MEMORY_SIZE = 16384;
-	localparam integer parameters_WEIGHT_MEMORY_ADDR_SIZE = 14;
+	localparam integer parameters_TOTAL_WEIGHT_MEMORY_SIZE = 8192;
+	localparam integer parameters_WEIGHT_MEMORY_ADDR_SIZE = 13;
 	input [parameters_WEIGHT_MEMORY_ADDR_SIZE - 1:0] wr_addr_ext_fc_w;
 	localparam integer parameters_N_DIM_ARRAY = 4;
 	localparam integer parameters_WEIGHT_DATA_WIDTH = 8;

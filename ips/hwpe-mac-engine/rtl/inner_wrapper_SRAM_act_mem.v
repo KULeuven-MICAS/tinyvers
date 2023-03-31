@@ -248,14 +248,15 @@ module inner_wrapper_SRAM_act_mem (
 		end
 		for (k = 0; k < 1; k = k + 1) begin : generation_RF_column
 			for (j = 0; j < (SRAM_blocks_per_row / parameters_ACT_NUMBER_OF_WORDS_PER_ROW); j = j + 1) begin : generation_blocks_RF_row
-				SRAM_parametrizable_equivalent_with_reset #(
+				SRAM_parametrizable_equivalent #(
 					.numWord(64),
 					.numBit(parameters_MACRO_SRAM_BITS_PER_WORD_ACT)
 				) REGISTER_FILE_0(
 					.CLK(clk),
-					.reset(reset),
+					//.reset(reset),
 					.CEB(CEB_RF[k][0]),
 					.WEB(WEB[k * SRAM_blocks_per_row]),
+					.scan_en_in(scan_en_in),
 					.A(A[((k * SRAM_blocks_per_row) * SRAM_numWordAddr) + 5-:6]),
 					.D(D_concatenated[k][(parameters_MACRO_SRAM_BITS_PER_WORD_ACT * (j + 1)) - 1:parameters_MACRO_SRAM_BITS_PER_WORD_ACT * j]),
 					.Q(Q_concatenated_RF[k][(parameters_MACRO_SRAM_BITS_PER_WORD_ACT * (j + 1)) - 1:parameters_MACRO_SRAM_BITS_PER_WORD_ACT * j])
