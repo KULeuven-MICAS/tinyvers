@@ -84,10 +84,6 @@ module cpu (
 	output reg [15:0] CONF_K_o;
 	output reg SPARSITY;
 	wire [1:0] write_l2_l1;
-	wire [1:0] cr_fifo;
-	wire enable_strided_conv;
-	wire enable_deconv;
-	wire odd_X_tile;
 	wire [2:0] padd_zeros_left;
 	wire [2:0] padd_zeros_right;
 	wire signed [(parameters_N_DIM_ARRAY * parameters_ACT_DATA_WIDTH) - 1:0] output_array;
@@ -233,10 +229,6 @@ module cpu (
 	wire enable_BUFFERED_OUTPUT;
 	wire enable_pe_array;
 	control_unit CONTROL_UNIT(
-		.cr_fifo(cr_fifo),
-		.enable_strided_conv(enable_strided_conv),
-		.enable_deconv(enable_deconv),
-		.odd_X_tile(odd_X_tile),
 		.clk(clk),
 		.reset(reset),
 		.enable(enable),
@@ -378,10 +370,6 @@ module cpu (
 		.enable_nonlinear_block(enable_nonlinear_block)
 	);
 	array_pes ARRAY_PES(
-		.cr_fifo(cr_fifo),
-		.enable_strided_conv(enable_strided_conv),
-		.enable_deconv(enable_deconv),
-		.odd_X_tile(odd_X_tile),
 		.passing_data_between_pes_cnn(passing_data_between_pes_cnn),
 		.done_layer(done_layer),
 		.enable_BUFFERED_OUTPUT(enable_BUFFERED_OUTPUT),

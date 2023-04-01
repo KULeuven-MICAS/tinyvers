@@ -103,19 +103,6 @@ module pe (
 	reg overflow_p_1;
 	reg overflow_n_0;
 	reg overflow_n_1;
-	reg signed [parameters_INPUT_CHANNEL_DATA_WIDTH - 1:0] mult_00;
-	reg signed [parameters_INPUT_CHANNEL_DATA_WIDTH - 1:0] mult_01;
-	reg signed [parameters_INPUT_CHANNEL_DATA_WIDTH - 1:0] mult_10;
-	reg signed [parameters_INPUT_CHANNEL_DATA_WIDTH - 1:0] mult_11;
-	reg signed [parameters_INPUT_CHANNEL_DATA_WIDTH - 1:0] mult_act;
-	reg signed [parameters_INPUT_CHANNEL_DATA_WIDTH - 1:0] mult_wt;
-	reg signed [parameters_INPUT_CHANNEL_DATA_WIDTH - 1:0] sub_out_round;
-	reg signed [parameters_INPUT_CHANNEL_DATA_WIDTH:0] sub_0;
-	reg signed [parameters_INPUT_CHANNEL_DATA_WIDTH:0] sub_out;
-	reg signed [parameters_INPUT_CHANNEL_DATA_WIDTH:0] in_abs;
-	reg signed [parameters_INPUT_CHANNEL_DATA_WIDTH:0] out_abs_0;
-	reg signed [(2 * parameters_INPUT_CHANNEL_DATA_WIDTH) - 1:0] out_abs;
-	reg signed [parameters_ACC_DATA_WIDTH - 1:0] sum_00;
 	reg overflow_p_0_0;
 	reg overflow_p_0_1;
 	reg overflow_p_1_0;
@@ -183,40 +170,8 @@ module pe (
 				else
 					mult_1 = 8'b01010101;
 		endcase
-		mult_00 = 0;
-		mult_01 = 0;
-		mult_10 = 0;
-		mult_11 = 0;
-		mult_act = 0;
-		mult_wt = 0;
-		sub_out = 0;
-		in_abs = 0;
-		case (cr_15_design_v2)
-			1'b0: begin
-				mult_00 = 0;
-				mult_01 = 0;
-				mult_act = mult_0;
-				mult_wt = mult_1;
-			end
-			1'b1: begin
-				mult_00 = mult_0;
-				mult_01 = mult_1;
-				mult_act = sub_out_round;
-				mult_wt = sub_out_round;
-			end
-		endcase
-		case (cr_16_design_v2)
-			1'b0: begin
-				sub_out = sub_0;
-				sum_00 = mult_out;
-			end
-			1'b1: begin
-				in_abs = sub_0;
-				sum_00 = out_abs;
-			end
-		endcase
 		case (cr_0)
-			1'b0: pre_sum_0 = sum_00;
+			1'b0: pre_sum_0 = mult_out;
 			1'b1: pre_sum_0 = input_neighbour_pe_OR_input_adder_tree;
 		endcase
 		case (cr_1)
@@ -277,9 +232,6 @@ module pe (
 			1'b1: sum_0 = input_bias;
 		endcase
 	end
-	wire [2 * parameters_INPUT_CHANNEL_DATA_WIDTH:1] sv2v_tmp_5A1A1;
-	assign sv2v_tmp_5A1A1 = {7'b0000000, out_abs_0};
-	always @(*) out_abs = sv2v_tmp_5A1A1;
 	always @(*)
 		if (input_relu[parameters_ACC_DATA_WIDTH - 1] == 1'b1)
 			output_relu = 0;
@@ -438,16 +390,9 @@ module pe (
 		endcase
 	always @(*) begin
 		sum_0_muxed_with_design_v2 = sum_0;
-		sub_0 = mult_00 - mult_01;
-		mult_1_muxed_with_design_v2 = mult_wt;
-		mult_0_muxed_with_design_v2 = mult_act;
+		mult_1_muxed_with_design_v2 = mult_1;
+		mult_0_muxed_with_design_v2 = mult_0;
 	end
-	always @(*)
-		if (in_abs[parameters_ACT_DATA_WIDTH] == 1'b1)
-			out_abs_0 = -in_abs;
-		else
-			out_abs_0 = in_abs;
-	always @(*) sub_out_round = sub_out[parameters_ACT_DATA_WIDTH:0] + 1'b1;
 	M88_top MULT_0(
 		.a(mult_0_muxed_with_design_v2),
 		.w(mult_1_reordered),

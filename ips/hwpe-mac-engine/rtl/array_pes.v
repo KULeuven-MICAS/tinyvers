@@ -1,8 +1,4 @@
 module array_pes (
-	cr_fifo,
-	enable_strided_conv,
-	enable_deconv,
-	odd_X_tile,
 	clk,
 	reset,
 	enable,
@@ -27,11 +23,6 @@ module array_pes (
 	output_array_vertical,
 	shift_fixed_point
 );
-	input [1:0] cr_fifo;
-	input enable_strided_conv;
-	input enable_deconv;
-	input odd_X_tile;
-	input done_layer;
 	input passing_data_between_pes_cnn;
 	input clk;
 	input reset;
@@ -114,10 +105,6 @@ module array_pes (
 		.mode(mode),
 		.clear(clear),
 		.enable(enable_input_fifo),
-		.cr_fifo(cr_fifo),
-		.enable_strided_conv(enable_strided_conv),
-		.enable_deconv(enable_deconv),
-		.odd_X_tile(odd_X_tile),
 		.output_array(input_buffer_array)
 	);
 	generate

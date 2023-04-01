@@ -1,8 +1,4 @@
 module control_unit (
-	cr_fifo,
-	odd_X_tile,
-	enable_strided_conv,
-	enable_deconv,
 	finished_activation,
 	PC,
 	EXECUTION_FRAME_BY_FRAME,
@@ -66,12 +62,6 @@ module control_unit (
 	localparam integer parameters_STR_SP_MEMORY_WORD = 32;
 	reg [parameters_STR_SP_MEMORY_WORD - 1:0] next_sparse_val;
 	reg [parameters_STR_SP_MEMORY_WORD - 1:0] sparse_val_sram;
-	output reg [1:0] cr_fifo;
-	output reg odd_X_tile;
-	output reg enable_strided_conv;
-	output reg [1:0] write_l2_l1;
-	output reg enable_deconv;
-	reg next_odd_X_tile;
 	input clk;
 	input reset;
 	input enable;
@@ -239,7 +229,6 @@ module control_unit (
 	localparam CONV_ADD_BIAS_SHIFTING = 26;
 	localparam FC_ADDER_TREE_0 = 29;
 	localparam STR_SPARSITY = 27;
-	localparam CONV_FILLING_INPUT_FIFO_2 = 28;
 	wire [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] CONF_INPUT_MEMORY_POINTER;
 	wire [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] CONF_OUTPUT_MEMORY_POINTER;
 	wire [31:0] CONF_TCN_BLOCK_SIZE;
@@ -325,9 +314,6 @@ module control_unit (
 	assign CONF_TYPE_NONLINEAR_FUNCTION = instruction[25 * parameters_INSTRUCTION_MEMORY_WIDTH+:parameters_INSTRUCTION_MEMORY_WIDTH];
 	assign CONF_WEIGHT_TILE_SIZE = instruction[26 * parameters_INSTRUCTION_MEMORY_WIDTH+:parameters_INSTRUCTION_MEMORY_WIDTH];
 	assign CONF_NB_WEIGHT_TILE = instruction[27 * parameters_INSTRUCTION_MEMORY_WIDTH+:parameters_INSTRUCTION_MEMORY_WIDTH];
-	assign CONF_CONV_STRIDED = instruction[28 * parameters_INSTRUCTION_MEMORY_WIDTH+:parameters_INSTRUCTION_MEMORY_WIDTH];
-	assign CONF_CONV_DECONV = instruction[29 * parameters_INSTRUCTION_MEMORY_WIDTH+:parameters_INSTRUCTION_MEMORY_WIDTH];
-	assign CONF_NORM = instruction[30 * parameters_INSTRUCTION_MEMORY_WIDTH+:parameters_INSTRUCTION_MEMORY_WIDTH];
 	assign CONF_OUTPUT_PRECISION = instruction[31 * parameters_INSTRUCTION_MEMORY_WIDTH+:parameters_INSTRUCTION_MEMORY_WIDTH];
 	assign CONF_INPUT_PRECISION = instruction[31 * parameters_INSTRUCTION_MEMORY_WIDTH+:parameters_INSTRUCTION_MEMORY_WIDTH];
 	wire [1:1] sv2v_tmp_00CFA;
@@ -403,18 +389,8 @@ module control_unit (
 		CNN_FINISHED_FY_LOOP = counter_FY == (CONF_FY - 1);
 		CNN_FINISHED_C_LOOP = counter_C == (CONF_C - 1);
 		CNN_FINISHED_K_LOOP = counter_K == (CONF_K - 1);
-		if (CONF_CONV_STRIDED) begin
-			CNN_FINISHED_X_LOOP = counter_X == (CONF_O_X - 1);
-			CNN_FINISHED_Y_LOOP = counter_Y == (CONF_O_Y - 1);
-		end
-		else if (CONF_CONV_DECONV) begin
-			CNN_FINISHED_X_LOOP = counter_X == (CONF_O_X - 1);
-			CNN_FINISHED_Y_LOOP = counter_Y == (CONF_O_Y - 1);
-		end
-		else begin
-			CNN_FINISHED_X_LOOP = counter_X == (CONF_O_X - 1);
-			CNN_FINISHED_Y_LOOP = counter_Y == (CONF_O_Y - 1);
-		end
+		CNN_FINISHED_X_LOOP = counter_X == (CONF_O_X - 1);
+		CNN_FINISHED_Y_LOOP = counter_Y == (CONF_O_Y - 1);
 		FC_FINISHED_K_LOOP = counter_K == (CONF_K - 1);
 		EWS_FINISHED = counter_C == CONF_C;
 		ACCUMULATION_PES_FINISHED = counter_accumulation_pes == (parameters_N_DIM_ARRAY - 1);
@@ -446,7 +422,6 @@ module control_unit (
 			counter_weight_address_after_bias <= 0;
 			sparse_val <= 0;
 			sparse_addr <= 0;
-			odd_X_tile <= 0;
 		end
 		else begin
 			counter_weight_address_after_bias <= next_counter_weight_address_after_bias;
@@ -468,7 +443,6 @@ module control_unit (
 			counter_acc_cnn_bias <= next_counter_acc_cnn_bias;
 			sparse_val <= next_sparse_val;
 			sparse_addr <= next_sparse_addr;
-			odd_X_tile <= next_odd_X_tile;
 		end
 	localparam integer parameters_BLOCK_SPARSE = 0;
 	localparam integer parameters_STR_SP_MEMORY_WORD_LOG = 5;
@@ -493,7 +467,6 @@ module control_unit (
 		number_ones = 0;
 		next_sparse_val = sparse_val;
 		next_sparse_addr = sparse_addr;
-		next_odd_X_tile = 0;
 		case (state)
 			INITIAL: begin
 				next_counter_X = 0;
@@ -513,7 +486,6 @@ module control_unit (
 				next_sparse_val = sparse_val_sram;
 				next_sparse_addr = (next_counter_K >> parameters_BLOCK_SPARSE) + (counter_C >> parameters_STR_SP_MEMORY_WORD_LOG);
 				number_ones = 0;
-				next_odd_X_tile = 0;
 			end
 			STR_SPARSITY:
 				if (next_sparse_val[0] == 1) begin
@@ -545,60 +517,17 @@ module control_unit (
 						next_counter_X = 0;
 						next_counter_Y = counter_Y + 1;
 						next_counter_FX = 0;
-						if (CONF_CONV_STRIDED) begin
-							if ((CONF_ZERO_PADDING_Y != 0) && (counter_Y == 0)) begin
-								next_counter_offset_input_channel = CONF_PADDED_C_X;
-								next_counter_input_channel_address = CONF_PADDED_C_X;
-							end
-							else begin
-								next_counter_offset_input_channel = counter_offset_input_channel + (CONF_PADDED_C_X + (parameters_N_DIM_ARRAY << 1));
-								next_counter_input_channel_address = counter_offset_input_channel + (CONF_PADDED_C_X + (parameters_N_DIM_ARRAY << 1));
-							end
-						end
-						else if (CONF_CONV_DECONV) begin
-							if (((counter_Y + 1) % 2) == 0) begin
-								if (((counter_X + 1) % 2) == 0) begin
-									next_counter_offset_input_channel = (counter_offset_input_channel + parameters_N_DIM_ARRAY) - CONF_PADDED_C_X;
-									next_counter_input_channel_address = (counter_offset_input_channel + parameters_N_DIM_ARRAY) - CONF_PADDED_C_X;
-								end
-								else begin
-									next_counter_offset_input_channel = counter_offset_input_channel;
-									next_counter_input_channel_address = counter_offset_input_channel;
-								end
-							end
-							else if (((counter_X + 1) % 2) == 0) begin
-								next_counter_offset_input_channel = counter_offset_input_channel + parameters_N_DIM_ARRAY;
-								next_counter_input_channel_address = counter_offset_input_channel + parameters_N_DIM_ARRAY;
-							end
-							else if ((CONF_ZERO_PADDING_Y != 0) && (counter_Y == 0)) begin
-								next_counter_offset_input_channel = 0;
-								next_counter_input_channel_address = 0;
-							end
-							else begin
-								next_counter_offset_input_channel = counter_offset_input_channel;
-								next_counter_input_channel_address = counter_offset_input_channel;
-							end
-						end
-						else begin
-							next_counter_offset_input_channel = counter_offset_input_channel + 8;
-							next_counter_input_channel_address = counter_offset_input_channel + 8;
-							if ((CONF_ZERO_PADDING_Y != 0) && (counter_Y == 0)) begin
-								next_counter_offset_input_channel = 0;
-								next_counter_input_channel_address = 0;
-							end
+						next_counter_offset_input_channel = counter_offset_input_channel + 8;
+						next_counter_input_channel_address = counter_offset_input_channel + 8;
+						if ((CONF_ZERO_PADDING_Y != 0) && (counter_Y == 0)) begin
+							next_counter_offset_input_channel = 0;
+							next_counter_input_channel_address = 0;
 						end
 						next_counter_C = 0;
 						next_counter_accumulation_pes = counter_accumulation_pes;
 						next_counter_weight_address = counter_weight_address + 1;
 						next_counter_weight_address_after_bias = 0;
-						if (CONF_CONV_DECONV == 1) begin
-							if (((counter_Y + 1) % 2) == 0)
-								next_counter_FY = 0;
-							else
-								next_counter_FY = 2;
-						end
-						else
-							next_counter_FY = 0;
+						next_counter_FY = 0;
 						next_counter_K = 0;
 					end
 					else if (CNN_FINISHED_C_LOOP & CNN_FINISHED_K_LOOP) begin
@@ -612,24 +541,8 @@ module control_unit (
 						next_counter_FY = 0;
 						next_counter_K = 0;
 						next_sparse_val = sparse_val_sram;
-						if (CONF_CONV_STRIDED) begin
-							next_counter_offset_input_channel = counter_offset_input_channel + (parameters_N_DIM_ARRAY << 1);
-							next_counter_input_channel_address = counter_offset_input_channel + (parameters_N_DIM_ARRAY << 1);
-						end
-						else if (CONF_CONV_DECONV) begin
-							if (((counter_X + 1) % 2) == 0) begin
-								next_counter_offset_input_channel = counter_offset_input_channel + parameters_N_DIM_ARRAY;
-								next_counter_input_channel_address = counter_offset_input_channel + parameters_N_DIM_ARRAY;
-							end
-							else begin
-								next_counter_offset_input_channel = counter_offset_input_channel;
-								next_counter_input_channel_address = counter_offset_input_channel;
-							end
-						end
-						else begin
-							next_counter_offset_input_channel = counter_offset_input_channel + parameters_N_DIM_ARRAY;
-							next_counter_input_channel_address = counter_offset_input_channel + parameters_N_DIM_ARRAY;
-						end
+						next_counter_offset_input_channel = counter_offset_input_channel + parameters_N_DIM_ARRAY;
+						next_counter_input_channel_address = counter_offset_input_channel + parameters_N_DIM_ARRAY;
 					end
 					else if (CNN_FINISHED_C_LOOP || FC_FINISHED_C_LOOP) begin
 						next_counter_X = counter_X;
@@ -657,30 +570,12 @@ module control_unit (
 						next_counter_offset_input_channel = counter_offset_input_channel;
 						next_counter_C = (counter_C + next_counter_sparsity) + 1;
 						next_counter_accumulation_pes = counter_accumulation_pes;
-						if (CONF_CONV_DECONV) begin
-							if ((counter_Y % 2) == 0) begin
-								next_counter_FY = 0;
-								next_counter_weight_address = counter_weight_address;
-							end
-							else begin
-								next_counter_FY = counter_FY;
-								next_counter_weight_address = counter_weight_address - CONF_FX;
-							end
-						end
-						else begin
-							next_counter_weight_address = counter_weight_address;
-							next_counter_FY = 0;
-						end
+						next_counter_weight_address = counter_weight_address;
+						next_counter_FY = 0;
 						next_counter_K = counter_K;
 						next_sparse_val = sparse_val >> (next_counter_sparsity + 1);
-						if (CONF_CONV_STRIDED) begin
-							next_counter_input_channel_address = (counter_input_channel_address + ((CONF_SIZE_CHANNEL + (parameters_N_DIM_ARRAY << 2)) * next_counter_sparsity)) + (CONF_SIZE_CHANNEL + (parameters_N_DIM_ARRAY << 1));
-							next_counter_current_channel_address = counter_current_channel_address + ((CONF_SIZE_CHANNEL + (parameters_N_DIM_ARRAY << 2)) * (next_counter_sparsity + 1));
-						end
-						else begin
-							next_counter_input_channel_address = (counter_offset_input_channel + counter_current_channel_address) + (CONF_SIZE_CHANNEL * (next_counter_sparsity + 1));
-							next_counter_current_channel_address = counter_current_channel_address + (CONF_SIZE_CHANNEL * (next_counter_sparsity + 1));
-						end
+						next_counter_input_channel_address = (counter_offset_input_channel + counter_current_channel_address) + (CONF_SIZE_CHANNEL * (next_counter_sparsity + 1));
+						next_counter_current_channel_address = counter_current_channel_address + (CONF_SIZE_CHANNEL * (next_counter_sparsity + 1));
 					end
 				end
 				else begin
@@ -710,11 +605,6 @@ module control_unit (
 				next_counter_K = counter_K;
 				SPARSITY_SET = 0;
 				number_ones = 0;
-				if (CONF_CONV_DECONV)
-					if ((counter_X % 2) == 0)
-						next_odd_X_tile = 0;
-					else
-						next_odd_X_tile = 1;
 			end
 			CONV_FILLING_INPUT_FIFO: begin
 				next_counter_weight_address = counter_weight_address;
@@ -741,40 +631,6 @@ module control_unit (
 				next_counter_K = counter_K;
 				SPARSITY_SET = 0;
 				number_ones = 0;
-				if (CONF_CONV_DECONV)
-					if ((counter_X % 2) == 0)
-						next_odd_X_tile = 0;
-					else
-						next_odd_X_tile = 1;
-			end
-			CONV_FILLING_INPUT_FIFO_2: begin
-				next_counter_X = counter_X;
-				next_counter_Y = counter_Y;
-				next_counter_FX = 0;
-				next_counter_offset_input_channel = counter_offset_input_channel;
-				next_counter_C = counter_C;
-				next_counter_accumulation_pes = 0;
-				if (CONF_CONV_DECONV) begin
-					if ((counter_Y % 2) == 0)
-						next_counter_weight_address = counter_weight_address;
-					else
-						next_counter_weight_address = counter_weight_address + CONF_FX;
-				end
-				else
-					next_counter_weight_address = counter_weight_address;
-				if (CONF_CONV_DECONV) begin
-					next_counter_input_channel_address = counter_input_channel_address - (parameters_N_DIM_ARRAY >> 1);
-					if ((counter_X % 2) == 0)
-						next_odd_X_tile = 0;
-					else
-						next_odd_X_tile = 1;
-				end
-				else
-					next_counter_input_channel_address = counter_input_channel_address + parameters_N_DIM_ARRAY;
-				next_counter_FY = counter_FY;
-				next_counter_K = counter_K;
-				SPARSITY_SET = 0;
-				number_ones = 0;
 			end
 			CONV_PRE_MAC: begin
 				next_counter_input_buffer_loading = 0;
@@ -788,15 +644,7 @@ module control_unit (
 				next_counter_FY = counter_FY;
 				next_counter_K = counter_K;
 				next_counter_sparsity = 0;
-				if (CONF_CONV_DECONV)
-					if ((counter_X % 2) == 0)
-						next_odd_X_tile = 0;
-					else
-						next_odd_X_tile = 1;
-				if (CONF_CONV_STRIDED || CONF_CONV_DECONV)
-					next_counter_input_channel_address = counter_input_channel_address;
-				else
-					next_counter_input_channel_address = counter_input_channel_address + CONF_DILATION;
+				next_counter_input_channel_address = counter_input_channel_address + CONF_DILATION;
 			end
 			CONV_PRE_MAC_2: begin
 				next_counter_input_buffer_loading = 0;
@@ -809,22 +657,9 @@ module control_unit (
 				next_counter_weight_address = counter_weight_address + 1;
 				next_counter_FY = counter_FY;
 				next_counter_K = counter_K;
-				if (CONF_CONV_DECONV)
-					if ((counter_X % 2) == 0)
-						next_odd_X_tile = 0;
-					else
-						next_odd_X_tile = 1;
-				if (CONF_CONV_STRIDED || CONF_CONV_DECONV)
-					next_counter_input_channel_address = counter_input_channel_address;
-				else
-					next_counter_input_channel_address = (counter_input_channel_address + CONF_DILATION) + parameters_N_DIM_ARRAY;
+				next_counter_input_channel_address = (counter_input_channel_address + CONF_DILATION) + parameters_N_DIM_ARRAY;
 			end
 			CONV_MAC: begin
-				if (CONF_CONV_DECONV)
-					if ((counter_X % 2) == 0)
-						next_odd_X_tile = 0;
-					else
-						next_odd_X_tile = 1;
 				if (((((CNN_FINISHED_FX_LOOP & CNN_FINISHED_FY_LOOP) & CNN_FINISHED_C_LOOP) & CNN_FINISHED_K_LOOP) & CNN_FINISHED_X_LOOP) & CNN_FINISHED_Y_LOOP) begin
 					next_counter_X = counter_X;
 					next_counter_Y = counter_Y + 1;
@@ -842,60 +677,17 @@ module control_unit (
 					next_counter_X = 0;
 					next_counter_Y = counter_Y + 1;
 					next_counter_FX = 0;
-					if (CONF_CONV_STRIDED) begin
-						if ((CONF_ZERO_PADDING_Y != 0) && (counter_Y == 0)) begin
-							next_counter_offset_input_channel = CONF_PADDED_C_X;
-							next_counter_input_channel_address = CONF_PADDED_C_X;
-						end
-						else begin
-							next_counter_offset_input_channel = counter_offset_input_channel + (CONF_PADDED_C_X + (parameters_N_DIM_ARRAY << 1));
-							next_counter_input_channel_address = counter_offset_input_channel + (CONF_PADDED_C_X + (parameters_N_DIM_ARRAY << 1));
-						end
-					end
-					else if (CONF_CONV_DECONV) begin
-						if (((counter_Y + 1) % 2) == 0) begin
-							if (((counter_X + 1) % 2) == 0) begin
-								next_counter_offset_input_channel = (counter_offset_input_channel + parameters_N_DIM_ARRAY) - CONF_PADDED_C_X;
-								next_counter_input_channel_address = (counter_offset_input_channel + parameters_N_DIM_ARRAY) - CONF_PADDED_C_X;
-							end
-							else begin
-								next_counter_offset_input_channel = counter_offset_input_channel;
-								next_counter_input_channel_address = counter_offset_input_channel;
-							end
-						end
-						else if (((counter_X + 1) % 2) == 0) begin
-							next_counter_offset_input_channel = counter_offset_input_channel + parameters_N_DIM_ARRAY;
-							next_counter_input_channel_address = counter_offset_input_channel + parameters_N_DIM_ARRAY;
-						end
-						else if ((CONF_ZERO_PADDING_Y != 0) && (counter_Y == 0)) begin
-							next_counter_offset_input_channel = 0;
-							next_counter_input_channel_address = 0;
-						end
-						else begin
-							next_counter_offset_input_channel = counter_offset_input_channel;
-							next_counter_input_channel_address = counter_offset_input_channel;
-						end
-					end
-					else begin
-						next_counter_offset_input_channel = counter_offset_input_channel + 8;
-						next_counter_input_channel_address = counter_offset_input_channel + 8;
-						if ((CONF_ZERO_PADDING_Y != 0) && (counter_Y == 0)) begin
-							next_counter_offset_input_channel = 0;
-							next_counter_input_channel_address = 0;
-						end
+					next_counter_offset_input_channel = counter_offset_input_channel + 8;
+					next_counter_input_channel_address = counter_offset_input_channel + 8;
+					if ((CONF_ZERO_PADDING_Y != 0) && (counter_Y == 0)) begin
+						next_counter_offset_input_channel = 0;
+						next_counter_input_channel_address = 0;
 					end
 					next_counter_C = 0;
 					next_counter_accumulation_pes = counter_accumulation_pes;
 					next_counter_weight_address = counter_weight_address + 1;
 					next_counter_weight_address_after_bias = 0;
-					if (CONF_CONV_DECONV == 1) begin
-						if (((counter_Y + 1) % 2) == 0)
-							next_counter_FY = 0;
-						else
-							next_counter_FY = CONF_FY - 1;
-					end
-					else
-						next_counter_FY = 0;
+					next_counter_FY = 0;
 					next_counter_K = 0;
 				end
 				else if (((CNN_FINISHED_FX_LOOP & CNN_FINISHED_FY_LOOP) & CNN_FINISHED_C_LOOP) & CNN_FINISHED_K_LOOP) begin
@@ -908,24 +700,8 @@ module control_unit (
 					next_counter_weight_address_after_bias = 0;
 					next_counter_FY = 0;
 					next_counter_K = 0;
-					if (CONF_CONV_STRIDED) begin
-						next_counter_offset_input_channel = counter_offset_input_channel + (parameters_N_DIM_ARRAY << 1);
-						next_counter_input_channel_address = counter_offset_input_channel + (parameters_N_DIM_ARRAY << 1);
-					end
-					else if (CONF_CONV_DECONV) begin
-						if (((counter_X + 1) % 2) == 0) begin
-							next_counter_offset_input_channel = counter_offset_input_channel + parameters_N_DIM_ARRAY;
-							next_counter_input_channel_address = counter_offset_input_channel + parameters_N_DIM_ARRAY;
-						end
-						else begin
-							next_counter_offset_input_channel = counter_offset_input_channel;
-							next_counter_input_channel_address = counter_offset_input_channel;
-						end
-					end
-					else begin
-						next_counter_offset_input_channel = counter_offset_input_channel + parameters_N_DIM_ARRAY;
-						next_counter_input_channel_address = counter_offset_input_channel + parameters_N_DIM_ARRAY;
-					end
+					next_counter_offset_input_channel = counter_offset_input_channel + parameters_N_DIM_ARRAY;
+					next_counter_input_channel_address = counter_offset_input_channel + parameters_N_DIM_ARRAY;
 				end
 				else if ((CNN_FINISHED_FX_LOOP & CNN_FINISHED_FY_LOOP) & CNN_FINISHED_C_LOOP) begin
 					next_counter_X = counter_X;
@@ -948,18 +724,8 @@ module control_unit (
 					next_counter_C = counter_C + 1;
 					next_counter_accumulation_pes = counter_accumulation_pes;
 					next_counter_weight_address_after_bias = counter_weight_address_after_bias;
-					if (CONF_CONV_STRIDED) begin
-						next_counter_input_channel_address = counter_input_channel_address + parameters_N_DIM_ARRAY;
-						next_counter_current_channel_address = counter_current_channel_address + (CONF_SIZE_CHANNEL + (parameters_N_DIM_ARRAY << 2));
-					end
-					else if (CONF_CONV_DECONV) begin
-						next_counter_input_channel_address = counter_input_channel_address - (parameters_N_DIM_ARRAY >> 1);
-						next_counter_current_channel_address = counter_current_channel_address + CONF_SIZE_CHANNEL;
-					end
-					else begin
-						next_counter_input_channel_address = (counter_offset_input_channel + counter_current_channel_address) + CONF_SIZE_CHANNEL;
-						next_counter_current_channel_address = counter_current_channel_address + CONF_SIZE_CHANNEL;
-					end
+					next_counter_input_channel_address = (counter_offset_input_channel + counter_current_channel_address) + CONF_SIZE_CHANNEL;
+					next_counter_current_channel_address = counter_current_channel_address + CONF_SIZE_CHANNEL;
 					next_counter_K = counter_K;
 					next_counter_sparsity = 0;
 					if (CONF_STR_SPARSITY) begin
@@ -969,20 +735,8 @@ module control_unit (
 						else
 							next_sparse_addr = sparse_addr;
 					end
-					if (CONF_CONV_DECONV) begin
-						if ((counter_Y % 2) == 0) begin
-							next_counter_FY = 0;
-							next_counter_weight_address = counter_weight_address;
-						end
-						else begin
-							next_counter_FY = counter_FY;
-							next_counter_weight_address = counter_weight_address + CONF_FX;
-						end
-					end
-					else begin
-						next_counter_weight_address = counter_weight_address;
-						next_counter_FY = 0;
-					end
+					next_counter_weight_address = counter_weight_address;
+					next_counter_FY = 0;
 					if (CONF_ZERO_PADDING_Y != 0) begin
 						if (counter_Y == 0)
 							next_counter_FY = next_counter_FY + CONF_ZERO_PADDING_Y;
@@ -1002,24 +756,10 @@ module control_unit (
 					next_counter_C = counter_C;
 					next_counter_accumulation_pes = counter_accumulation_pes;
 					next_counter_weight_address_after_bias = counter_weight_address_after_bias;
-					if (CONF_CONV_STRIDED)
-						next_counter_input_channel_address = counter_input_channel_address + parameters_N_DIM_ARRAY;
-					else if (CONF_CONV_DECONV)
-						next_counter_input_channel_address = counter_input_channel_address - (parameters_N_DIM_ARRAY >> 1);
-					else
-						next_counter_input_channel_address = counter_input_channel_address + ((CONF_PADDED_C_X - CONF_FX) - parameters_N_DIM_ARRAY);
+					next_counter_input_channel_address = counter_input_channel_address + ((CONF_PADDED_C_X - CONF_FX) - parameters_N_DIM_ARRAY);
 					next_counter_K = counter_K;
-					if (CONF_CONV_DECONV) begin
-						next_counter_weight_address = counter_weight_address + CONF_FX;
-						if ((counter_Y % 2) == 0)
-							next_counter_FY = (counter_FY + CONF_FY) - 1;
-						else
-							next_counter_FY = counter_FY + 1;
-					end
-					else begin
-						next_counter_weight_address = counter_weight_address;
-						next_counter_FY = counter_FY + 1;
-					end
+					next_counter_weight_address = counter_weight_address;
+					next_counter_FY = counter_FY + 1;
 				end
 				else if (!CNN_FINISHED_FX_LOOP) begin
 					next_counter_X = counter_X;
@@ -1030,40 +770,8 @@ module control_unit (
 					next_counter_accumulation_pes = counter_accumulation_pes;
 					next_counter_FY = counter_FY;
 					next_counter_K = counter_K;
-					if (CONF_CONV_STRIDED) begin
-						next_counter_weight_address = counter_weight_address + 1;
-						if (counter_FX == 0) begin
-							if (counter_FY == (CONF_FY - 1))
-								next_counter_input_channel_address = (counter_offset_input_channel + counter_current_channel_address) + (CONF_SIZE_CHANNEL + (parameters_N_DIM_ARRAY << 2));
-							else
-								next_counter_input_channel_address = counter_input_channel_address + (CONF_PADDED_C_X - (parameters_N_DIM_ARRAY << 1));
-						end
-						else
-							next_counter_input_channel_address = counter_input_channel_address + parameters_N_DIM_ARRAY;
-					end
-					else if (CONF_CONV_DECONV) begin
-						if (counter_FX == 0) begin
-							if (counter_FY == (CONF_FY - 1)) begin
-								next_counter_input_channel_address = (counter_offset_input_channel + counter_current_channel_address) + CONF_SIZE_CHANNEL;
-								next_counter_weight_address = counter_weight_address + 1;
-							end
-							else begin
-								next_counter_input_channel_address = counter_input_channel_address + (CONF_PADDED_C_X - (parameters_N_DIM_ARRAY >> 1));
-								next_counter_weight_address = counter_weight_address + 1;
-							end
-						end
-						else begin
-							next_counter_input_channel_address = counter_input_channel_address + parameters_N_DIM_ARRAY;
-							if ((counter_Y % 2) == 0)
-								next_counter_weight_address = counter_weight_address + 1;
-							else
-								next_counter_weight_address = (counter_weight_address + CONF_FX) + 1;
-						end
-					end
-					else begin
-						next_counter_input_channel_address = counter_input_channel_address + CONF_DILATION;
-						next_counter_weight_address = counter_weight_address + 1;
-					end
+					next_counter_input_channel_address = counter_input_channel_address + CONF_DILATION;
+					next_counter_weight_address = counter_weight_address + 1;
 				end
 				if (CONF_FX == 1)
 					next_counter_input_buffer_loading = 0;
@@ -1105,11 +813,6 @@ module control_unit (
 				next_counter_K = counter_K;
 				if (CONF_STR_SPARSITY)
 					next_sparse_addr = (next_counter_K >> parameters_BLOCK_SPARSE) + (next_counter_C >> parameters_STR_SP_MEMORY_WORD_LOG);
-				if (CONF_CONV_DECONV)
-					if ((counter_X % 2) == 0)
-						next_odd_X_tile = 0;
-					else
-						next_odd_X_tile = 1;
 			end
 			CONV_ADD_BIAS_SHIFTING: begin
 				next_counter_X = counter_X;
@@ -1131,22 +834,10 @@ module control_unit (
 				next_counter_weight_address = counter_weight_address;
 				next_counter_accumulation_pes = counter_accumulation_pes + 1;
 				next_counter_input_channel_address = counter_input_channel_address;
-				if (CONF_CONV_DECONV) begin
-					if ((counter_Y % 2) == 0)
-						next_counter_FY = 0;
-					else
-						next_counter_FY = 2;
-				end
-				else
-					next_counter_FY = 0;
+				next_counter_FY = 0;
 				next_counter_K = counter_K;
 				if (counter_K == 0)
 					next_counter_output_channel_address = counter_output_channel_address + 1;
-				if (CONF_CONV_DECONV)
-					if ((counter_X % 2) == 0)
-						next_odd_X_tile = 0;
-					else
-						next_odd_X_tile = 1;
 			end
 			CONV_PASSING_OUTPUTS_VERTICAL: begin
 				next_counter_X = counter_X;
@@ -1158,22 +849,10 @@ module control_unit (
 				next_counter_input_channel_address = counter_input_channel_address;
 				if (CONF_STR_SPARSITY)
 					next_sparse_val = sparse_val_sram;
-				if (CONF_CONV_DECONV) begin
-					if ((counter_Y % 2) == 0)
-						next_counter_FY = 0;
-					else
-						next_counter_FY = 2;
-				end
-				else
-					next_counter_FY = 0;
+				next_counter_FY = 0;
 				next_counter_K = counter_K;
 				if (counter_K == 0)
 					next_counter_output_channel_address = counter_output_channel_address + 1;
-				if (CONF_CONV_DECONV)
-					if ((counter_X % 2) == 0)
-						next_odd_X_tile = 0;
-					else
-						next_odd_X_tile = 1;
 			end
 			CONV_CLEAR_MAC: begin
 				next_counter_FX = 0;
@@ -1182,20 +861,8 @@ module control_unit (
 				next_counter_accumulation_pes = counter_accumulation_pes;
 				next_counter_input_channel_address = counter_input_channel_address;
 				next_counter_current_channel_address = 0;
-				if (CONF_CONV_DECONV) begin
-					if ((counter_Y % 2) == 0)
-						next_counter_FY = 0;
-					else
-						next_counter_FY = 2;
-				end
-				else
-					next_counter_FY = 0;
+				next_counter_FY = 0;
 				next_counter_K = counter_K;
-				if (CONF_CONV_DECONV)
-					if ((counter_X % 2) == 0)
-						next_odd_X_tile = 0;
-					else
-						next_odd_X_tile = 1;
 			end
 			FC_PRE_MAC: begin
 				next_counter_accumulation_pes = 0;
@@ -1408,12 +1075,7 @@ module control_unit (
 						next_state = FC_PRE_MAC;
 					else
 						next_state = state;
-			CONV_FILLING_INPUT_FIFO:
-				if (CONF_CONV_STRIDED || CONF_CONV_DECONV)
-					next_state = CONV_FILLING_INPUT_FIFO_2;
-				else
-					next_state = CONV_PRE_MAC;
-			CONV_FILLING_INPUT_FIFO_2: next_state = CONV_PRE_MAC;
+			CONV_FILLING_INPUT_FIFO: next_state = CONV_PRE_MAC;
 			CONV_PRE_MAC: next_state = CONV_MAC;
 			CONV_PRE_MAC_2: next_state = CONV_MAC;
 			CONV_MAC:
@@ -1522,9 +1184,6 @@ module control_unit (
 		WEIGHT_TILE_SIZE = CONF_WEIGHT_TILE_SIZE;
 		NB_INPUT_TILE = 0;
 		NB_WEIGHT_TILE = CONF_NB_WEIGHT_TILE;
-		cr_fifo = 0;
-		enable_strided_conv = CONF_CONV_STRIDED;
-		enable_deconv = CONF_CONV_DECONV;
 		passing_data_between_pes_cnn = 0;
 		use_adder_tree = 0;
 		reinitialize_padding = 0;
@@ -1568,7 +1227,6 @@ module control_unit (
 				CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000000000000010;
 		case (state)
 			INITIAL: begin
-				cr_fifo = 0;
 				enable_input_fifo = 0;
 				loading_in_parallel = 0;
 				clear = 1;
@@ -1583,7 +1241,6 @@ module control_unit (
 				wr_en_output_buffer = 0;
 			end
 			STR_SPARSITY: begin
-				cr_fifo = 0;
 				enable_input_fifo = 0;
 				loading_in_parallel = 0;
 				clear = 0;
@@ -1598,7 +1255,6 @@ module control_unit (
 				wr_en_output_buffer = 0;
 			end
 			CONV_FILLING_INPUT_FIFO: begin
-				cr_fifo = 0;
 				enable_input_fifo = 0;
 				loading_in_parallel = 1;
 				clear = 0;
@@ -1614,23 +1270,7 @@ module control_unit (
 				if (counter_X == 0)
 					reinitialize_padding = 1;
 			end
-			CONV_FILLING_INPUT_FIFO_2: begin
-				enable_input_fifo = 0;
-				cr_fifo = 2'b00;
-				loading_in_parallel = 1;
-				clear = 0;
-				enable_pe_array = 1;
-				for (i = 0; i < parameters_N_DIM_ARRAY; i = i + 1)
-					for (j = 0; j < parameters_N_DIM_ARRAY; j = j + 1)
-						CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000000000000010;
-				input_channel_rd_addr = counter_input_channel_address;
-				input_channel_rd_en = 1;
-				weight_rd_addr = counter_weight_address;
-				weight_rd_en = 0;
-				wr_en_output_buffer = 0;
-			end
 			CONV_PADDING_FILLING_INPUT_FIFO: begin
-				cr_fifo = 0;
 				enable_input_fifo = 0;
 				loading_in_parallel = 0;
 				clear = 1;
@@ -1645,11 +1285,7 @@ module control_unit (
 				wr_en_output_buffer = 0;
 			end
 			CONV_PRE_MAC: begin
-				if (CONF_CONV_STRIDED || CONF_CONV_DECONV)
-					loading_in_parallel = 1;
-				else
-					loading_in_parallel = 0;
-				cr_fifo = 2'b01;
+				loading_in_parallel = 0;
 				enable_input_fifo = 1;
 				clear = 0;
 				enable_pe_array = 1;
@@ -1670,18 +1306,11 @@ module control_unit (
 				weight_rd_addr = counter_weight_address;
 				weight_rd_en = 1;
 				wr_en_output_buffer = 0;
-				if (CONF_CONV_STRIDED || CONF_CONV_DECONV)
-					loading_in_parallel = 1;
-				else
-					loading_in_parallel = 0;
-				cr_fifo = 2'b01;
+				loading_in_parallel = 0;
 				enable_input_fifo = 1;
 				clear = 0;
 				enable_pe_array = 1;
-				if (CONF_CONV_STRIDED || CONF_CONV_DECONV)
-					input_channel_rd_addr = counter_input_channel_address;
-				else
-					input_channel_rd_addr = counter_input_channel_address + parameters_N_DIM_ARRAY;
+				input_channel_rd_addr = counter_input_channel_address + parameters_N_DIM_ARRAY;
 			end
 			CONV_MAC: begin
 				clear = 0;
@@ -1693,25 +1322,14 @@ module control_unit (
 				if (counter_input_buffer_loading != (CONF_FX - 2)) begin
 					input_channel_rd_addr = counter_input_channel_address;
 					input_channel_rd_en = 1;
-					cr_fifo = 2'b01;
 				end
 				else begin
-					if (CONF_CONV_STRIDED || CONF_CONV_DECONV) begin
-						input_channel_rd_addr = counter_input_channel_address;
-						input_channel_rd_en = 1;
-					end
-					else begin
-						input_channel_rd_addr = 0;
-						input_channel_rd_en = 0;
-					end
-					cr_fifo = 2'b10;
+					input_channel_rd_addr = 0;
+					input_channel_rd_en = 0;
 				end
 				if (next_state == CONV_PRE_MAC_2) begin
 					weight_rd_en = 0;
-					if (CONF_CONV_STRIDED || CONF_CONV_DECONV)
-						input_channel_rd_addr = counter_input_channel_address;
-					else
-						input_channel_rd_addr = next_counter_input_channel_address;
+					input_channel_rd_addr = next_counter_input_channel_address;
 					input_channel_rd_en = 1;
 					loading_in_parallel = 1;
 					enable_input_fifo = 0;
@@ -1875,10 +1493,7 @@ module control_unit (
 					for (j = 0; j < parameters_N_DIM_ARRAY; j = j + 1)
 						CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000000000000010;
 				input_channel_rd_addr = counter_input_channel_address;
-				if (CONF_CONV_STRIDED || CONF_CONV_DECONV)
-					input_channel_rd_en = 1;
-				else
-					input_channel_rd_en = 0;
+				input_channel_rd_en = 0;
 				weight_rd_addr = counter_weight_address;
 				weight_rd_en = 0;
 				wr_en_output_buffer = 0;
@@ -1891,12 +1506,7 @@ module control_unit (
 				enable_pe_array = 1;
 				for (i = 0; i < parameters_N_DIM_ARRAY; i = i + 1)
 					for (j = 0; j < parameters_N_DIM_ARRAY; j = j + 1)
-						if ((CONF_NORM == 2'b00) || (CONF_NORM == 2'b11))
-							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000000000000010;
-						else if (CONF_NORM == 2'b01)
-							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b001000000000000010;
-						else if (CONF_NORM == 2'b10)
-							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b011000000000000010;
+						CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000000000000010;
 				input_channel_rd_addr = counter_C;
 				input_channel_rd_en = 1;
 				weight_rd_addr = counter_weight_address;
@@ -1910,12 +1520,7 @@ module control_unit (
 				enable_pe_array = 1;
 				for (i = 0; i < parameters_N_DIM_ARRAY; i = i + 1)
 					for (j = 0; j < parameters_N_DIM_ARRAY; j = j + 1)
-						if ((CONF_NORM == 2'b00) || (CONF_NORM == 2'b11))
-							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000000000100000;
-						else if (CONF_NORM == 2'b01)
-							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b001000000000100000;
-						else if (CONF_NORM == 2'b10)
-							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b011000000000100000;
+						CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000000000100000;
 				input_channel_rd_addr = counter_C;
 				input_channel_rd_en = 1;
 				weight_rd_addr = counter_weight_address;
@@ -1929,12 +1534,7 @@ module control_unit (
 				enable_pe_array = 1;
 				for (i = 0; i < parameters_N_DIM_ARRAY; i = i + 1)
 					for (j = 0; j < parameters_N_DIM_ARRAY; j = j + 1)
-						if ((CONF_NORM == 2'b00) || (CONF_NORM == 2'b11))
-							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000000000100000;
-						else if (CONF_NORM == 2'b01)
-							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b001000000000100000;
-						else if (CONF_NORM == 2'b10)
-							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b011000000000100000;
+						CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000000000100000;
 				input_channel_rd_addr = counter_C;
 				input_channel_rd_en = 0;
 				weight_rd_addr = counter_weight_address;
@@ -1950,20 +1550,10 @@ module control_unit (
 				input_channel_rd_en = 0;
 				for (i = 0; i < parameters_N_DIM_ARRAY; i = i + 1)
 					for (j = 0; j < parameters_N_DIM_ARRAY; j = j + 1)
-						if (j == 0) begin
-							if ((CONF_NORM == 2'b00) || (CONF_NORM == 2'b11))
-								CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b100000001010000001;
-							else if (CONF_NORM == 2'b01)
-								CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b101000001010000001;
-							else if (CONF_NORM == 2'b10)
-								CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b111000001010000001;
-						end
-						else if ((CONF_NORM == 2'b00) || (CONF_NORM == 2'b11))
+						if (j == 0)
+							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b100000001010000001;
+						else
 							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000001000000000;
-						else if (CONF_NORM == 2'b01)
-							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b001000001000000000;
-						else if (CONF_NORM == 2'b10)
-							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b011000001000000000;
 				wr_en_output_buffer = 0;
 				enable_input_fifo = 0;
 				loading_in_parallel = 0;
@@ -1975,20 +1565,10 @@ module control_unit (
 				enable_pe_array = 1;
 				for (i = 0; i < parameters_N_DIM_ARRAY; i = i + 1)
 					for (j = 0; j < parameters_N_DIM_ARRAY; j = j + 1)
-						if (j == 0) begin
-							if ((CONF_NORM == 2'b00) || (CONF_NORM == 2'b11))
-								CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000000000100001;
-							else if (CONF_NORM == 2'b01)
-								CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b001000000000100001;
-							else if (CONF_NORM == 2'b10)
-								CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b011000000000100001;
-						end
-						else if ((CONF_NORM == 2'b00) || (CONF_NORM == 2'b11))
+						if (j == 0)
+							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000000000100001;
+						else
 							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000001000001000;
-						else if (CONF_NORM == 2'b01)
-							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b001000001000001000;
-						else if (CONF_NORM == 2'b10)
-							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b011000001000001000;
 				input_channel_rd_addr = counter_C;
 				input_channel_rd_en = 0;
 				wr_en_output_buffer = 0;
@@ -2016,19 +1596,9 @@ module control_unit (
 				enable_pe_array = 1;
 				for (i = 0; i < parameters_N_DIM_ARRAY; i = i + 1)
 					for (j = 0; j < parameters_N_DIM_ARRAY; j = j + 1)
-						if (j == 0) begin
-							if ((CONF_NORM == 2'b00) || (CONF_NORM == 2'b11))
-								CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000010000001100000;
-							else if (CONF_NORM == 2'b01)
-								CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000000101100000;
-							else if (CONF_NORM == 2'b10)
-								CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000000101100000;
-						end
-						else if ((CONF_NORM == 2'b00) || (CONF_NORM == 2'b11))
-							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000000000000010;
-						else if (CONF_NORM == 2'b01)
-							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000000000000010;
-						else if (CONF_NORM == 2'b10)
+						if (j == 0)
+							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000010000001100000;
+						else
 							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000000000000010;
 				input_channel_rd_addr = counter_C;
 				input_channel_rd_en = 0;
@@ -2048,16 +1618,10 @@ module control_unit (
 				enable_pe_array = 1;
 				for (i = 0; i < parameters_N_DIM_ARRAY; i = i + 1)
 					for (j = 0; j < parameters_N_DIM_ARRAY; j = j + 1)
-						if ((CONF_NORM == 2'b00) || (CONF_NORM == 2'b11)) begin
-							if (CONF_ACTIVATION_FUNCTION == 0)
-								CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000100000000000010;
-							else
-								CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000100000000000110;
-						end
-						else if (CONF_NORM == 2'b01)
+						if (CONF_ACTIVATION_FUNCTION == 0)
+							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000100000000000010;
+						else
 							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000100000000000110;
-						else if (CONF_NORM == 2'b10)
-							CR_PE_array[((i * parameters_N_DIM_ARRAY) + j) * parameters_NUMBER_OF_CR_SIGNALS+:parameters_NUMBER_OF_CR_SIGNALS] = 18'b000000000000000110;
 				input_channel_rd_addr = counter_C;
 				input_channel_rd_en = 0;
 				weight_rd_addr = counter_weight_address;
