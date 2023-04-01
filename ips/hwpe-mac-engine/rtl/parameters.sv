@@ -5,8 +5,8 @@ package parameters;
 //////////////////// HARDWARE DESIGN VARIABLES //////////////////////////////////////////////////////
 // Instruction Memory
 	parameter integer INSTRUCTION_MEMORY_WIDTH=32;
-	parameter integer INSTRUCTION_MEMORY_SIZE=4; //1024 instrunctions
-	parameter integer INSTRUCTION_MEMORY_FIELDS=32;
+	parameter integer INSTRUCTION_MEMORY_SIZE=2; //1024 instrunctions
+	parameter integer INSTRUCTION_MEMORY_FIELDS=2;
 
 //Mode variables
 	parameter integer MODE_FC=0;
@@ -82,7 +82,7 @@ parameter SUBBLOCK_W_MEM_SRAM_blocks_per_column = (TOTAL_WEIGHT_MEMORY_SIZE/(SUB
 	parameter integer NUMBER_OF_NONLINEAR_FUNCTIONS_BITS=3;
 
 // LUT
-	parameter integer LUT_SIZE=64;
+	parameter integer LUT_SIZE=2;
 	parameter integer LUT_ADDR = $clog2(LUT_SIZE);
 	parameter integer LUT_DATA_WIDTH=8;
 

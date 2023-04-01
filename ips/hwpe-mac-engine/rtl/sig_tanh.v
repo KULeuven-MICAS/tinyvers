@@ -23,8 +23,8 @@ module sig_tanh (
 	input [1:0] PRECISION;
 	input enable_nonlinear_block;
 	input wr_en_ext_lut;
-	localparam integer parameters_LUT_SIZE = 64;
-	localparam integer parameters_LUT_ADDR = 6;
+	localparam integer parameters_LUT_SIZE = 2;
+	localparam integer parameters_LUT_ADDR = 1;
 	input [parameters_LUT_ADDR - 1:0] wr_addr_ext_lut;
 	localparam integer parameters_LUT_DATA_WIDTH = 8;
 	input signed [parameters_LUT_DATA_WIDTH - 1:0] wr_data_ext_lut;

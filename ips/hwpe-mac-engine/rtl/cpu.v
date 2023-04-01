@@ -33,7 +33,7 @@ module cpu (
 	NB_WEIGHT_TILE,
 	CONF_K_o,
 	MODE,
-	SPARSITY,
+	1'b0,
 	done_layer,
 	finished_network,
 	wr_output_enable,
@@ -170,7 +170,7 @@ module cpu (
 	wire signed [(parameters_N_DIM_ARRAY * parameters_WEIGHT_DATA_WIDTH) - 1:0] wr_data_ext_act_mem_temp;
 	integer j;
 	integer k;
-	localparam integer parameters_INSTRUCTION_MEMORY_FIELDS = 32;
+	localparam integer parameters_INSTRUCTION_MEMORY_FIELDS = 2;
 	localparam integer parameters_INSTRUCTION_MEMORY_WIDTH = 32;
 	wire [(parameters_INSTRUCTION_MEMORY_FIELDS * parameters_INSTRUCTION_MEMORY_WIDTH) - 1:0] instruction;
 	stream32bTO64b stream32bTO64b_CNN(
@@ -351,8 +351,8 @@ module cpu (
 		.input_memory_pointer(input_memory_pointer),
 		.output_memory_pointer(output_memory_pointer)
 	);
-	localparam integer parameters_LUT_SIZE = 64;
-	localparam integer parameters_LUT_ADDR = 6;
+	localparam integer parameters_LUT_SIZE = 2;
+	localparam integer parameters_LUT_ADDR = 1;
 	localparam integer parameters_LUT_DATA_WIDTH = 8;
 	nonlinear_block NONLINEAR_BLOCK(
 		.clk(clk),
