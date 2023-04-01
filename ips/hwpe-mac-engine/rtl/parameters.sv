@@ -6,7 +6,7 @@ package parameters;
 // Instruction Memory
 	parameter integer INSTRUCTION_MEMORY_WIDTH=32;
 	parameter integer INSTRUCTION_MEMORY_SIZE=2; //1024 instrunctions
-	parameter integer INSTRUCTION_MEMORY_FIELDS=8;
+	parameter integer INSTRUCTION_MEMORY_FIELDS=32;
 
 //Mode variables
 	parameter integer MODE_FC=0;

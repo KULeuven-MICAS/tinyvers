@@ -79,7 +79,7 @@ module control_unit (
 	output reg reinitialize_padding;
 	input EXECUTION_FRAME_BY_FRAME;
 	input finished_activation;
-	localparam integer parameters_INSTRUCTION_MEMORY_FIELDS = 8;
+	localparam integer parameters_INSTRUCTION_MEMORY_FIELDS = 32;
 	localparam integer parameters_INSTRUCTION_MEMORY_WIDTH = 32;
 	input [(parameters_INSTRUCTION_MEMORY_FIELDS * parameters_INSTRUCTION_MEMORY_WIDTH) - 1:0] instruction;
 	input wr_en_ext_sparsity;

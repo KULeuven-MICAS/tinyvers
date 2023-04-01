@@ -14,7 +14,7 @@ module instruction_memory (
 	input [parameters_BIT_WIDTH_EXTERNAL_PORT - 1:0] wr_addr_ext_im;
 	input [parameters_BIT_WIDTH_EXTERNAL_PORT - 1:0] wr_data_ext_im;
 	input [31:0] PC;
-	localparam integer parameters_INSTRUCTION_MEMORY_FIELDS = 8;
+	localparam integer parameters_INSTRUCTION_MEMORY_FIELDS = 32;
 	localparam integer parameters_INSTRUCTION_MEMORY_WIDTH = 32;
 	output wire [(parameters_INSTRUCTION_MEMORY_FIELDS * parameters_INSTRUCTION_MEMORY_WIDTH) - 1:0] instruction;
 	localparam integer parameters_INSTRUCTION_MEMORY_SIZE = 2;
@@ -29,6 +29,6 @@ module instruction_memory (
 					instruction_memory[i][l * parameters_INSTRUCTION_MEMORY_WIDTH+:parameters_INSTRUCTION_MEMORY_WIDTH] <= 0;
 		end
 		else if (wr_en_ext_im)
-			instruction_memory[wr_addr_ext_im[31:3]][wr_addr_ext_im[2:0] * parameters_INSTRUCTION_MEMORY_WIDTH+:parameters_INSTRUCTION_MEMORY_WIDTH] <= wr_data_ext_im;
+			instruction_memory[wr_addr_ext_im[31:5]][wr_addr_ext_im[4:0] * parameters_INSTRUCTION_MEMORY_WIDTH+:parameters_INSTRUCTION_MEMORY_WIDTH] <= wr_data_ext_im;
 	assign instruction = instruction_memory[PC];
 endmodule

@@ -170,7 +170,7 @@ module cpu (
 	wire signed [(parameters_N_DIM_ARRAY * parameters_WEIGHT_DATA_WIDTH) - 1:0] wr_data_ext_act_mem_temp;
 	integer j;
 	integer k;
-	localparam integer parameters_INSTRUCTION_MEMORY_FIELDS = 8;
+	localparam integer parameters_INSTRUCTION_MEMORY_FIELDS = 32;
 	localparam integer parameters_INSTRUCTION_MEMORY_WIDTH = 32;
 	wire [(parameters_INSTRUCTION_MEMORY_FIELDS * parameters_INSTRUCTION_MEMORY_WIDTH) - 1:0] instruction;
 	stream32bTO64b stream32bTO64b_CNN(
