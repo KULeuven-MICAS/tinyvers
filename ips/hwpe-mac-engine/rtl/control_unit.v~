@@ -131,7 +131,7 @@ module control_unit (
 	output reg [7:0] NB_WEIGHT_TILE;
 	output reg done_layer;
 	output reg [15:0] CONF_K_o;
-	output reg [1:0] write_l2_l1;
+	output ref [1:0] write_l2_l1;
 	reg [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] wr_addr_vertical [parameters_N_DIM_ARRAY - 1:0];
 	reg finished_layer;
 	reg [parameters_INPUT_CHANNEL_ADDR_SIZE - 1:0] output_channel_size_shifted;

@@ -28,7 +28,6 @@ module array_pes (
 	input reset;
 	input enable;
 	input clear;
-	input done_layer;
 	input enable_bias_32bits;
 	input [1:0] addr_bias_32bits;
 	input enable_BUFFERED_OUTPUT;
